@@ -1,4 +1,4 @@
-# planR
+# planr
 Planning application using: sbt, Scala, Play2, Akka Actors, OR-Tools, Docker and Swarm.
 
 ## Copyright and License
