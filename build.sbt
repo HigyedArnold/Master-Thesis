@@ -21,6 +21,7 @@ import com.mariussoutier.sbt.UnpackKeys
 //#############################################################################
 
 addCommandAlias("build", ";clean;compile;Test/compile")
+addCommandAlias("rebuild", ";clean;update;compile;Test/compile")
 
 //#############################################################################
 //###################################  ROOT  ##################################
