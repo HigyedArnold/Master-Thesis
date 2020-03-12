@@ -32,7 +32,7 @@ lazy val root = Project(id = "planr", base = file("."))
   .settings(PublishingSettings.noPublishSettings)
   .settings(Settings.commonSettings)
   .settings(
-    UnpackKeys.dependenciesJarDirectory := target.value / "natives",
+    UnpackKeys.dependenciesJarDirectory := target.value,
     UnpackKeys.dependencyFilter := {file => file.name.contains("jniortools")}
   )
   .settings(
