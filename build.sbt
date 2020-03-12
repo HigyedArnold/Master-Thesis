@@ -1,5 +1,5 @@
 /**
-  * Copyright (c) 2020 Scalout
+  * Copyright (c) 2020 planr
   *
   * Licensed under the Apache License, Version 2.0 (the "License");
   * you may not use this file except in compliance with the License.
@@ -20,12 +20,15 @@ import com.mariussoutier.sbt.UnpackKeys
 //#################################  COMMANDS  ################################
 //#############################################################################
 
-addCommandAlias("build", ";compile;Test/compile")
-addCommandAlias("rebuild", ";clean;compile;Test/compile")
+addCommandAlias("build", ";clean;compile;Test/compile")
 
 //#############################################################################
 //###################################  ROOT  ##################################
 //#############################################################################
+
+lazy val `root-deps` = Seq(
+  jniortools
+)
 
 lazy val root = Project(id = "planr", base = file("."))
   .enablePlugins(com.mariussoutier.sbt.UnpackPlugin)
@@ -36,7 +39,7 @@ lazy val root = Project(id = "planr", base = file("."))
     UnpackKeys.dependencyFilter := {file => file.name.contains("jniortools")}
   )
   .settings(
-    libraryDependencies ++= `planr-core-deps`.distinct,
+    libraryDependencies ++= `root-deps`.distinct,
   )
   .aggregate(
     `planr-core`
@@ -50,7 +53,6 @@ sourceGenerators in Compile += UnpackKeys.unpackJars
 
 lazy val `planr-core-deps` = Seq(
   ortools,
-  jniortools,
   protobuf,
 
   scalaTest,
@@ -89,7 +91,7 @@ lazy val logbackV:   String = "1.2.3"
 lazy val ortools: ModuleID = "com.google" %% "ortools" % ortoolsV
 
 // https://github.com/google/or-tools/releases
-lazy val jniortools: ModuleID = "com.google" %% "jniortools" % ortoolsV
+lazy val jniortools: ModuleID = "com.google" %% "jniortools-win" % ortoolsV // jniortools-lin
 
 // https://github.com/protocolbuffers/protobuf/releases
 lazy val protobuf: ModuleID = "com.google" %% "protobuf" % protobufV

@@ -1,5 +1,5 @@
 /**
-  * Copyright (c) 2020 Scalout
+  * Copyright (c) 2020 planr
   *
   * Licensed under the Apache License, Version 2.0 (the "License");
   * you may not use this file except in compliance with the License.
@@ -24,14 +24,14 @@ import Keys._
   *
   */
 object Settings {
-  lazy val organizationName: String = "com.scalout"
+  lazy val organizationName: String = "com.planr"
 
-  lazy val scaloutHomepage: String = "https://github.com/HigyedArnold/Master-Thesis"
+  lazy val planrHomepage: String = "https://github.com/HigyedArnold/Master-Thesis"
 
   def commonSettings: Seq[Setting[_]] =
     Seq(
       organization := organizationName,
-      homepage     := Some(url(scaloutHomepage)),
+      homepage     := Some(url(planrHomepage)),
       resolvers ++= Seq(
         Resolver.mavenLocal,
         Resolver.sonatypeRepo("public"),
