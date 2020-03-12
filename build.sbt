@@ -1,43 +1,60 @@
 /**
- * Copyright (c) 2020 Scalout
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+  * Copyright (c) 2020 Scalout
+  *
+  * Licensed under the Apache License, Version 2.0 (the "License");
+  * you may not use this file except in compliance with the License.
+  * You may obtain a copy of the License at
+  *
+  * http://www.apache.org/licenses/LICENSE-2.0
+  *
+  * Unless required by applicable law or agreed to in writing, software
+  * distributed under the License is distributed on an "AS IS" BASIS,
+  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  * See the License for the specific language governing permissions and
+  * limitations under the License.
+  */
+
+import com.mariussoutier.sbt.UnpackKeys
 
 //#############################################################################
-//  COMMANDS
+//#################################  COMMANDS  ################################
 //#############################################################################
 
-addCommandAlias("build",          ";compile;Test/compile")
-addCommandAlias("rebuild",        ";clean;compile;Test/compile")
+addCommandAlias("build", ";compile;Test/compile")
+addCommandAlias("rebuild", ";clean;compile;Test/compile")
 
 //#############################################################################
-//  PROJECTS
+//###################################  ROOT  ##################################
 //#############################################################################
 
 lazy val root = Project(id = "planr", base = file("."))
+  .enablePlugins(com.mariussoutier.sbt.UnpackPlugin)
   .settings(PublishingSettings.noPublishSettings)
   .settings(Settings.commonSettings)
+  .settings(
+    UnpackKeys.dependenciesJarDirectory := target.value / "natives",
+    UnpackKeys.dependencyFilter := {file => file.name.contains("jniortools")}
+  )
+  .settings(
+    libraryDependencies ++= `planr-core-deps`.distinct,
+  )
   .aggregate(
     `planr-core`
   )
 
+sourceGenerators in Compile += UnpackKeys.unpackJars
+
 //#############################################################################
-//  PLANR
+//#################################  PROJECTS  ################################
 //#############################################################################
 
 lazy val `planr-core-deps` = Seq(
+  ortools,
+  jniortools,
+  protobuf,
+
   scalaTest,
+
   logbackClassic
 )
 
@@ -49,27 +66,44 @@ lazy val `planr-core` = project
     libraryDependencies ++= `planr-core-deps`.distinct,
   )
   .dependsOn(
-  )
+    )
   .aggregate(
-  )
+    )
 
 //#############################################################################
-//  DEPENDENCIES
+//###############################  DEPENDENCIES  ##############################
 //#############################################################################
 
-lazy val logbackVersion:   String = "1.2.3"
-lazy val scalaTestVersion: String = "3.1.1"
+lazy val ortoolsV:  String = "7.5.7466"
+lazy val protobufV: String = "3.11.2"
+
+lazy val scalaTestV: String = "3.1.1"
+
+lazy val logbackV:   String = "1.2.3"
 
 //#############################################################################
-//  TESTING
+//###################################  CORE  ##################################
+//#############################################################################
+
+// https://github.com/google/or-tools/releases
+lazy val ortools: ModuleID = "com.google" %% "ortools" % ortoolsV
+
+// https://github.com/google/or-tools/releases
+lazy val jniortools: ModuleID = "com.google" %% "jniortools" % ortoolsV
+
+// https://github.com/protocolbuffers/protobuf/releases
+lazy val protobuf: ModuleID = "com.google" %% "protobuf" % protobufV
+
+//#############################################################################
+//#################################  TESTING  #################################
 //#############################################################################
 
 // https://github.com/scalatest/scalatest/releases
-lazy val scalaTest: ModuleID = "org.scalatest" %% "scalatest" % scalaTestVersion withSources ()
+lazy val scalaTest: ModuleID = "org.scalatest" %% "scalatest" % scalaTestV withSources ()
 
 //#############################################################################
-//  LOGGING
+//#################################  LOGGING  #################################
 //#############################################################################
 
 // https://github.com/qos-ch/logback/releases
-lazy val logbackClassic = "ch.qos.logback" % "logback-classic" % logbackVersion withSources ()
+lazy val logbackClassic = "ch.qos.logback" % "logback-classic" % logbackV withSources ()

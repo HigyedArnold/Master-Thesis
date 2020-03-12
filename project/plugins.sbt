@@ -14,10 +14,5 @@
   * limitations under the License.
   */
 
-// Helps us publish the artifacts to sonatype, which in turn pushes to maven central.
-//addSbtPlugin("org.xerial.sbt" % "sbt-sonatype" % "3.8.1") //https://github.com/xerial/sbt-sonatype/releases
-// Signs all the jars, used in conjunction with sbt-sonatype.
-//addSbtPlugin("com.jsuereth"      % "sbt-pgp"      % "2.0.1")  //https://github.com/sbt/sbt-pgp/releases
-//addSbtPlugin("com.github.gseitz" % "sbt-release"  % "1.0.12") //https://github.com/sbt/sbt-release/releases
-
-addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.3.0") //https://github.com/scalameta/sbt-scalafmt/releases
+addSbtPlugin("com.mariussoutier.sbt" % "sbt-unpack" % "0.9.5") // https://github.com/mariussoutier/sbt-unpack/releases
+addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.3.0") // https://github.com/scalameta/sbt-scalafmt/releases

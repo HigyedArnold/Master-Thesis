@@ -82,7 +82,6 @@ object CompilerSettings {
     "-Ywarn-value-discard",          // Warn when non-Unit expression results are unused.
   )
 
-  // https://github.com/oleg-py/better-monadic-for
   private def betterForPluginCompilerFlags: Seq[String] = Seq(
     "-P:bm4:no-filtering:y",      // https://github.com/oleg-py/better-monadic-for#desugaring-for-patterns-without-withfilters--pbm4no-filteringy
     "-P:bm4:no-map-id:y",         // https://github.com/oleg-py/better-monadic-for#final-map-optimization--pbm4no-map-idy

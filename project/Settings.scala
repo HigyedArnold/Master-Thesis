@@ -33,6 +33,7 @@ object Settings {
       organization := organizationName,
       homepage     := Some(url(scaloutHomepage)),
       resolvers ++= Seq(
+        Resolver.mavenLocal,
         Resolver.sonatypeRepo("public"),
         Resolver.sonatypeRepo("snapshots"),
       ),
