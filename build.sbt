@@ -28,7 +28,8 @@ addCommandAlias("rebuild", ";clean;update;compile;Test/compile")
 //#############################################################################
 
 lazy val `root-deps` = Seq(
-  jniortools
+  jniortoolswin,
+  jniortoolslin
 )
 
 lazy val root = Project(id = "planr", base = file("."))
@@ -92,7 +93,8 @@ lazy val logbackV:   String = "1.2.3"
 lazy val ortools: ModuleID = "com.google" %% "ortools" % ortoolsV
 
 // https://github.com/google/or-tools/releases
-lazy val jniortools: ModuleID = "com.google" %% "jniortools-win" % ortoolsV // jniortools-lin
+lazy val jniortoolswin: ModuleID = "com.google" %% "jniortools-win" % ortoolsV
+lazy val jniortoolslin: ModuleID = "com.google" %% "jniortools-lin" % ortoolsV
 
 // https://github.com/protocolbuffers/protobuf/releases
 lazy val protobuf: ModuleID = "com.google" %% "protobuf" % protobufV
