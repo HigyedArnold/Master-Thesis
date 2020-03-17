@@ -44,6 +44,7 @@ lazy val root = Project(id = "planr", base = file("."))
     libraryDependencies ++= `root-deps`.distinct,
   )
   .aggregate(
+    `planr-api`,
     `planr-core`
   )
 
@@ -73,6 +74,20 @@ lazy val `planr-core` = project
     )
   .aggregate(
     )
+
+lazy val `planr-api-deps` = Seq()
+
+lazy val `planr-api` = project
+  .settings(PublishingSettings.noPublishSettings)
+  .settings(Settings.commonSettings)
+  .settings(
+    name := "planr-api",
+    libraryDependencies ++= `planr-api-deps`.distinct,
+  )
+  .dependsOn(
+  )
+  .aggregate(
+  )
 
 //#############################################################################
 //###############################  DEPENDENCIES  ##############################
