@@ -8,7 +8,7 @@ import scala.collection.mutable.ArrayBuffer
 /**
   * https://developers.google.com/optimization/scheduling/job_shop in Scala
   */
-object JobShop extends App {
+object JobShop {
 
   NativeLibLoader.init()
 

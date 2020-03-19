@@ -14,7 +14,7 @@
   * limitations under the License.
   */
 
-import com.mariussoutier.sbt.UnpackKeys
+import com.mariussoutier.sbt._
 
 //#############################################################################
 //#################################  COMMANDS  ################################
@@ -24,31 +24,35 @@ addCommandAlias("build", ";clean;compile;Test/compile")
 addCommandAlias("rebuild", ";clean;update;compile;Test/compile")
 
 //#############################################################################
+//##################################  BUILD  ##################################
+//#############################################################################
+
+enablePlugins(UnpackPlugin, DockerPlugin)
+
+UnpackKeys.dependenciesJarDirectory := target.value
+UnpackKeys.dependencyFilter := { file =>
+  file.name.contains("jniortools")
+}
+sourceGenerators in Compile += UnpackKeys.unpackJars
+
+//#############################################################################
 //###################################  ROOT  ##################################
 //#############################################################################
 
 lazy val `root-deps` = Seq(
   jniortoolswin,
-  jniortoolslin
+  jniortoolslin,
 )
 
 lazy val root = Project(id = "planr", base = file("."))
-  .enablePlugins(com.mariussoutier.sbt.UnpackPlugin)
-  .settings(PublishingSettings.noPublishSettings)
   .settings(Settings.commonSettings)
-  .settings(
-    UnpackKeys.dependenciesJarDirectory := target.value,
-    UnpackKeys.dependencyFilter := {file => file.name.contains("jniortools")}
-  )
   .settings(
     libraryDependencies ++= `root-deps`.distinct,
   )
   .aggregate(
     `planr-api`,
-    `planr-core`
+    `planr-core`,
   )
-
-sourceGenerators in Compile += UnpackKeys.unpackJars
 
 //#############################################################################
 //#################################  PROJECTS  ################################
@@ -57,10 +61,8 @@ sourceGenerators in Compile += UnpackKeys.unpackJars
 lazy val `planr-core-deps` = Seq(
   ortools,
   protobuf,
-
   scalaTest,
-
-  logbackClassic
+  logbackClassic,
 )
 
 lazy val `planr-core` = project
@@ -85,9 +87,9 @@ lazy val `planr-api` = project
     libraryDependencies ++= `planr-api-deps`.distinct,
   )
   .dependsOn(
-  )
+    )
   .aggregate(
-  )
+    )
 
 //#############################################################################
 //###############################  DEPENDENCIES  ##############################
@@ -98,7 +100,7 @@ lazy val protobufV: String = "3.11.2"
 
 lazy val scalaTestV: String = "3.1.1"
 
-lazy val logbackV:   String = "1.2.3"
+lazy val logbackV: String = "1.2.3"
 
 //#############################################################################
 //###################################  CORE  ##################################
