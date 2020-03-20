@@ -27,13 +27,13 @@ addCommandAlias("rebuild", ";clean;update;compile;Test/compile")
 //##################################  BUILD  ##################################
 //#############################################################################
 
-enablePlugins(UnpackPlugin, DockerPlugin)
+enablePlugins(UnpackPlugin)
 
-UnpackKeys.dependenciesJarDirectory := target.value
+UnpackKeys.dependenciesJarDirectory := target.value / "scala-2.13" / "lib"
 UnpackKeys.dependencyFilter := { file =>
   file.name.contains("jniortools")
 }
-sourceGenerators in Compile += UnpackKeys.unpackJars
+sourceGenerators in (Compile, unpackJars) += UnpackKeys.unpackJars
 
 //#############################################################################
 //###################################  ROOT  ##################################
@@ -44,13 +44,17 @@ lazy val `root-deps` = Seq(
   jniortoolslin,
 )
 
-lazy val root = Project(id = "planr", base = file("."))
+lazy val root = (project in file("."))
   .settings(Settings.commonSettings)
   .settings(
+    name := "planr-main",
     libraryDependencies ++= `root-deps`.distinct,
+    mainClass := Some("com.planr.main.Main"),
+  )
+  .dependsOn(
+    `planr-core`,
   )
   .aggregate(
-    `planr-api`,
     `planr-core`,
   )
 
@@ -65,26 +69,12 @@ lazy val `planr-core-deps` = Seq(
   logbackClassic,
 )
 
-lazy val `planr-core` = project
+lazy val `planr-core` = (project in file("planr-core"))
   .settings(PublishingSettings.noPublishSettings)
   .settings(Settings.commonSettings)
   .settings(
     name := "planr-core",
     libraryDependencies ++= `planr-core-deps`.distinct,
-  )
-  .dependsOn(
-    )
-  .aggregate(
-    )
-
-lazy val `planr-api-deps` = Seq()
-
-lazy val `planr-api` = project
-  .settings(PublishingSettings.noPublishSettings)
-  .settings(Settings.commonSettings)
-  .settings(
-    name := "planr-api",
-    libraryDependencies ++= `planr-api-deps`.distinct,
   )
   .dependsOn(
     )

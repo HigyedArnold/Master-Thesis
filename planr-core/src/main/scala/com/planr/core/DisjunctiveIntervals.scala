@@ -1,15 +1,14 @@
 package com.planr.core
 
 import com.google.ortools.constraintsolver._
-import com.planr.core.util.NativeLibLoader
 
 import scala.annotation.tailrec
 
-object DisjunctiveIntervals extends App {
+class DisjunctiveIntervals {
 
-  NativeLibLoader.init()
+//  NativeLibLoader.init()
 
-  final case class Interval(start: Long, end: Long)
+  case class Interval(start: Long, end: Long)
 
   // Test 1
   val blockedIntervals1: List[Interval] = List(
@@ -22,7 +21,7 @@ object DisjunctiveIntervals extends App {
     2,
     4
   )
-  search(0, 10, blockedIntervals1, requestIntervals1)
+//  search(0, 10, blockedIntervals1, requestIntervals1)
 
   /**
     *

@@ -1,18 +1,17 @@
 package com.planr.core
 
 import com.google.ortools.constraintsolver._
-import com.planr.core.util.NativeLibLoader
 
 import scala.collection.mutable.ArrayBuffer
 
 /**
   * https://developers.google.com/optimization/scheduling/job_shop in Scala
   */
-object JobShop {
+class JobShop {
 
-  NativeLibLoader.init()
+  //  NativeLibLoader.init()
 
-  final case class Task(machineID: Int, duration: Int)
+  case class Task(machineID: Int, duration: Int)
 
   // Test 1
   val jobs1 = List(
@@ -20,7 +19,7 @@ object JobShop {
     List(Task(0, 2), Task(2, 1), Task(1, 4)), // Job1
     List(Task(1, 4), Task(2, 3)) // Job2
   )
-  search(jobs1)
+//  search(jobs1)
 
   // Test 2
   // abz9
