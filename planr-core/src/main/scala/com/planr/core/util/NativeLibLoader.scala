@@ -4,10 +4,10 @@ object NativeLibLoader {
 
   private val separator = System.getProperty("file.separator")
 
-  val DEV:  String = separator + "target" + separator + "scala-2.13"
-  val PROD: String = ""
+  val DEVELOPMENT:  String = separator + "target" + separator + "scala-2.13"
+  val PRODUCTION: String = separator + "app"
 
-  def init(path: String = ""): Unit = System.load(System.getProperty("user.dir") + getLibrary(path))
+  def init(path: String): Unit = System.load(System.getProperty("user.dir") + getLibrary(path))
 
   private def getLibrary(path: String): String = {
     val os = System.getProperty("os.name").toLowerCase

@@ -21,19 +21,51 @@ import com.mariussoutier.sbt._
 //#############################################################################
 
 addCommandAlias("build", ";clean;compile;Test/compile")
-addCommandAlias("rebuild", ";clean;update;compile;Test/compile")
 
 //#############################################################################
 //##################################  BUILD  ##################################
 //#############################################################################
 
-enablePlugins(UnpackPlugin)
+enablePlugins(UnpackPlugin, DockerPlugin)
 
-UnpackKeys.dependenciesJarDirectory := target.value / "scala-2.13" / "lib"
+def getPathScalaVersion: String = "scala-2.13"
+def getPathJni: String = "lib"
+
+UnpackKeys.dependenciesJarDirectory := target.value / getPathScalaVersion / getPathJni
 UnpackKeys.dependencyFilter := { file =>
   file.name.contains("jniortools")
 }
 sourceGenerators in (Compile, unpackJars) += UnpackKeys.unpackJars
+
+dockerfile in docker := {
+  val artifact: File = assembly.value
+  val artifactTargetPath = s"/app/${artifact.name}"
+  val jni: File = target.value / getPathScalaVersion / getPathJni
+  val libTargetPath = s"/app/${jni.name}"
+
+  new Dockerfile {
+    from("openjdk:8-jre")
+    copy(artifact, artifactTargetPath)
+    copy(jni, libTargetPath)
+    entryPoint("java", "-jar", artifactTargetPath)
+  }
+}
+
+// Image options
+imageNames in docker := Seq(
+  ImageName(s"${organization.value}/${name.value}:latest"),
+  ImageName(
+    repository = name.value,
+    tag = Some("v" + version.value)
+  )
+)
+
+// Build options
+//buildOptions in docker := BuildOptions(
+//  cache = false,
+//  removeIntermediateContainers = BuildOptions.Remove.Always,
+//  pullBaseImage = BuildOptions.Pull.Always
+//)
 
 //#############################################################################
 //###################################  ROOT  ##################################

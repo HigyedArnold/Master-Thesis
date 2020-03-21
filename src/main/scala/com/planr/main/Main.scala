@@ -5,8 +5,8 @@ import com.planr.core.util.NativeLibLoader._
 
 object Main extends App {
 
-  if (args.length == 1 && args(0) == "DEV") init(DEV)
-  else init(PROD)
+  if (args.length == 1 && args(0) == "DEV") init(DEVELOPMENT)
+  else init(PRODUCTION)
 
   run()
 
