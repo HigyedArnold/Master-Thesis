@@ -12,14 +12,14 @@ class DisjunctiveIntervals {
 
   // Test 1
   val blockedIntervals1: List[Interval] = List(
-    Interval(7,  10),
-    Interval(8,  9),
-    Interval(10, 12)
+    Interval(7, 10),
+    Interval(8, 9),
+    Interval(10, 12),
   )
 
   val requestIntervals1: List[Long] = List(
     2,
-    4
+    4,
   )
 //  search(0, 10, blockedIntervals1, requestIntervals1)
 
@@ -39,9 +39,8 @@ class DisjunctiveIntervals {
       .map(duration => solver.makeFixedDurationIntervalVar(start, end - duration, duration, false, "interval_" + start + "..." + (end - duration) + "_" + duration))
       .toArray
     val allBlockedIntervals = mergeIntervals(blockedIntervals)
-      .map(
-        interval =>
-          solver.makeFixedDurationIntervalVar(interval.start, interval.start, interval.end - interval.start, false, "blocked_interval_" + interval.start + "_" + interval.end)
+      .map(interval =>
+        solver.makeFixedDurationIntervalVar(interval.start, interval.start, interval.end - interval.start, false, "blocked_interval_" + interval.start + "_" + interval.end),
       )
       .toArray
 
@@ -61,10 +60,10 @@ class DisjunctiveIntervals {
     val endVar       = allIntervals.last.endExpr()
     val objectiveVar = solver.makeSum(startVar, solver.makeDifference(endVar, startVar)).`var`()
 
-    val sequencePhase       = solver.makePhase(sequences,        Solver.SEQUENCE_DEFAULT)
+    val sequencePhase       = solver.makePhase(sequences, Solver.SEQUENCE_DEFAULT)
     val objectiveStartPhase = solver.makePhase(startVar.`var`(), Solver.CHOOSE_FIRST_UNBOUND, Solver.ASSIGN_MIN_VALUE)
-    val objectiveEndPhase   = solver.makePhase(endVar.`var`(),   Solver.CHOOSE_FIRST_UNBOUND, Solver.ASSIGN_MIN_VALUE)
-    val mainPhase           = solver.compose(sequencePhase,      objectiveStartPhase, objectiveEndPhase)
+    val objectiveEndPhase   = solver.makePhase(endVar.`var`(), Solver.CHOOSE_FIRST_UNBOUND, Solver.ASSIGN_MIN_VALUE)
+    val mainPhase           = solver.compose(sequencePhase, objectiveStartPhase, objectiveEndPhase)
 
     val searchLog = solver.makeSearchLog(1000000)
     val collector = solver.makeAllSolutionCollector()

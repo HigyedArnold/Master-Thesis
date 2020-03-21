@@ -17,7 +17,7 @@ class JobShop {
   val jobs1 = List(
     List(Task(0, 3), Task(1, 2), Task(2, 2)), // Job0
     List(Task(0, 2), Task(2, 1), Task(1, 4)), // Job1
-    List(Task(1, 4), Task(2, 3)) // Job2
+    List(Task(1, 4), Task(2, 3)),             // Job2
   )
 //  search(jobs1)
 
@@ -25,26 +25,346 @@ class JobShop {
   // abz9
   // http://web.cecs.pdx.edu/~bart/cs510ss/project/jobshop/jobshop/abz9.txt
   val jobs2 = List(
-    List(Task(6, 14), Task(5, 21), Task(8, 13), Task(4, 11), Task(1, 11), Task(14, 35), Task(13, 20), Task(11, 17), Task(10, 18), Task(12, 11), Task(2, 23), Task(3, 13), Task(0, 15), Task(7, 11), Task(9, 35)), // Job0
-    List(Task(1, 35), Task(5, 31), Task(0, 13), Task(3, 26), Task(6, 14), Task(9, 17), Task(7, 38), Task(12, 20), Task(10, 19), Task(13, 12), Task(8, 16), Task(4, 34), Task(11, 15), Task(14, 12), Task(2, 14)), // Job1
-    List(Task(0, 30), Task(4, 35), Task(2, 40), Task(10, 35), Task(6, 30), Task(14, 23), Task(8, 29), Task(13, 37), Task(7, 38), Task(3, 40), Task(9, 26), Task(12, 11), Task(1, 40), Task(11, 36), Task(5, 17)), // Job2
-    List(Task(7, 40), Task(5, 18), Task(4, 12), Task(8, 23), Task(0, 23), Task(9, 14), Task(13, 16), Task(12, 14), Task(10, 23), Task(3, 12), Task(6, 16), Task(14, 32), Task(1, 40), Task(11, 25), Task(2, 29)), // Job3
-    List(Task(2, 35), Task(3, 15), Task(12, 31), Task(11, 28), Task(6, 32), Task(4, 30), Task(10, 27), Task(7, 29), Task(0, 38), Task(13, 11), Task(1, 23), Task(14, 17), Task(5, 27), Task(9, 37), Task(8, 29)), // Job4
-    List(Task(5, 33), Task(3, 33), Task(6, 19), Task(12, 40), Task(10, 19), Task(0, 33), Task(13, 26), Task(2, 31), Task(11, 28), Task(7, 36), Task(4, 38), Task(1, 21), Task(14, 25), Task(9, 40), Task(8, 35)), // Job5
-    List(Task(13, 25), Task(0, 32), Task(11, 33), Task(12, 18), Task(4, 32), Task(6, 28), Task(5, 15), Task(3, 35), Task(9, 14), Task(2, 34), Task(7, 23), Task(10, 32), Task(1, 17), Task(14, 26), Task(8, 19)), // Job6
-    List(Task(2, 16), Task(12, 33), Task(9, 34), Task(11, 30), Task(13, 40), Task(8, 12), Task(14, 26), Task(5, 26), Task(6, 15), Task(3, 21), Task(1, 40), Task(4, 32), Task(0, 14), Task(7, 30), Task(10, 35)), // Job7
-    List(Task(2, 17), Task(10, 16), Task(14, 20), Task(6, 24), Task(8, 26), Task(3, 36), Task(12, 22), Task(0, 14), Task(13, 11), Task(9, 20), Task(7, 23), Task(1, 29), Task(11, 23), Task(4, 15), Task(5, 40)), // Job8
-    List(Task(4, 27), Task(9, 37), Task(3, 40), Task(11, 14), Task(13, 25), Task(7, 30), Task(0, 34), Task(2, 11), Task(5, 15), Task(12, 32), Task(1, 36), Task(10, 12), Task(14, 28), Task(8, 31), Task(6, 23)), // Job9
-    List(Task(13, 25), Task(0, 22), Task(3, 27), Task(8, 14), Task(5, 25), Task(6, 20),Task(14, 18), Task(7, 14), Task(1, 19), Task(2, 17), Task(4, 27), Task(9, 22), Task(12, 22), Task(11, 27), Task(10, 21)), // Job10
-    List(Task(14, 34), Task(10, 15), Task(0, 22), Task(3, 29), Task(13, 34), Task(6, 40), Task(7, 17), Task(2, 32), Task(12, 20), Task(5, 39), Task(4, 31), Task(11, 16), Task(1, 37), Task(8, 33), Task(9, 13)), // Job11
-    List(Task(6, 12), Task(12, 27), Task(4, 17), Task(2, 24), Task(8, 11), Task(5, 19), Task(14, 11), Task(3, 17), Task(9, 25), Task(1, 11), Task(11, 31), Task(13, 33), Task(7, 31), Task(10, 12), Task(0, 22)), // Job12
-    List(Task(5, 22), Task(14, 15), Task(0, 16), Task(8, 32), Task(7, 20), Task(4, 22), Task(9, 11), Task(13, 19), Task(1, 30), Task(12, 33), Task(6, 29), Task(11, 18), Task(3, 34), Task(10, 32), Task(2, 18)), // Job13
-    List(Task(5, 27), Task(3, 26), Task(10, 28), Task(6, 37), Task(4, 18), Task(12, 12), Task(11, 11), Task(13, 26), Task(7, 27), Task(9, 40), Task(14, 19), Task(1, 24), Task(2, 18), Task(0, 12), Task(8, 34)), // Job14
-    List(Task(8, 15), Task(5, 28), Task(9, 25), Task(6, 32), Task(1, 13), Task(7, 38), Task(11, 11), Task(2, 34), Task(4, 25), Task(0, 20), Task(10, 32), Task(3, 23), Task(12, 14), Task(14, 16), Task(13, 20)), // Job15
-    List(Task(1, 15), Task(4, 13), Task(8, 37), Task(3, 14), Task(10, 22), Task(5, 24), Task(12, 26), Task(7, 22), Task(9, 34), Task(14, 22), Task(11, 19), Task(13, 32), Task(0, 29), Task(2, 13), Task(6, 35)), // Job16
-    List(Task(7, 36), Task(5, 33), Task(13, 28), Task(9, 20), Task(10, 30), Task(4, 33), Task(14, 29), Task(0, 34), Task(3, 22), Task(11, 12), Task(6, 30), Task(8, 12), Task(1, 35), Task(2, 13), Task(12, 35)), // Job17
-    List(Task(14, 26), Task(11, 31), Task(5, 35), Task(2, 38), Task(13, 19), Task(10, 35), Task(4, 27), Task(8, 29), Task(3, 39), Task(9, 13), Task(6, 14), Task(7, 26), Task(0, 17), Task(1, 22), Task(12, 15)), // Job18
-    List(Task(1, 36), Task(7, 34), Task(11, 33), Task(8, 17), Task(14, 38), Task(6, 39), Task(5, 16), Task(3, 27), Task(13, 29), Task(2, 16), Task(0, 16), Task(4, 19), Task(9, 40), Task(12, 35), Task(10, 39)), // Job29
+    List(
+      Task(6, 14),
+      Task(5, 21),
+      Task(8, 13),
+      Task(4, 11),
+      Task(1, 11),
+      Task(14, 35),
+      Task(13, 20),
+      Task(11, 17),
+      Task(10, 18),
+      Task(12, 11),
+      Task(2, 23),
+      Task(3, 13),
+      Task(0, 15),
+      Task(7, 11),
+      Task(9, 35),
+    ), // Job0
+    List(
+      Task(1, 35),
+      Task(5, 31),
+      Task(0, 13),
+      Task(3, 26),
+      Task(6, 14),
+      Task(9, 17),
+      Task(7, 38),
+      Task(12, 20),
+      Task(10, 19),
+      Task(13, 12),
+      Task(8, 16),
+      Task(4, 34),
+      Task(11, 15),
+      Task(14, 12),
+      Task(2, 14),
+    ), // Job1
+    List(
+      Task(0, 30),
+      Task(4, 35),
+      Task(2, 40),
+      Task(10, 35),
+      Task(6, 30),
+      Task(14, 23),
+      Task(8, 29),
+      Task(13, 37),
+      Task(7, 38),
+      Task(3, 40),
+      Task(9, 26),
+      Task(12, 11),
+      Task(1, 40),
+      Task(11, 36),
+      Task(5, 17),
+    ), // Job2
+    List(
+      Task(7, 40),
+      Task(5, 18),
+      Task(4, 12),
+      Task(8, 23),
+      Task(0, 23),
+      Task(9, 14),
+      Task(13, 16),
+      Task(12, 14),
+      Task(10, 23),
+      Task(3, 12),
+      Task(6, 16),
+      Task(14, 32),
+      Task(1, 40),
+      Task(11, 25),
+      Task(2, 29),
+    ), // Job3
+    List(
+      Task(2, 35),
+      Task(3, 15),
+      Task(12, 31),
+      Task(11, 28),
+      Task(6, 32),
+      Task(4, 30),
+      Task(10, 27),
+      Task(7, 29),
+      Task(0, 38),
+      Task(13, 11),
+      Task(1, 23),
+      Task(14, 17),
+      Task(5, 27),
+      Task(9, 37),
+      Task(8, 29),
+    ), // Job4
+    List(
+      Task(5, 33),
+      Task(3, 33),
+      Task(6, 19),
+      Task(12, 40),
+      Task(10, 19),
+      Task(0, 33),
+      Task(13, 26),
+      Task(2, 31),
+      Task(11, 28),
+      Task(7, 36),
+      Task(4, 38),
+      Task(1, 21),
+      Task(14, 25),
+      Task(9, 40),
+      Task(8, 35),
+    ), // Job5
+    List(
+      Task(13, 25),
+      Task(0, 32),
+      Task(11, 33),
+      Task(12, 18),
+      Task(4, 32),
+      Task(6, 28),
+      Task(5, 15),
+      Task(3, 35),
+      Task(9, 14),
+      Task(2, 34),
+      Task(7, 23),
+      Task(10, 32),
+      Task(1, 17),
+      Task(14, 26),
+      Task(8, 19),
+    ), // Job6
+    List(
+      Task(2, 16),
+      Task(12, 33),
+      Task(9, 34),
+      Task(11, 30),
+      Task(13, 40),
+      Task(8, 12),
+      Task(14, 26),
+      Task(5, 26),
+      Task(6, 15),
+      Task(3, 21),
+      Task(1, 40),
+      Task(4, 32),
+      Task(0, 14),
+      Task(7, 30),
+      Task(10, 35),
+    ), // Job7
+    List(
+      Task(2, 17),
+      Task(10, 16),
+      Task(14, 20),
+      Task(6, 24),
+      Task(8, 26),
+      Task(3, 36),
+      Task(12, 22),
+      Task(0, 14),
+      Task(13, 11),
+      Task(9, 20),
+      Task(7, 23),
+      Task(1, 29),
+      Task(11, 23),
+      Task(4, 15),
+      Task(5, 40),
+    ), // Job8
+    List(
+      Task(4, 27),
+      Task(9, 37),
+      Task(3, 40),
+      Task(11, 14),
+      Task(13, 25),
+      Task(7, 30),
+      Task(0, 34),
+      Task(2, 11),
+      Task(5, 15),
+      Task(12, 32),
+      Task(1, 36),
+      Task(10, 12),
+      Task(14, 28),
+      Task(8, 31),
+      Task(6, 23),
+    ), // Job9
+    List(
+      Task(13, 25),
+      Task(0, 22),
+      Task(3, 27),
+      Task(8, 14),
+      Task(5, 25),
+      Task(6, 20),
+      Task(14, 18),
+      Task(7, 14),
+      Task(1, 19),
+      Task(2, 17),
+      Task(4, 27),
+      Task(9, 22),
+      Task(12, 22),
+      Task(11, 27),
+      Task(10, 21),
+    ), // Job10
+    List(
+      Task(14, 34),
+      Task(10, 15),
+      Task(0, 22),
+      Task(3, 29),
+      Task(13, 34),
+      Task(6, 40),
+      Task(7, 17),
+      Task(2, 32),
+      Task(12, 20),
+      Task(5, 39),
+      Task(4, 31),
+      Task(11, 16),
+      Task(1, 37),
+      Task(8, 33),
+      Task(9, 13),
+    ), // Job11
+    List(
+      Task(6, 12),
+      Task(12, 27),
+      Task(4, 17),
+      Task(2, 24),
+      Task(8, 11),
+      Task(5, 19),
+      Task(14, 11),
+      Task(3, 17),
+      Task(9, 25),
+      Task(1, 11),
+      Task(11, 31),
+      Task(13, 33),
+      Task(7, 31),
+      Task(10, 12),
+      Task(0, 22),
+    ), // Job12
+    List(
+      Task(5, 22),
+      Task(14, 15),
+      Task(0, 16),
+      Task(8, 32),
+      Task(7, 20),
+      Task(4, 22),
+      Task(9, 11),
+      Task(13, 19),
+      Task(1, 30),
+      Task(12, 33),
+      Task(6, 29),
+      Task(11, 18),
+      Task(3, 34),
+      Task(10, 32),
+      Task(2, 18),
+    ), // Job13
+    List(
+      Task(5, 27),
+      Task(3, 26),
+      Task(10, 28),
+      Task(6, 37),
+      Task(4, 18),
+      Task(12, 12),
+      Task(11, 11),
+      Task(13, 26),
+      Task(7, 27),
+      Task(9, 40),
+      Task(14, 19),
+      Task(1, 24),
+      Task(2, 18),
+      Task(0, 12),
+      Task(8, 34),
+    ), // Job14
+    List(
+      Task(8, 15),
+      Task(5, 28),
+      Task(9, 25),
+      Task(6, 32),
+      Task(1, 13),
+      Task(7, 38),
+      Task(11, 11),
+      Task(2, 34),
+      Task(4, 25),
+      Task(0, 20),
+      Task(10, 32),
+      Task(3, 23),
+      Task(12, 14),
+      Task(14, 16),
+      Task(13, 20),
+    ), // Job15
+    List(
+      Task(1, 15),
+      Task(4, 13),
+      Task(8, 37),
+      Task(3, 14),
+      Task(10, 22),
+      Task(5, 24),
+      Task(12, 26),
+      Task(7, 22),
+      Task(9, 34),
+      Task(14, 22),
+      Task(11, 19),
+      Task(13, 32),
+      Task(0, 29),
+      Task(2, 13),
+      Task(6, 35),
+    ), // Job16
+    List(
+      Task(7, 36),
+      Task(5, 33),
+      Task(13, 28),
+      Task(9, 20),
+      Task(10, 30),
+      Task(4, 33),
+      Task(14, 29),
+      Task(0, 34),
+      Task(3, 22),
+      Task(11, 12),
+      Task(6, 30),
+      Task(8, 12),
+      Task(1, 35),
+      Task(2, 13),
+      Task(12, 35),
+    ), // Job17
+    List(
+      Task(14, 26),
+      Task(11, 31),
+      Task(5, 35),
+      Task(2, 38),
+      Task(13, 19),
+      Task(10, 35),
+      Task(4, 27),
+      Task(8, 29),
+      Task(3, 39),
+      Task(9, 13),
+      Task(6, 14),
+      Task(7, 26),
+      Task(0, 17),
+      Task(1, 22),
+      Task(12, 15),
+    ), // Job18
+    List(
+      Task(1, 36),
+      Task(7, 34),
+      Task(11, 33),
+      Task(8, 17),
+      Task(14, 38),
+      Task(6, 39),
+      Task(5, 16),
+      Task(3, 27),
+      Task(13, 29),
+      Task(2, 16),
+      Task(0, 16),
+      Task(4, 19),
+      Task(9, 40),
+      Task(12, 35),
+      Task(10, 39),
+    ), // Job29
   )
 //  search(jobs2)
 

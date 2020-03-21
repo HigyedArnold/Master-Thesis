@@ -29,7 +29,7 @@ addCommandAlias("build", ";clean;compile;Test/compile")
 enablePlugins(UnpackPlugin, DockerPlugin)
 
 def getPathScalaVersion: String = "scala-2.13"
-def getPathJni: String = "lib"
+def getPathJni:          String = "lib"
 
 UnpackKeys.dependenciesJarDirectory := target.value / getPathScalaVersion / getPathJni
 UnpackKeys.dependencyFilter := { file =>
@@ -56,8 +56,8 @@ imageNames in docker := Seq(
   ImageName(s"${organization.value}/${name.value}:latest"),
   ImageName(
     repository = name.value,
-    tag = Some("v" + version.value)
-  )
+    tag        = Some("v" + version.value),
+  ),
 )
 
 // Build options
