@@ -17,14 +17,14 @@
 import com.mariussoutier.sbt._
 
 //#############################################################################
-//#################################  COMMANDS  ################################
+//##################################  BUILD  ##################################
 //#############################################################################
+
+//---------------------------------  COMMANDS  --------------------------------
 
 addCommandAlias("build", ";clean;compile;Test/compile")
 
-//#############################################################################
-//##################################  BUILD  ##################################
-//#############################################################################
+//---------------------------------  NATIVES  ---------------------------------
 
 enablePlugins(UnpackPlugin, DockerPlugin)
 
@@ -36,6 +36,8 @@ UnpackKeys.dependencyFilter := { file =>
   file.name.contains("jniortools")
 }
 sourceGenerators in (Compile, unpackJars) += UnpackKeys.unpackJars
+
+//----------------------------------  DOCKER  ---------------------------------
 
 dockerfile in docker := {
   val artifact: File = assembly.value
@@ -94,6 +96,76 @@ lazy val root = (project in file("."))
 //#################################  PROJECTS  ################################
 //#############################################################################
 
+//-----------------------------------  API  -----------------------------------
+
+lazy val `planr-api-deps` = Seq(
+  )
+
+lazy val `planr-api` = (project in file("planr-api"))
+  .settings(PublishingSettings.noPublishSettings)
+  .settings(Settings.commonSettings)
+  .settings(
+    name := "planr-api",
+    libraryDependencies ++= `planr-api-deps`.distinct,
+  )
+  .dependsOn(
+    )
+  .aggregate(
+    )
+
+//-----------------------------------  REST  ----------------------------------
+
+lazy val `planr-rest-deps` = Seq(
+  )
+
+lazy val `planr-rest` = (project in file("planr-rest"))
+  .settings(PublishingSettings.noPublishSettings)
+  .settings(Settings.commonSettings)
+  .settings(
+    name := "planr-rest",
+    libraryDependencies ++= `planr-rest-deps`.distinct,
+  )
+  .dependsOn(
+    )
+  .aggregate(
+    )
+
+//----------------------------------  FRONT  ----------------------------------
+
+lazy val `planr-front-deps` = Seq(
+  )
+
+lazy val `planr-front` = (project in file("planr-front"))
+  .settings(PublishingSettings.noPublishSettings)
+  .settings(Settings.commonSettings)
+  .settings(
+    name := "planr-front",
+    libraryDependencies ++= `planr-front-deps`.distinct,
+  )
+  .dependsOn(
+    )
+  .aggregate(
+    )
+
+//-----------------------------------  BACK  ----------------------------------
+
+lazy val `planr-back-deps` = Seq(
+  )
+
+lazy val `planr-back` = (project in file("planr-back"))
+  .settings(PublishingSettings.noPublishSettings)
+  .settings(Settings.commonSettings)
+  .settings(
+    name := "planr-back",
+    libraryDependencies ++= `planr-back-deps`.distinct,
+  )
+  .dependsOn(
+    )
+  .aggregate(
+    )
+
+//-----------------------------------  CORE  ----------------------------------
+
 lazy val `planr-core-deps` = Seq(
   ortools,
   protobuf,
@@ -124,9 +196,7 @@ lazy val scalaTestV: String = "3.1.1"
 
 lazy val logbackV: String = "1.2.3"
 
-//#############################################################################
-//###################################  CORE  ##################################
-//#############################################################################
+//-----------------------------------  CORE  ----------------------------------
 
 // https://github.com/google/or-tools/releases
 lazy val ortools: ModuleID = "com.google" %% "ortools" % ortoolsV
@@ -138,16 +208,12 @@ lazy val jniortoolslin: ModuleID = "com.google" %% "jniortools-lin" % ortoolsV
 // https://github.com/protocolbuffers/protobuf/releases
 lazy val protobuf: ModuleID = "com.google" %% "protobuf" % protobufV
 
-//#############################################################################
-//#################################  TESTING  #################################
-//#############################################################################
+//----------------------------------  TESTING  --------------------------------
 
 // https://github.com/scalatest/scalatest/releases
 lazy val scalaTest: ModuleID = "org.scalatest" %% "scalatest" % scalaTestV withSources ()
 
-//#############################################################################
-//#################################  LOGGING  #################################
-//#############################################################################
+//---------------------------------  LOGGING  ---------------------------------
 
 // https://github.com/qos-ch/logback/releases
 lazy val logbackClassic = "ch.qos.logback" % "logback-classic" % logbackV withSources ()
