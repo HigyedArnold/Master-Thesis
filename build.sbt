@@ -99,7 +99,10 @@ lazy val root = (project in file("."))
 //-----------------------------------  API  -----------------------------------
 
 lazy val `planr-api-deps` = Seq(
-  )
+  slf4jApi,
+  playJson,
+  scalaTest,
+)
 
 lazy val `planr-api` = (project in file("planr-api"))
   .settings(PublishingSettings.noPublishSettings)
@@ -170,7 +173,6 @@ lazy val `planr-core-deps` = Seq(
   ortools,
   protobuf,
   scalaTest,
-  logbackClassic,
 )
 
 lazy val `planr-core` = (project in file("planr-core"))
@@ -189,12 +191,19 @@ lazy val `planr-core` = (project in file("planr-core"))
 //###############################  DEPENDENCIES  ##############################
 //#############################################################################
 
+lazy val playV: String = "2.8.1"
+
 lazy val ortoolsV:  String = "7.5.7466"
 lazy val protobufV: String = "3.11.2"
 
 lazy val scalaTestV: String = "3.1.1"
 
-lazy val logbackV: String = "1.2.3"
+lazy val slf4jV: String = "1.7.30"
+
+//-----------------------------------  API  -----------------------------------
+
+// https://github.com/playframework/play-json/releases
+lazy val playJson: ModuleID = "com.typesafe.play" %% "play-json" % playV withSources ()
 
 //-----------------------------------  CORE  ----------------------------------
 
@@ -215,5 +224,5 @@ lazy val scalaTest: ModuleID = "org.scalatest" %% "scalatest" % scalaTestV withS
 
 //---------------------------------  LOGGING  ---------------------------------
 
-// https://github.com/qos-ch/logback/releases
-lazy val logbackClassic = "ch.qos.logback" % "logback-classic" % logbackV withSources ()
+// https://github.com/qos-ch/slf4j/releases
+lazy val slf4jApi = "org.slf4j" % "slf4j-api" % slf4jV withSources ()
