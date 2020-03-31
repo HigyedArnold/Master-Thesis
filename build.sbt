@@ -212,8 +212,8 @@ lazy val protobufV: String = "3.11.2"
 
 lazy val scalaTestV: String = "3.1.1"
 
-lazy val slf4jV: String = "1.7.30"
-lazy val log4jV: String = "2.13.1"
+lazy val slf4jApiV:  String = "1.7.30"
+lazy val slf4jImplV: String = "2.13.1"
 
 //-----------------------------------  API  -----------------------------------
 
@@ -240,7 +240,7 @@ lazy val scalaTest: ModuleID = "org.scalatest" %% "scalatest" % scalaTestV withS
 //---------------------------------  LOGGING  ---------------------------------
 
 // https://github.com/qos-ch/slf4j/releases
-lazy val slf4jApi = "org.slf4j" % "slf4j-api" % slf4jV withSources ()
+lazy val slf4jApi = "org.slf4j" % "slf4j-api" % slf4jApiV withSources ()
 
 // https://github.com/apache/logging-log4j2/releases
-lazy val slf4jImpl = "org.apache.logging.log4j" % "log4j-slf4j-impl" % log4jV withSources ()
+lazy val slf4jImpl = "org.apache.logging.log4j" % "log4j-slf4j-impl" % slf4jImplV withSources ()
