@@ -49,6 +49,7 @@ dockerfile in docker := {
     from("openjdk:8-jre")
     copy(artifact, artifactTargetPath)
     copy(jni, libTargetPath)
+    run("mkdir", "-p", s"/app/${LogConfig.logDir}")
     entryPoint("java", "-jar", artifactTargetPath)
   }
 }
@@ -68,6 +69,18 @@ imageNames in docker := Seq(
 //  removeIntermediateContainers = BuildOptions.Remove.Always,
 //  pullBaseImage = BuildOptions.Pull.Always
 //)
+
+//-----------------------------------  JVM  -----------------------------------
+
+// To fork all test tasks and run tasks
+fork := true
+
+javaOptions ++= RuntimeConfig.javaRuntimeOptions
+javaOptions ++= RuntimeConfig.debugOptions(false)
+
+//---------------------------------  LOGGING  ---------------------------------
+
+LogConfig.logDirKey := LogConfig.logDir
 
 //#############################################################################
 //###################################  ROOT  ##################################
@@ -100,6 +113,7 @@ lazy val root = (project in file("."))
 
 lazy val `planr-api-deps` = Seq(
   slf4jApi,
+  slf4jImpl,
   playJson,
   scalaTest,
 )
@@ -199,6 +213,7 @@ lazy val protobufV: String = "3.11.2"
 lazy val scalaTestV: String = "3.1.1"
 
 lazy val slf4jV: String = "1.7.30"
+lazy val log4jV: String = "2.13.1"
 
 //-----------------------------------  API  -----------------------------------
 
@@ -226,3 +241,6 @@ lazy val scalaTest: ModuleID = "org.scalatest" %% "scalatest" % scalaTestV withS
 
 // https://github.com/qos-ch/slf4j/releases
 lazy val slf4jApi = "org.slf4j" % "slf4j-api" % slf4jV withSources ()
+
+// https://github.com/apache/logging-log4j2/releases
+lazy val slf4jImpl = "org.apache.logging.log4j" % "log4j-slf4j-impl" % log4jV withSources ()

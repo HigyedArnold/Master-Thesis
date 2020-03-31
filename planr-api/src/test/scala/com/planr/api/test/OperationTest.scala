@@ -8,15 +8,15 @@ import org.slf4j.{Logger, LoggerFactory}
 
 class OperationTest extends AsyncFunSuite {
 
-  val logger: Logger = LoggerFactory.getLogger(classOf[OperationTest])
+  val logger: Logger = LoggerFactory.getLogger(this.getClass)
 
   test("Operation serialization test") {
     jsonFileToCaseClass[Operation]("/jsons/operation1.json") match {
       case Left(error) =>
-        logger.info(error.toString)
+        logger.error(error.toString)
         fail()
       case Right(value) =>
-        logger.info(value.toString)
+        logger.debug(value.toString)
         succeed
     }
   }
