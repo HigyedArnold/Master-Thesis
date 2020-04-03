@@ -97,29 +97,25 @@
   "program": {
     "preOperation": {
       "start": 0,
-      "stop": 1440
+      "stop": 1439
     },
     "operation": {
       "start": 0,
-      "stop": 1440
+      "stop": 1439
     },
     "postOperation": {
       "start": 0,
-      "stop": 1440
+      "stop": 1439
     },
     "supOperation": {
       "start": 0,
-      "stop": 1440
+      "stop": 1439
     }
   },
-  "costs": {
-    "asSoonAsPossible": true,
-    "asTightAsPossible": true
-  },
-  "constraints": {
-    "startStopSearch": {
+  "days": [
+    {
       "start": 0,
-      "stop": 1440
+      "stop": 1439
     }
-  }
+  ]
 }

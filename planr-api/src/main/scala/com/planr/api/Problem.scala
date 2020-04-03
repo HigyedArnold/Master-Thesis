@@ -48,12 +48,11 @@ case class Program(
   supOperation:  TimeInterval
 )
 
-/** True or False */
 case class Costs(
-  asSoonAsPossible:  Boolean,      // ASAP
-  asTightAsPossible: Boolean,      // ATAP
-  beforeTime:        Option[Long], // BT
-  afterTime:         Option[Long]  // AT
+  asSoonAsPossible:  Option[Boolean], // ASAP
+  asTightAsPossible: Option[Boolean], // ATAP
+  beforeTime:        Option[Long],    // BT
+  afterTime:         Option[Long]     // AT
 )
 
 case class OperationGrid(
@@ -71,12 +70,10 @@ case class InInterval(
   operationKeys: Array[String]
 )
 
-/** Mandatory or Optional */
 case class Constraints(
-  startStopSearch: DateTimeInterval,             // ALL_TYPES
-  operationGrids:  Option[Array[OperationGrid]], // SAME_TYPES
-  sameResource:    Option[Array[SameResource]],  // SAME_TYPES
-  inIntervals:     Option[Array[InInterval]]     // ALL_TYPES
+  operationGrids: Option[Array[OperationGrid]], // SAME_TYPES
+  sameResource:   Option[Array[SameResource]],  // SAME_TYPES
+  inIntervals:    Option[Array[InInterval]]     // ALL_TYPES
 )
 
 case class Problem(
@@ -85,6 +82,7 @@ case class Problem(
   allocations: Array[Allocation],
   resources:   Array[Resource],
   program:     Program,
-  costs:       Costs,
-  constraints: Constraints
+  days:        Array[DateTimeInterval],
+  costs:       Option[Costs], // With default
+  constraints: Option[Constraints] // With default
 )
