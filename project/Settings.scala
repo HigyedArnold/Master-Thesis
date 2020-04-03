@@ -35,7 +35,7 @@ object Settings {
       resolvers ++= Seq(
         Resolver.mavenLocal,
         Resolver.sonatypeRepo("public"),
-        Resolver.sonatypeRepo("snapshots"),
-      ),
+        Resolver.sonatypeRepo("snapshots")
+      )
     ) ++ CompilerSettings.compilerSettings
 }

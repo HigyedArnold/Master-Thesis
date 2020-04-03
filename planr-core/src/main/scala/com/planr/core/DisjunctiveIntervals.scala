@@ -14,12 +14,12 @@ class DisjunctiveIntervals {
   val blockedIntervals1: List[Interval] = List(
     Interval(7, 10),
     Interval(8, 9),
-    Interval(10, 12),
+    Interval(10, 12)
   )
 
   val requestIntervals1: List[Long] = List(
     2,
-    4,
+    4
   )
 //  search(0, 10, blockedIntervals1, requestIntervals1)
 
@@ -40,7 +40,7 @@ class DisjunctiveIntervals {
       .toArray
     val allBlockedIntervals = mergeIntervals(blockedIntervals)
       .map(interval =>
-        solver.makeFixedDurationIntervalVar(interval.start, interval.start, interval.end - interval.start, false, "blocked_interval_" + interval.start + "_" + interval.end),
+        solver.makeFixedDurationIntervalVar(interval.start, interval.start, interval.end - interval.start, false, "blocked_interval_" + interval.start + "_" + interval.end)
       )
       .toArray
 

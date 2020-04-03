@@ -17,7 +17,7 @@ class JobShop {
   val jobs1 = List(
     List(Task(0, 3), Task(1, 2), Task(2, 2)), // Job0
     List(Task(0, 2), Task(2, 1), Task(1, 4)), // Job1
-    List(Task(1, 4), Task(2, 3)),             // Job2
+    List(Task(1, 4), Task(2, 3))              // Job2
   )
 //  search(jobs1)
 
@@ -40,7 +40,7 @@ class JobShop {
       Task(3, 13),
       Task(0, 15),
       Task(7, 11),
-      Task(9, 35),
+      Task(9, 35)
     ), // Job0
     List(
       Task(1, 35),
@@ -57,7 +57,7 @@ class JobShop {
       Task(4, 34),
       Task(11, 15),
       Task(14, 12),
-      Task(2, 14),
+      Task(2, 14)
     ), // Job1
     List(
       Task(0, 30),
@@ -74,7 +74,7 @@ class JobShop {
       Task(12, 11),
       Task(1, 40),
       Task(11, 36),
-      Task(5, 17),
+      Task(5, 17)
     ), // Job2
     List(
       Task(7, 40),
@@ -91,7 +91,7 @@ class JobShop {
       Task(14, 32),
       Task(1, 40),
       Task(11, 25),
-      Task(2, 29),
+      Task(2, 29)
     ), // Job3
     List(
       Task(2, 35),
@@ -108,7 +108,7 @@ class JobShop {
       Task(14, 17),
       Task(5, 27),
       Task(9, 37),
-      Task(8, 29),
+      Task(8, 29)
     ), // Job4
     List(
       Task(5, 33),
@@ -125,7 +125,7 @@ class JobShop {
       Task(1, 21),
       Task(14, 25),
       Task(9, 40),
-      Task(8, 35),
+      Task(8, 35)
     ), // Job5
     List(
       Task(13, 25),
@@ -142,7 +142,7 @@ class JobShop {
       Task(10, 32),
       Task(1, 17),
       Task(14, 26),
-      Task(8, 19),
+      Task(8, 19)
     ), // Job6
     List(
       Task(2, 16),
@@ -159,7 +159,7 @@ class JobShop {
       Task(4, 32),
       Task(0, 14),
       Task(7, 30),
-      Task(10, 35),
+      Task(10, 35)
     ), // Job7
     List(
       Task(2, 17),
@@ -176,7 +176,7 @@ class JobShop {
       Task(1, 29),
       Task(11, 23),
       Task(4, 15),
-      Task(5, 40),
+      Task(5, 40)
     ), // Job8
     List(
       Task(4, 27),
@@ -193,7 +193,7 @@ class JobShop {
       Task(10, 12),
       Task(14, 28),
       Task(8, 31),
-      Task(6, 23),
+      Task(6, 23)
     ), // Job9
     List(
       Task(13, 25),
@@ -210,7 +210,7 @@ class JobShop {
       Task(9, 22),
       Task(12, 22),
       Task(11, 27),
-      Task(10, 21),
+      Task(10, 21)
     ), // Job10
     List(
       Task(14, 34),
@@ -227,7 +227,7 @@ class JobShop {
       Task(11, 16),
       Task(1, 37),
       Task(8, 33),
-      Task(9, 13),
+      Task(9, 13)
     ), // Job11
     List(
       Task(6, 12),
@@ -244,7 +244,7 @@ class JobShop {
       Task(13, 33),
       Task(7, 31),
       Task(10, 12),
-      Task(0, 22),
+      Task(0, 22)
     ), // Job12
     List(
       Task(5, 22),
@@ -261,7 +261,7 @@ class JobShop {
       Task(11, 18),
       Task(3, 34),
       Task(10, 32),
-      Task(2, 18),
+      Task(2, 18)
     ), // Job13
     List(
       Task(5, 27),
@@ -278,7 +278,7 @@ class JobShop {
       Task(1, 24),
       Task(2, 18),
       Task(0, 12),
-      Task(8, 34),
+      Task(8, 34)
     ), // Job14
     List(
       Task(8, 15),
@@ -295,7 +295,7 @@ class JobShop {
       Task(3, 23),
       Task(12, 14),
       Task(14, 16),
-      Task(13, 20),
+      Task(13, 20)
     ), // Job15
     List(
       Task(1, 15),
@@ -312,7 +312,7 @@ class JobShop {
       Task(13, 32),
       Task(0, 29),
       Task(2, 13),
-      Task(6, 35),
+      Task(6, 35)
     ), // Job16
     List(
       Task(7, 36),
@@ -329,7 +329,7 @@ class JobShop {
       Task(8, 12),
       Task(1, 35),
       Task(2, 13),
-      Task(12, 35),
+      Task(12, 35)
     ), // Job17
     List(
       Task(14, 26),
@@ -346,7 +346,7 @@ class JobShop {
       Task(7, 26),
       Task(0, 17),
       Task(1, 22),
-      Task(12, 15),
+      Task(12, 15)
     ), // Job18
     List(
       Task(1, 36),
@@ -363,8 +363,8 @@ class JobShop {
       Task(4, 19),
       Task(9, 40),
       Task(12, 35),
-      Task(10, 39),
-    ), // Job29
+      Task(10, 39)
+    )  // Job29
   )
 //  search(jobs2)
 

@@ -37,6 +37,6 @@ object RuntimeConfig {
       // Error options
       "-XX:+HeapDumpOnOutOfMemoryError",
       "-XX:+CrashOnOutOfMemoryError",
-      s"-XX:ErrorFile=${LogConfig.logDir}/fatal.log",
+      s"-XX:ErrorFile=${LogConfig.logDir}/fatal.log"
     )
 }

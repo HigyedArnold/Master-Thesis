@@ -39,7 +39,7 @@ object CompilerSettings {
       addCompilerPlugin(kindProjector),
       addCompilerPlugin(betterMonadicFor),
       scalacOptions ++= customScalaCompileFlagList ++ betterForPluginCompilerFlags,
-      javacOptions ++= Seq("-Xlint:unchecked", "-source", "1.8", "-target", "1.8"),
+      javacOptions ++= Seq("-Xlint:unchecked", "-source", "1.8", "-target", "1.8")
     )
 
   // tpolecat's glorious compile flag list adapted for scala 2.13.0:
@@ -79,13 +79,13 @@ object CompilerSettings {
     "-Ywarn-unused:params",          // Warn if a value parameter is unused.
     "-Ywarn-unused:patvars",         // Warn if a variable bound in a pattern is unused.
     "-Ywarn-unused:privates",        // Warn if a private member is unused.
-    "-Ywarn-value-discard",          // Warn when non-Unit expression results are unused.
+    "-Ywarn-value-discard"           // Warn when non-Unit expression results are unused.
   )
 
   private def betterForPluginCompilerFlags: Seq[String] = Seq(
     "-P:bm4:no-filtering:y",      // https://github.com/oleg-py/better-monadic-for#desugaring-for-patterns-without-withfilters--pbm4no-filteringy
     "-P:bm4:no-map-id:y",         // https://github.com/oleg-py/better-monadic-for#final-map-optimization--pbm4no-map-idy
     "-P:bm4:no-tupling:y",        // https://github.com/oleg-py/better-monadic-for#desugar-bindings-as-vals-instead-of-tuples--pbm4no-tuplingy
-    "-P:bm4:implicit-patterns:y", // https://github.com/oleg-py/better-monadic-for#define-implicits-in-for-comprehensions-or-matches
+    "-P:bm4:implicit-patterns:y"  // https://github.com/oleg-py/better-monadic-for#define-implicits-in-for-comprehensions-or-matches
   )
 }

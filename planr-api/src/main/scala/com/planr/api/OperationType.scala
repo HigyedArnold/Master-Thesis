@@ -14,6 +14,12 @@ import com.planr.api
 //case object SupOperation  extends OperationType
 
 object OperationType extends Enumeration {
+  /**
+    * PreOperation < Operation < PostOperation
+    * [              SupOperation            ]
+    *
+    * Observation: No parallel operations supported with except of SupOperation type!
+    */
   type OperationType = Value
 
   val PreOperation:  api.OperationType.Value = Value("PreOperation")

@@ -59,8 +59,8 @@ imageNames in docker := Seq(
   ImageName(s"${organization.value}/${name.value}:latest"),
   ImageName(
     repository = name.value,
-    tag        = Some("v" + version.value),
-  ),
+    tag        = Some("v" + version.value)
+  )
 )
 
 // Build options
@@ -88,7 +88,7 @@ LogConfig.logDirKey := LogConfig.logDir
 
 lazy val `root-deps` = Seq(
   jniortoolswin,
-  jniortoolslin,
+  jniortoolslin
 )
 
 lazy val root = (project in file("."))
@@ -96,13 +96,13 @@ lazy val root = (project in file("."))
   .settings(
     name := "planr-main",
     libraryDependencies ++= `root-deps`.distinct,
-    mainClass := Some("com.planr.main.Main"),
+    mainClass := Some("com.planr.main.Main")
   )
   .dependsOn(
-    `planr-core`,
+    `planr-core`
   )
   .aggregate(
-    `planr-core`,
+    `planr-core`
   )
 
 //#############################################################################
@@ -113,9 +113,9 @@ lazy val root = (project in file("."))
 
 lazy val `planr-api-deps` = Seq(
   slf4jApi,
-  slf4jImpl,
   playJson,
-  scalaTest,
+  slf4jImpl % Test,
+  scalaTest % Test
 )
 
 lazy val `planr-api` = (project in file("planr-api"))
@@ -123,7 +123,7 @@ lazy val `planr-api` = (project in file("planr-api"))
   .settings(Settings.commonSettings)
   .settings(
     name := "planr-api",
-    libraryDependencies ++= `planr-api-deps`.distinct,
+    libraryDependencies ++= `planr-api-deps`.distinct
   )
   .dependsOn(
     )
@@ -140,7 +140,7 @@ lazy val `planr-rest` = (project in file("planr-rest"))
   .settings(Settings.commonSettings)
   .settings(
     name := "planr-rest",
-    libraryDependencies ++= `planr-rest-deps`.distinct,
+    libraryDependencies ++= `planr-rest-deps`.distinct
   )
   .dependsOn(
     )
@@ -157,7 +157,7 @@ lazy val `planr-front` = (project in file("planr-front"))
   .settings(Settings.commonSettings)
   .settings(
     name := "planr-front",
-    libraryDependencies ++= `planr-front-deps`.distinct,
+    libraryDependencies ++= `planr-front-deps`.distinct
   )
   .dependsOn(
     )
@@ -174,7 +174,7 @@ lazy val `planr-back` = (project in file("planr-back"))
   .settings(Settings.commonSettings)
   .settings(
     name := "planr-back",
-    libraryDependencies ++= `planr-back-deps`.distinct,
+    libraryDependencies ++= `planr-back-deps`.distinct
   )
   .dependsOn(
     )
@@ -186,7 +186,7 @@ lazy val `planr-back` = (project in file("planr-back"))
 lazy val `planr-core-deps` = Seq(
   ortools,
   protobuf,
-  scalaTest,
+  scalaTest
 )
 
 lazy val `planr-core` = (project in file("planr-core"))
@@ -194,7 +194,7 @@ lazy val `planr-core` = (project in file("planr-core"))
   .settings(Settings.commonSettings)
   .settings(
     name := "planr-core",
-    libraryDependencies ++= `planr-core-deps`.distinct,
+    libraryDependencies ++= `planr-core-deps`.distinct
   )
   .dependsOn(
     )

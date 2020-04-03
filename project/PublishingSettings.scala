@@ -34,7 +34,7 @@ object PublishingSettings {
     publishLocal         := {},
     skip in publishLocal := true,
     skip in publish      := true,
-    publishArtifact      := false,
+    publishArtifact      := false
   )
 
 }
