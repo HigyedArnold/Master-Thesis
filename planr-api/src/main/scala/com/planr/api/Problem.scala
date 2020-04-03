@@ -19,19 +19,14 @@ case class Operations(
   supOperations:  Array[Operation]
 )
 
-case class TimeInterval(
-  start: Long,
-  stop:  Long
-)
-
-case class DateTimeInterval(
+case class Interval(
   start: Long,
   stop:  Long
 )
 
 case class Allocation(
   resourceKey: String,
-  intervals:   Array[DateTimeInterval]
+  intervals:   Array[Interval]
 )
 
 case class Resource(
@@ -42,10 +37,11 @@ case class Resource(
 )
 
 case class Program(
-  preOperation:  TimeInterval,
-  operation:     TimeInterval,
-  postOperation: TimeInterval,
-  supOperation:  TimeInterval
+  day:           Interval,
+  preOperation:  Interval,
+  operation:     Interval,
+  postOperation: Interval,
+  supOperation:  Interval
 )
 
 case class Costs(
@@ -66,7 +62,7 @@ case class SameResource(
 )
 
 case class InInterval(
-  interval:      DateTimeInterval,
+  interval:      Interval,
   operationKeys: Array[String]
 )
 
@@ -81,8 +77,7 @@ case class Problem(
   operations:  Operations,
   allocations: Array[Allocation],
   resources:   Array[Resource],
-  program:     Program,
-  days:        Array[DateTimeInterval],
+  program:     Array[Program],
   costs:       Option[Costs], // With default
   constraints: Option[Constraints] // With default
 )

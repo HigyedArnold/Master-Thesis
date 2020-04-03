@@ -94,28 +94,28 @@
   },
   "allocations": [],
   "resources": [],
-  "program": {
-    "preOperation": {
-      "start": 0,
-      "stop": 1439
-    },
-    "operation": {
-      "start": 0,
-      "stop": 1439
-    },
-    "postOperation": {
-      "start": 0,
-      "stop": 1439
-    },
-    "supOperation": {
-      "start": 0,
-      "stop": 1439
-    }
-  },
-  "days": [
+  "program": [
     {
-      "start": 0,
-      "stop": 1439
+      "day": {
+        "start": 0,
+        "stop": 1439
+      },
+      "preOperation": {
+        "start": 0,
+        "stop": 1439
+      },
+      "operation": {
+        "start": 0,
+        "stop": 1439
+      },
+      "postOperation": {
+        "start": 0,
+        "stop": 1439
+      },
+      "supOperation": {
+        "start": 0,
+        "stop": 1439
+      }
     }
   ]
 }

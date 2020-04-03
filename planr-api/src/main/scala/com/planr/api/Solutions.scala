@@ -8,7 +8,7 @@ case class SolutionOperation(
   name:     String,
   opType:   OperationType,
   duration: Long,
-  interval: DateTimeInterval,
+  interval: Interval,
   resource: Resource
 )
 
@@ -24,7 +24,7 @@ case class Solution(
   cost:          Double, // [0.0, 100.0]
   ranking:       RankType,
   totalDuration: Long,
-  interval:      DateTimeInterval,
+  interval:      Interval,
   operations:    SolutionOperations
 )
 
