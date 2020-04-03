@@ -2,7 +2,7 @@ package com.planr.api.test
 
 import org.scalatest.funsuite.AsyncFunSuite
 import com.planr.api.JsonUtil._
-import com.planr.api.{Problem, Solutions}
+import com.planr.api.Problem
 import com.planr.api.JsonSerializers._
 import org.slf4j.{Logger, LoggerFactory}
 import play.api.libs.json.Json
