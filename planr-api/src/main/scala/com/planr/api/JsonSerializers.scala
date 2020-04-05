@@ -19,10 +19,9 @@ object JsonSerializers {
   implicit val ProgramFormat:       Format[Program]       = Json.format[Program]
   implicit val CostsFormat:         Format[Costs]         = Json.format[Costs]
   implicit val SameResourceFormat:  Format[SameResource]  = Json.format[SameResource]
-  implicit val InIntervalFormat:    Format[InInterval]    = Json.format[InInterval]
   implicit val OperationGridFormat: Format[OperationGrid] = Json.format[OperationGrid]
   implicit val ConstraintsFormat:   Format[Constraints]   = Json.format[Constraints]
-  implicit val ProblemFormat:       Format[Problem]       = Json.format[Problem]
+  implicit val ProblemFormat:       Format[Problems]       = Json.format[Problems]
 
   // Solution
   implicit val RankTypeFormat: Format[RankType.Value] = Json.formatEnum(RankType)

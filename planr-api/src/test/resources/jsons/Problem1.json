@@ -92,9 +92,8 @@
       }
     ]
   },
-  "allocations": [],
   "resources": [],
-  "program": [
+  "programs": [
     {
       "day": {
         "start": 0,
@@ -115,7 +114,8 @@
       "supOperation": {
         "start": 0,
         "stop": 1439
-      }
+      },
+      "allocations": []
     }
   ]
 }

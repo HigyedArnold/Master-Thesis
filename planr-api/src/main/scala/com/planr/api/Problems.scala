@@ -11,11 +11,10 @@ case class Operation(
   resourceKeys: Array[String]
 )
 
-/** By order */
 case class Operations(
-  preOperations:  Array[Operation],
-  operations:     Array[Operation],
-  postOperations: Array[Operation],
+  preOperations:  Array[Operation], // By order
+  operations:     Array[Operation], // By order
+  postOperations: Array[Operation], // By order
   supOperations:  Array[Operation]
 )
 
@@ -41,7 +40,8 @@ case class Program(
   preOperation:  Interval,
   operation:     Interval,
   postOperation: Interval,
-  supOperation:  Interval
+  supOperation:  Interval,
+  allocations:   Array[Allocation]
 )
 
 case class Costs(
@@ -61,23 +61,16 @@ case class SameResource(
   operationKeys: Array[String]
 )
 
-case class InInterval(
-  interval:      Interval,
-  operationKeys: Array[String]
-)
-
 case class Constraints(
   operationGrids: Option[Array[OperationGrid]], // SAME_TYPES
-  sameResource:   Option[Array[SameResource]],  // SAME_TYPES
-  inIntervals:    Option[Array[InInterval]]     // ALL_TYPES
+  sameResource:   Option[Array[SameResource]]   // SAME_TYPES
 )
 
-case class Problem(
+case class Problems(
   key:         String, // Tracing data of the request
   operations:  Operations,
-  allocations: Array[Allocation],
   resources:   Array[Resource],
-  program:     Array[Program],
-  costs:       Option[Costs], // With default
-  constraints: Option[Constraints] // With default
+  programs:    Array[Program],
+  costs:       Option[Costs],
+  constraints: Option[Constraints]
 )

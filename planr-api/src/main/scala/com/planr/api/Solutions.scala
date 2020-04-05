@@ -7,16 +7,16 @@ case class SolutionOperation(
   key:      String,
   name:     String,
   opType:   OperationType,
+  day:      Interval,
   duration: Long,
   interval: Interval,
   resource: Resource
 )
 
-/** By order */
 case class SolutionOperations(
-  preOperations:  Array[SolutionOperation],
-  operations:     Array[SolutionOperation],
-  postOperations: Array[SolutionOperation],
+  preOperations:  Array[SolutionOperation], // By order
+  operations:     Array[SolutionOperation], // By order
+  postOperations: Array[SolutionOperation], // By order
   supOperations:  Array[SolutionOperation]
 )
 
