@@ -2,8 +2,8 @@
 Planning application using: sbt, Scala, Play2, Akka Actors, OR-Tools, Docker and Swarm.
 
 ## How to build and run
-Build process with sbt: clean, compile, test compile, assembly, extract jars and create docker image
-Run process with Docker: run docker image
+Build process with sbt: clean, compile, test compile, extract jars, assembly and create docker image
+Run process with Docker: run docker image or use docker-compose
 In Windows 10 run Cmder (like Command Prompt with shell script support) and execute 'sh build.sh' from the current directory.
 In Linux execute './build.sh' from the current directory.
 

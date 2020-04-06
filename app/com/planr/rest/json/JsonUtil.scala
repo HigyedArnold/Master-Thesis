@@ -1,8 +1,9 @@
-package com.planr.api
+package com.planr.rest.json
 
 import java.io.FileInputStream
 
-import com.planr.api.ErrorCodes._
+import com.planr.api.msg.ErrorCodes._
+import com.planr.api.msg.Error
 import play.api.libs.json.{Json, Reads}
 
 import scala.util.Try

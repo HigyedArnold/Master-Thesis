@@ -1,7 +1,7 @@
-package com.planr.api
+package com.planr.api.msg
 
-import com.planr.api.OperationType.OperationType
-import com.planr.api.ResourceType.ResourceType
+import com.planr.api.enu.OperationType.OperationType
+import com.planr.api.enu.ResourceType.ResourceType
 
 case class Operation(
   key:          String,

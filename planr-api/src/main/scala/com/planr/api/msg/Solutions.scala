@@ -1,7 +1,7 @@
-package com.planr.api
+package com.planr.api.msg
 
-import com.planr.api.OperationType.OperationType
-import com.planr.api.RankType.RankType
+import com.planr.api.enu.OperationType.OperationType
+import com.planr.api.enu.RankType.RankType
 
 case class SolutionOperation(
   key:      String,

@@ -1,4 +1,4 @@
-package com.planr.api
+package com.planr.api.msg
 
 case class Error(
   scope:   String,

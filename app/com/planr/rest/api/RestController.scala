@@ -1,8 +1,8 @@
 package com.planr.rest.api
 
-import com.planr.api.Error
-import com.planr.api.ErrorCodes._
-import com.planr.api.JsonSerializers._
+import com.planr.api.msg.ErrorCodes._
+import com.planr.api.msg.Error
+import com.planr.rest.json.JsonSerializers._
 import javax.inject.Inject
 import play.api.Logger
 import play.api.http.FileMimeTypes

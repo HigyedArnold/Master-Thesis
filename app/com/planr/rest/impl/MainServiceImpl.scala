@@ -1,7 +1,8 @@
-package com.planr.rest
+package com.planr.rest.impl
 
 import com.google.inject.Inject
-import com.planr.api.Error
+import com.planr.api.async.MainService
+import com.planr.api.msg.Error
 
 import scala.concurrent.Future
 

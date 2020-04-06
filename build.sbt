@@ -24,7 +24,7 @@ import com.mariussoutier.sbt._
 
 addCommandAlias("build", ";clean;compile;Test/compile")
 
-//---------------------------------  NATIVES  ---------------------------------
+//----------------------------------  BUILD  ----------------------------------
 
 mainClass in assembly := Some("play.core.server.ProdServerStart")
 fullClasspath in assembly += Attributed.blank(PlayKeys.playPackageAssets.value)
@@ -43,7 +43,7 @@ assembly / assemblyMergeStrategy := {
     oldStrategy(x)
 }
 
-//----------------------------------  BUILD  ----------------------------------
+//---------------------------------  NATIVES  ---------------------------------
 
 def getPathScalaVersion: String = "scala-2.13"
 def getPathJni:          String = "lib"
@@ -81,6 +81,13 @@ imageNames in docker := Seq(
   )
 )
 
+// Build options
+//buildOptions in docker := BuildOptions(
+//  cache = false,
+//  removeIntermediateContainers = BuildOptions.Remove.Always,
+//  pullBaseImage = BuildOptions.Pull.Always
+//)
+
 //-----------------------------------  JVM  -----------------------------------
 
 // To fork all test tasks and run tasks
@@ -109,13 +116,30 @@ lazy val root = (project in file("."))
   )
   .enablePlugins(UnpackPlugin, sbtdocker.DockerPlugin, PlayService, PlayLayoutPlugin)
   .dependsOn(
-    )
+    `planr-api`
+  )
   .aggregate(
     )
 
 //#############################################################################
 //#################################  PROJECTS  ################################
 //#############################################################################
+
+//-----------------------------------  API  -----------------------------------
+
+lazy val `planr-api-deps` = Seq()
+
+lazy val `planr-api` = (project in file("planr-api"))
+  .settings(PublishingSettings.noPublishSettings)
+  .settings(Settings.commonSettings)
+  .settings(
+    name := "planr-api",
+    libraryDependencies ++= `planr-api-deps`.distinct
+  )
+  .dependsOn(
+    )
+  .aggregate(
+    )
 
 //-----------------------------------  CORE  ----------------------------------
 
@@ -148,8 +172,14 @@ lazy val protobufV: String = "3.11.2"
 
 lazy val scalaTestV: String = "3.1.1"
 
+//-----------------------------------  ROOT  ----------------------------------
+
 // https://github.com/codingwell/scala-guice/releases
 lazy val scalaGuice: ModuleID = "net.codingwell" %% "scala-guice" % scalaGuiceV withSources ()
+
+//-----------------------------------  API  -----------------------------------
+
+//-----------------------------------  CORE  ----------------------------------
 
 // https://github.com/google/or-tools/releases
 lazy val ortools: ModuleID = "com.google" %% "ortools" % ortoolsV
@@ -161,5 +191,9 @@ lazy val jniortoolslin: ModuleID = "com.google" %% "jniortools-lin" % ortoolsV
 // https://github.com/protocolbuffers/protobuf/releases
 lazy val protobuf: ModuleID = "com.google" %% "protobuf" % protobufV
 
+//----------------------------------  TESTING  --------------------------------
+
 // https://github.com/scalatest/scalatest/releases
 lazy val scalaTest: ModuleID = "org.scalatest" %% "scalatest" % scalaTestV withSources ()
+
+//----------------------------------  LOGGING  --------------------------------

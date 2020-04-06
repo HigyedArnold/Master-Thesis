@@ -1,6 +1,7 @@
-package com.planr.rest
+package com.planr.rest.controller
 
 import com.google.inject.Inject
+import com.planr.api.async.MainService
 import com.planr.rest.api.{RestController, RestControllerComponents}
 import play.api.mvc.Action
 

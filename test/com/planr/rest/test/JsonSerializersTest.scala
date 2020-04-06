@@ -1,9 +1,9 @@
-package com.planr.api.test
+package com.planr.rest.test
 
+import com.planr.api.msg.Problems
+import com.planr.rest.json.JsonUtil
+import com.planr.rest.json.JsonSerializers._
 import org.scalatest.funsuite.AsyncFunSuite
-import com.planr.api.JsonUtil._
-import com.planr.api.Problems
-import com.planr.api.JsonSerializers._
 import org.slf4j.LoggerFactory
 import play.api.libs.json.Json
 
@@ -12,7 +12,7 @@ class JsonSerializersTest extends AsyncFunSuite {
   private val logger = LoggerFactory.getLogger(this.getClass)
 
   test("Problem serialization test") {
-    jsonFileToCaseClass[Problems]("resources/jsons/Problem1.json") match {
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/Problem1.json") match {
       case Left(error) =>
         logger.error(s"${Json.toJson(error)}")
         fail()

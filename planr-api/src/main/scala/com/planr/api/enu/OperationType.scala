@@ -1,6 +1,4 @@
-package com.planr.api
-
-import com.planr.api
+package com.planr.api.enu
 
 /**
   * Use Enumeration since it's easier to serialize with Play 2 (play-json_X.xx)
@@ -22,8 +20,8 @@ object OperationType extends Enumeration {
     */
   type OperationType = Value
 
-  val PreOperation:  api.OperationType.Value = Value("PreOperation")
-  val Operation:     api.OperationType.Value = Value("Operation")
-  val PostOperation: api.OperationType.Value = Value("PostOperation")
-  val SupOperation:  api.OperationType.Value = Value("SupOperation")
+  val PreOperation:  OperationType.Value = Value("PreOperation")
+  val Operation:     OperationType.Value = Value("Operation")
+  val PostOperation: OperationType.Value = Value("PostOperation")
+  val SupOperation:  OperationType.Value = Value("SupOperation")
 }

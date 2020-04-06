@@ -1,5 +1,7 @@
-package com.planr.api
+package com.planr.rest.json
 
+import com.planr.api.enu.{OperationType, RankType, ResourceType}
+import com.planr.api.msg._
 import play.api.libs.json.{Format, Json}
 
 object JsonSerializers {
@@ -7,7 +9,7 @@ object JsonSerializers {
   // Error
   implicit val ErrorFormat: Format[Error] = Json.format[Error]
 
-  // Problem
+  // Problems
   implicit val OperationTypeFormat: Format[OperationType.Value] = Json.formatEnum(OperationType)
   implicit val ResourceTypeFormat:  Format[ResourceType.Value]  = Json.formatEnum(ResourceType)
 
@@ -21,9 +23,9 @@ object JsonSerializers {
   implicit val SameResourceFormat:  Format[SameResource]  = Json.format[SameResource]
   implicit val OperationGridFormat: Format[OperationGrid] = Json.format[OperationGrid]
   implicit val ConstraintsFormat:   Format[Constraints]   = Json.format[Constraints]
-  implicit val ProblemFormat:       Format[Problems]      = Json.format[Problems]
+  implicit val ProblemsFormat:      Format[Problems]      = Json.format[Problems]
 
-  // Solution
+  // Solutions
   implicit val RankTypeFormat: Format[RankType.Value] = Json.formatEnum(RankType)
 
   implicit val SolutionOperationFormat:  Format[SolutionOperation]  = Json.format[SolutionOperation]

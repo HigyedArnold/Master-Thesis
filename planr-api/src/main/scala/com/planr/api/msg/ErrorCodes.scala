@@ -1,4 +1,4 @@
-package com.planr.api
+package com.planr.api.msg
 
 object ErrorCodes {
   /** Package */
