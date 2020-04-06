@@ -36,7 +36,6 @@ object RuntimeConfig {
       "-XX:ParallelGCThreads=4",
       // Error options
       "-XX:+HeapDumpOnOutOfMemoryError",
-      "-XX:+CrashOnOutOfMemoryError",
-      s"-XX:ErrorFile=${LogConfig.logDir}/fatal.log"
+      "-XX:+CrashOnOutOfMemoryError"
     )
 }

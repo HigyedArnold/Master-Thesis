@@ -1,16 +1,17 @@
 package com.planr.api
 
 import java.io.FileInputStream
+
+import com.planr.api.ErrorCodes._
 import play.api.libs.json.{Json, Reads}
+
 import scala.util.Try
-import ErrorCodes._
 
 object JsonUtil {
 
   def jsonFileToCaseClass[T](resourePath: String)(implicit reads: Reads[T]): Either[Error, T] =
     Try {
-      val path   = getClass.getResource(resourePath).getPath
-      val stream = new FileInputStream(path)
+      val stream = new FileInputStream(resourePath)
       val value  = Json.parse(stream).asOpt[T]
       stream.close()
       value
