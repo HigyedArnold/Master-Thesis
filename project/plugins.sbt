@@ -18,3 +18,4 @@ addSbtPlugin("com.eed3si9n"          % "sbt-assembly" % "0.14.10") // https://gi
 addSbtPlugin("com.mariussoutier.sbt" % "sbt-unpack"   % "0.9.5")   // https://github.com/mariussoutier/sbt-unpack/releases
 addSbtPlugin("se.marcuslonnberg"     % "sbt-docker"   % "1.5.0")   // https://github.com/marcuslonnberg/sbt-docker/releases
 addSbtPlugin("org.scalameta"         % "sbt-scalafmt" % "2.3.0")   // https://github.com/scalameta/sbt-scalafmt/releases
+addSbtPlugin("com.typesafe.play"     % "sbt-plugin"   % "2.8.1")   // https://github.com/playframework/playframework/releases

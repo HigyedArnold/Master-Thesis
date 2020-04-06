@@ -26,8 +26,6 @@ addCommandAlias("build", ";clean;compile;Test/compile")
 
 //---------------------------------  NATIVES  ---------------------------------
 
-enablePlugins(UnpackPlugin, DockerPlugin)
-
 def getPathScalaVersion: String = "scala-2.13"
 def getPathJni:          String = "lib"
 
@@ -35,6 +33,7 @@ UnpackKeys.dependenciesJarDirectory := target.value / getPathScalaVersion / getP
 UnpackKeys.dependencyFilter := { file =>
   file.name.contains("jniortools")
 }
+
 sourceGenerators in (Compile, unpackJars) += UnpackKeys.unpackJars
 
 //----------------------------------  DOCKER  ---------------------------------
@@ -87,6 +86,8 @@ LogConfig.logDirKey := LogConfig.logDir
 //#############################################################################
 
 lazy val `root-deps` = Seq(
+  guice,
+  scalaGuice,
   jniortoolswin,
   jniortoolslin
 )
@@ -95,14 +96,14 @@ lazy val root = (project in file("."))
   .settings(Settings.commonSettings)
   .settings(
     name := "planr-main",
-    libraryDependencies ++= `root-deps`.distinct,
-    mainClass := Some("com.planr.main.Main")
+    libraryDependencies ++= `root-deps`.distinct
   )
+  .enablePlugins(UnpackPlugin, sbtdocker.DockerPlugin, PlayService, PlayLayoutPlugin)
   .dependsOn(
-    `planr-core`
+    `planr-api`
   )
   .aggregate(
-    `planr-core`
+    `planr-api`
   )
 
 //#############################################################################
@@ -112,9 +113,8 @@ lazy val root = (project in file("."))
 //-----------------------------------  API  -----------------------------------
 
 lazy val `planr-api-deps` = Seq(
-  slf4jApi,
   playJson,
-  slf4jImpl % Test,
+  logback   % Test,
   scalaTest % Test
 )
 
@@ -124,57 +124,6 @@ lazy val `planr-api` = (project in file("planr-api"))
   .settings(
     name := "planr-api",
     libraryDependencies ++= `planr-api-deps`.distinct
-  )
-  .dependsOn(
-    )
-  .aggregate(
-    )
-
-//-----------------------------------  REST  ----------------------------------
-
-lazy val `planr-rest-deps` = Seq(
-  )
-
-lazy val `planr-rest` = (project in file("planr-rest"))
-  .settings(PublishingSettings.noPublishSettings)
-  .settings(Settings.commonSettings)
-  .settings(
-    name := "planr-rest",
-    libraryDependencies ++= `planr-rest-deps`.distinct
-  )
-  .dependsOn(
-    )
-  .aggregate(
-    )
-
-//----------------------------------  FRONT  ----------------------------------
-
-lazy val `planr-front-deps` = Seq(
-  )
-
-lazy val `planr-front` = (project in file("planr-front"))
-  .settings(PublishingSettings.noPublishSettings)
-  .settings(Settings.commonSettings)
-  .settings(
-    name := "planr-front",
-    libraryDependencies ++= `planr-front-deps`.distinct
-  )
-  .dependsOn(
-    )
-  .aggregate(
-    )
-
-//-----------------------------------  BACK  ----------------------------------
-
-lazy val `planr-back-deps` = Seq(
-  )
-
-lazy val `planr-back` = (project in file("planr-back"))
-  .settings(PublishingSettings.noPublishSettings)
-  .settings(Settings.commonSettings)
-  .settings(
-    name := "planr-back",
-    libraryDependencies ++= `planr-back-deps`.distinct
   )
   .dependsOn(
     )
@@ -205,15 +154,18 @@ lazy val `planr-core` = (project in file("planr-core"))
 //###############################  DEPENDENCIES  ##############################
 //#############################################################################
 
-lazy val playV: String = "2.8.1"
+lazy val playV:       String = "2.8.1"
+lazy val scalaGuiceV: String = "4.2.6"
 
 lazy val ortoolsV:  String = "7.5.7466"
 lazy val protobufV: String = "3.11.2"
 
 lazy val scalaTestV: String = "3.1.1"
 
-lazy val slf4jApiV:  String = "1.7.30"
-lazy val slf4jImplV: String = "2.13.1"
+//-----------------------------------  ROOT  ----------------------------------
+
+// https://github.com/codingwell/scala-guice/releases
+lazy val scalaGuice: ModuleID = "net.codingwell" %% "scala-guice" % scalaGuiceV withSources ()
 
 //-----------------------------------  API  -----------------------------------
 
@@ -236,11 +188,3 @@ lazy val protobuf: ModuleID = "com.google" %% "protobuf" % protobufV
 
 // https://github.com/scalatest/scalatest/releases
 lazy val scalaTest: ModuleID = "org.scalatest" %% "scalatest" % scalaTestV withSources ()
-
-//---------------------------------  LOGGING  ---------------------------------
-
-// https://github.com/qos-ch/slf4j/releases
-lazy val slf4jApi = "org.slf4j" % "slf4j-api" % slf4jApiV withSources ()
-
-// https://github.com/apache/logging-log4j2/releases
-lazy val slf4jImpl = "org.apache.logging.log4j" % "log4j-slf4j-impl" % slf4jImplV withSources ()

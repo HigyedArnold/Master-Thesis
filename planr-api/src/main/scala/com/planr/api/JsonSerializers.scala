@@ -4,6 +4,10 @@ import play.api.libs.json.{Format, Json}
 
 object JsonSerializers {
 
+  // Test
+  implicit val TestRequestFormat: Format[TestRequest] = Json.format[TestRequest]
+  implicit val TestResponseFormat: Format[TestResponse] = Json.format[TestResponse]
+
   // Error
   implicit val ErrorFormat: Format[Error] = Json.format[Error]
 

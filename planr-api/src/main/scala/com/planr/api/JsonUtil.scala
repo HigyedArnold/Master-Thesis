@@ -18,4 +18,5 @@ object JsonUtil {
       _ => Left(Error(this.getClass.getName, API__ERROR + JSON_SERIALIZATION__ERROR, "Failed to parse json file!")),
       v => if (v.isDefined) Right(v.get) else Left(Error(this.getClass.getName, API__ERROR + JSON_EMPTY__ERROR, "Failed to parse json file!"))
     )
+
 }

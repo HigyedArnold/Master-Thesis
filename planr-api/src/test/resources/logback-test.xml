@@ -1,0 +1,23 @@
+<!-- https://www.playframework.com/documentation/latest/SettingsLogger -->
+<configuration>
+
+    <appender name="File" class="ch.qos.logback.core.FileAppender">
+        <file>${application.home:-.}/logs/planr-api-test.log</file>
+        <encoder>
+            <pattern>[%date{yyyy-MM-dd HH:mm:ss:SSS}] [%level] [%logger] [%thread] - %message%n%xException{10}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%date{yyyy-MM-dd HH:mm:ss:SSS}] [%level] [%logger] [%thread] - %message%n%xException{10}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Levels: trace, debug, info, warn, error, fatal -->
+    <root level="info">
+        <appender-ref ref="File"/>
+        <appender-ref ref="Console"/>
+    </root>
+
+</configuration>
