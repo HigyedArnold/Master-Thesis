@@ -6,4 +6,4 @@ sbt assembly
 sbt unpackJars
 sbt docker
 
-docker-compose up -d # docker run com.planr/planr:latest
+docker-compose up # docker run com.planr/planr:latest
