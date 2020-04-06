@@ -34,7 +34,7 @@
     <logger name="akka" level="warn"/>
 
     <!-- Levels: trace, debug, info, warn, error, fatal -->
-    <root level="info">
+    <root level="debug">
         <appender-ref ref="AsyncRollingFile"/>
         <appender-ref ref="AsyncConsole"/>
     </root>

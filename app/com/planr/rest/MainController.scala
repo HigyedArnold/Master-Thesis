@@ -1,13 +1,17 @@
 package com.planr.rest
 
-import com.google.inject.{Inject, Singleton}
-import play.api.mvc.{Action, AnyContent, InjectedController}
+import com.google.inject.Inject
+import com.planr.rest.api.{RestController, RestControllerComponents}
+import play.api.mvc.Action
 
-@Singleton
-class MainController @Inject() () extends InjectedController {
+import scala.concurrent.ExecutionContext
 
-  def index: Action[AnyContent] = Action {
-    Ok("RST server started...")
+class MainController @Inject() (cc: RestControllerComponents[MainService])(
+  implicit ec:                      ExecutionContext
+) extends RestController[MainService](cc) {
+
+  def index(): Action[Unit] = RestActionEmptyBody { implicit request =>
+    service.index.map(write[String])
   }
 
 }
