@@ -10,7 +10,7 @@ class MainController @Inject() (cc: RestControllerComponents[MainService])(
   implicit ec:                      ExecutionContext
 ) extends RestController[MainService](cc) {
 
-  def index(): Action[Unit] = RestActionEmptyBody { implicit request =>
+  def index(): Action[Unit] = RestActionEmptyBody { _ =>
     service.index.map(write[String])
   }
 
