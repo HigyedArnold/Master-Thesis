@@ -24,15 +24,14 @@ import com.mariussoutier.sbt._
 
 addCommandAlias("build", ";clean;compile;Test/compile")
 
-//----------------------------------  BUILD  ----------------------------------
+//---------------------------------  ASSEMBLY  --------------------------------
 
 mainClass in assembly := Some("play.core.server.ProdServerStart")
 fullClasspath in assembly += Attributed.blank(PlayKeys.playPackageAssets.value)
 
 assembly / assemblyMergeStrategy := {
   case manifest if manifest.contains("MANIFEST.MF") =>
-    // We don't need manifest files since sbt-assembly will create
-    // one with the given settings
+    // We don't need manifest files since sbt-assembly will create one with the given settings
     MergeStrategy.discard
   case referenceOverrides if referenceOverrides.contains("reference-overrides.conf") =>
     // Keep the content for all reference-overrides.conf files
@@ -119,7 +118,8 @@ lazy val root = (project in file("."))
     `planr-api`
   )
   .aggregate(
-    )
+    `planr-api`
+  )
 
 //#############################################################################
 //#################################  PROJECTS  ################################
