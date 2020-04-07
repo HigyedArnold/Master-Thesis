@@ -364,7 +364,7 @@ class JobShop {
       Task(9, 40),
       Task(12, 35),
       Task(10, 39)
-    )  // Job29
+    ) // Job29
   )
 //  search(jobs2)
 

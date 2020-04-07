@@ -1,97 +1,26 @@
 {
   "key": "request-0",
-  "operations": {
-    "preOperations": [
-      {
-        "key": "preOp-1",
-        "name": "preOp1",
-        "opType": "PreOperation",
-        "duration": 10,
-        "resourceKeys": [
-          "preOpRes1",
-          "preOpRes2",
-          "preOpRes3"
-        ]
-      },
-      {
-        "key": "preOp-2",
-        "name": "preOp2",
-        "opType": "PreOperation",
-        "duration": 15,
-        "resourceKeys": [
-          "preOpRes2",
-          "preOpRes3"
-        ]
-      }
-    ],
-    "operations": [
-      {
-        "key": "op-1",
-        "name": "op1",
-        "opType": "Operation",
-        "duration": 30,
-        "resourceKeys": [
-          "opRes1",
-          "opRes2",
-          "opRes3"
-        ]
-      },
-      {
-        "key": "op-2",
-        "name": "op2",
-        "opType": "Operation",
-        "duration": 45,
-        "resourceKeys": [
-          "opRes2",
-          "opRes3"
-        ]
-      }
-    ],
-    "postOperations": [
-      {
-        "key": "postOp-1",
-        "name": "postOp1",
-        "opType": "PostOperation",
-        "duration": 10,
-        "resourceKeys": [
-          "postOpRes1",
-          "postOpRes2",
-          "postOpRes3"
-        ]
-      },
-      {
-        "key": "postOp-2",
-        "name": "postOp2",
-        "opType": "PostOperation",
-        "duration": 15,
-        "resourceKeys": [
-          "postOpRes2",
-          "postOpRes3"
-        ]
-      }
-    ],
-    "supOperations": [
-      {
-        "key": "supOp-1",
-        "name": "supOp1",
-        "opType": "SupOperation",
-        "resourceKeys": [
-          "supOpRes1",
-          "supOpRes2",
-          "supOpRes3"
-        ]
-      },
-      {
-        "key": "supOp-2",
-        "name": "supOp2",
-        "opType": "SupOperation",
-        "resourceKeys": [
-          "supOpRes2",
-          "supOpRes3"
-        ]
-      }
-    ]
-  },
+  "operations": [
+    {
+      "key": "op-1",
+      "name": "op1",
+      "duration": 30,
+      "resourceKeys": [
+        "opRes1",
+        "opRes2",
+        "opRes3"
+      ]
+    },
+    {
+      "key": "op-2",
+      "name": "op2",
+      "duration": 45,
+      "resourceKeys": [
+        "opRes2",
+        "opRes3"
+      ]
+    }
+  ],
   "resources": [],
   "programs": [
     {
@@ -99,21 +28,9 @@
         "start": 0,
         "stop": 1439
       },
-      "preOperation": {
-        "start": 0,
-        "stop": 1439
-      },
-      "operation": {
-        "start": 0,
-        "stop": 1439
-      },
-      "postOperation": {
-        "start": 0,
-        "stop": 1439
-      },
-      "supOperation": {
-        "start": 0,
-        "stop": 1439
+      "program": {
+        "start": 480,
+        "stop": 960
       },
       "allocations": []
     }

@@ -1,74 +1,61 @@
 package com.planr.api.msg
 
-import com.planr.api.enu.OperationType.OperationType
-import com.planr.api.enu.ResourceType.ResourceType
-
-case class Operation(
-  key:          String,
-  name:         String,
-  opType:       OperationType,
-  duration:     Option[Long],
-  resourceKeys: Array[String]
-)
-
-case class Operations(
-  preOperations:  Array[Operation], // By order
-  operations:     Array[Operation], // By order
-  postOperations: Array[Operation], // By order
-  supOperations:  Array[Operation]
-)
+import com.planr.api.enu.OperationRelationType.OperationRelationType
 
 case class Interval(
   start: Long,
   stop:  Long
 )
 
-case class Allocation(
-  resourceKey: String,
-  intervals:   Array[Interval]
+case class TimeInterval(
+  start: Long,
+  stop:  Long
+)
+
+case class Operation(
+  key:          String,
+  name:         String,
+  duration:     Long,
+  resourceKeys: Array[String]
 )
 
 case class Resource(
-  key:      String,
-  name:     String,
-  groupKey: String,
-  resType:  ResourceType
+  key:  String,
+  name: String
+)
+
+case class Allocation(
+  resourceKey: String,
+  intervals:   Array[TimeInterval]
 )
 
 case class Program(
-  day:           Interval,
-  preOperation:  Interval,
-  operation:     Interval,
-  postOperation: Interval,
-  supOperation:  Interval,
-  allocations:   Array[Allocation]
+  day:         Interval,
+  program:     TimeInterval,
+  allocations: Array[Allocation]
 )
 
 case class Costs(
-  asSoonAsPossible:  Option[Boolean], // ASAP
-  asTightAsPossible: Option[Boolean], // ATAP
-  beforeTime:        Option[Long],    // BT
-  afterTime:         Option[Long]     // AT
+  asSoonAsPossible:  Option[Boolean],     // ASAP
+  asTightAsPossible: Option[Boolean],     // ATAP
+  preferredInterval: Option[TimeInterval] // PT
 )
 
-case class OperationGrid(
-  opType: OperationType,
-  value:  Long // X % 60 divisible by value
-)
-
-case class SameResource(
-  opType:        OperationType,
-  operationKeys: Array[String]
+case class OperationRelation(
+  opRelType: OperationRelationType,
+  opKey1:    String,
+  opKey2:    String
 )
 
 case class Constraints(
-  operationGrids: Option[Array[OperationGrid]], // SAME_TYPES
-  sameResource:   Option[Array[SameResource]]   // SAME_TYPES
+  operationGrid:      Option[Long], // X % 60 divisible by value
+  sameResource:       Option[Array[String]],
+  operationsRelation: Option[Array[OperationRelation]]
 )
 
 case class Problems(
   key:         String, // Tracing data of the request
-  operations:  Operations,
+  operations:  Array[Operation],
   resources:   Array[Resource],
   programs:    Array[Program],
   costs:       Option[Costs],
