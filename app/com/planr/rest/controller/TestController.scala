@@ -1,18 +1,18 @@
 package com.planr.rest.controller
 
 import com.google.inject.Inject
-import com.planr.api.async.MainService
+import com.planr.api.async.TestService
 import com.planr.rest.api.{RestController, RestControllerComponents}
 import play.api.mvc.Action
 
 import scala.concurrent.ExecutionContext
 
-class MainController @Inject() (cc: RestControllerComponents[MainService])(
+class TestController @Inject() (cc: RestControllerComponents[TestService])(
   implicit ec:                      ExecutionContext
-) extends RestController[MainService](cc) {
+) extends RestController[TestService](cc) {
 
-  def index(): Action[Unit] = RestActionEmptyBody { _ =>
-    service.index.map(write[String])
+  def get(): Action[Unit] = RestActionEmptyBody { _ =>
+    service.get.map(write[String])
   }
 
 }
