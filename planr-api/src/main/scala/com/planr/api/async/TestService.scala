@@ -1,9 +1,7 @@
 package com.planr.api.async
 
-import com.planr.api.msg.Error
-
-import scala.concurrent.Future
+import com.planr.api.effect.FutureResultT
 
 trait TestService {
-  def get: Future[Either[Error, String]]
+  def get: FutureResultT[String]
 }

@@ -25,12 +25,12 @@
   "programs": [
     {
       "day": {
-        "start": 0,
-        "stop": 1439
+        "startDt": 0,
+        "stopDt": 1439
       },
       "program": {
-        "start": 480,
-        "stop": 960
+        "startT": 480,
+        "stopT": 960
       },
       "allocations": []
     }

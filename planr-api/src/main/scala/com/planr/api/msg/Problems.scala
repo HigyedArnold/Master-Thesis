@@ -3,13 +3,13 @@ package com.planr.api.msg
 import com.planr.api.enu.OperationRelationType.OperationRelationType
 
 case class Interval(
-  start: Long,
-  stop:  Long
+  startDt: Long,
+  stopDt:  Long
 )
 
 case class TimeInterval(
-  start: Long,
-  stop:  Long
+  startT: Long,
+  stopT:  Long
 )
 
 case class Operation(

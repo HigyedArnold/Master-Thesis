@@ -128,7 +128,9 @@ lazy val root = (project in file("."))
 
 //-----------------------------------  API  -----------------------------------
 
-lazy val `planr-api-deps` = Seq()
+lazy val `planr-api-deps` = Seq(
+  catsCore
+)
 
 lazy val `planr-api` = (project in file("planr-api"))
   .settings(PublishingSettings.noPublishSettings)
@@ -190,6 +192,7 @@ lazy val `planr-gatling` = (project in file("planr-gatling"))
 lazy val scalaGuiceV: String = "4.2.6"
 lazy val ortoolsV:    String = "7.5.7466"
 lazy val protobufV:   String = "3.11.2"
+lazy val catsV:       String = "2.1.1"
 lazy val scalaTestV:  String = "3.1.1"
 lazy val gatlingV:    String = "3.3.1"
 
@@ -199,6 +202,9 @@ lazy val gatlingV:    String = "3.3.1"
 lazy val scalaGuice: ModuleID = "net.codingwell" %% "scala-guice" % scalaGuiceV withSources ()
 
 //-----------------------------------  API  -----------------------------------
+
+// https://github.com/typelevel/cats/releases
+lazy val catsCore: ModuleID = "org.typelevel" %% "cats-core" % catsV withSources ()
 
 //-----------------------------------  CORE  ----------------------------------
 

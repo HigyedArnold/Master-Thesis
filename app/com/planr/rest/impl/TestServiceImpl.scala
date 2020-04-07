@@ -2,10 +2,9 @@ package com.planr.rest.impl
 
 import com.google.inject.Inject
 import com.planr.api.async.TestService
-import com.planr.api.msg.Error
+import com.planr.api.effect.FutureResultT
+import com.planr.api.effect.implicits._
 
-import scala.concurrent.Future
-
-class TestServiceImpl @Inject()() extends TestService {
-  override def get: Future[Either[Error, String]] = Future.successful(Right("OK!"))
+class TestServiceImpl @Inject() () extends TestService {
+  override def get: FutureResultT[String] = "OK!".asPureFRT
 }
