@@ -19,3 +19,4 @@ addSbtPlugin("com.mariussoutier.sbt" % "sbt-unpack"   % "0.9.5")  // https://git
 addSbtPlugin("se.marcuslonnberg"     % "sbt-docker"   % "1.5.0")  // https://github.com/marcuslonnberg/sbt-docker/releases
 addSbtPlugin("org.scalameta"         % "sbt-scalafmt" % "2.3.0")  // https://github.com/scalameta/sbt-scalafmt/releases
 addSbtPlugin("com.typesafe.play"     % "sbt-plugin"   % "2.8.1")  // https://github.com/playframework/playframework/releases
+addSbtPlugin("io.gatling"            % "gatling-sbt"  % "3.1.0")  // https://gatling.io/docs/current/extensions/sbt_plugin/

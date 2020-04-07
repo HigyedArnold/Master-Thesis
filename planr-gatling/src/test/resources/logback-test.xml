@@ -1,8 +1,8 @@
-<!-- https://www.playframework.com/documentation/latest/SettingsLogger -->
+﻿<!-- https://www.playframework.com/documentation/latest/SettingsLogger -->
 <configuration>
 
     <appender name="File" class="ch.qos.logback.core.FileAppender">
-        <file>${application.home:-.}/logs/planr-test.log</file>
+        <file>${application.home:-.}/../logs/planr-gatling-test.log</file>
         <encoder>
             <pattern>[%date{yyyy-MM-dd HH:mm:ss:SSSS}] [%level] [%logger] [%thread] - %message%n%xException{10}
             </pattern>
@@ -15,6 +15,8 @@
             </pattern>
         </encoder>
     </appender>
+
+    <!--<logger name="io.gatling.http.engine.response" level="trace" />-->
 
     <!-- Levels: trace, debug, info, warn, error, fatal -->
     <root level="info">

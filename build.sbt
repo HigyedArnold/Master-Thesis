@@ -108,6 +108,7 @@ lazy val `root-deps` = Seq(
 )
 
 lazy val root = (project in file("."))
+  .settings(PublishingSettings.noPublishSettings)
   .settings(Settings.commonSettings)
   .settings(
     name := "planr",
@@ -161,16 +162,36 @@ lazy val `planr-core` = (project in file("planr-core"))
   .aggregate(
     )
 
+//---------------------------------  GATLING  ---------------------------------
+
+lazy val `planr-gatling-deps` = Seq(
+  gatlingHighcharts,
+  gatlingFramework
+)
+
+lazy val `planr-gatling` = (project in file("planr-gatling"))
+  .settings(PublishingSettings.noPublishSettings)
+  .settings(Settings.commonSettings)
+  .enablePlugins(GatlingPlugin)
+  .settings(
+    name         := "planr-gatling",
+    scalaVersion := "2.12.10",
+    libraryDependencies ++= `planr-gatling-deps`.distinct
+  )
+  .dependsOn(
+    )
+  .aggregate(
+    )
+
 //#############################################################################
 //###############################  DEPENDENCIES  ##############################
 //#############################################################################
 
 lazy val scalaGuiceV: String = "4.2.6"
-
-lazy val ortoolsV:  String = "7.5.7466"
-lazy val protobufV: String = "3.11.2"
-
-lazy val scalaTestV: String = "3.1.1"
+lazy val ortoolsV:    String = "7.5.7466"
+lazy val protobufV:   String = "3.11.2"
+lazy val scalaTestV:  String = "3.1.1"
+lazy val gatlingV:    String = "3.3.1"
 
 //-----------------------------------  ROOT  ----------------------------------
 
@@ -194,6 +215,10 @@ lazy val protobuf: ModuleID = "com.google" %% "protobuf" % protobufV
 //----------------------------------  TESTING  --------------------------------
 
 // https://github.com/scalatest/scalatest/releases
-lazy val scalaTest: ModuleID = "org.scalatest" %% "scalatest" % scalaTestV withSources ()
+lazy val scalaTest: ModuleID = "org.scalatest" %% "scalatest" % scalaTestV % Test withSources ()
+
+// https://gatling.io/docs/current/extensions/sbt_plugin/
+lazy val gatlingHighcharts: ModuleID = "io.gatling.highcharts" % "gatling-charts-highcharts" % gatlingV % Test withSources ()
+lazy val gatlingFramework:  ModuleID = "io.gatling"            % "gatling-test-framework"    % gatlingV % Test withSources ()
 
 //----------------------------------  LOGGING  --------------------------------

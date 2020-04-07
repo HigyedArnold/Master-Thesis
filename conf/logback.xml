@@ -10,7 +10,8 @@
             <maxHistory>21</maxHistory>
         </rollingPolicy>
         <encoder>
-            <pattern>[%date{yyyy-MM-dd HH:mm:ss:SSS}] [%level] [%logger] [%thread] - %message%n%xException{10}</pattern>
+            <pattern>[%date{yyyy-MM-dd HH:mm:ss:SSSS}] [%level] [%logger] [%thread] - %message%n%xException{10}
+            </pattern>
             <!-- this quadruples logging throughput -->
             <immediateFlush>false</immediateFlush>
         </encoder>
@@ -18,7 +19,8 @@
 
     <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>[%date{yyyy-MM-dd HH:mm:ss:SSS}] [%level] [%logger] [%thread] - %message%n%xException{10}</pattern>
+            <pattern>[%date{yyyy-MM-dd HH:mm:ss:SSSS}] [%level] [%logger] [%thread] - %message%n%xException{10}
+            </pattern>
         </encoder>
     </appender>
 
