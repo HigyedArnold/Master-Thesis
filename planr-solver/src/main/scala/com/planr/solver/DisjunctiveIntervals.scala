@@ -1,4 +1,4 @@
-package com.planr.core
+package com.planr.solver
 
 import com.google.ortools.constraintsolver._
 

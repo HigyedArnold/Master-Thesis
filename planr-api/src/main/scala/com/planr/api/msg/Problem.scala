@@ -2,7 +2,7 @@ package com.planr.api.msg
 
 import com.planr.api.enu.OperationRelationType.OperationRelationType
 
-case class Interval(
+case class DateTimeInterval(
   startDt: Long,
   stopDt:  Long
 )
@@ -24,17 +24,6 @@ case class Resource(
   name: String
 )
 
-case class Allocation(
-  resourceKey: String,
-  intervals:   Array[TimeInterval]
-)
-
-case class Program(
-  day:         Interval,
-  program:     TimeInterval,
-  allocations: Array[Allocation]
-)
-
 case class Costs(
   asSoonAsPossible:  Option[Boolean],     // ASAP
   asTightAsPossible: Option[Boolean],     // ATAP
@@ -50,14 +39,30 @@ case class OperationRelation(
 case class Constraints(
   operationGrid:      Option[Long], // X % 60 divisible by value
   sameResource:       Option[Array[String]],
+  enforcedInterval:   Option[TimeInterval],
   operationsRelation: Option[Array[OperationRelation]]
 )
 
-case class Problems(
+case class Problem(
   key:         String, // Tracing data of the request
   operations:  Array[Operation],
   resources:   Array[Resource],
-  programs:    Array[Program],
+  program:     TimeInterval,
   costs:       Option[Costs],
   constraints: Option[Constraints]
+)
+
+case class Allocation(
+  resourceKey: String,
+  intervals:   Array[DateTimeInterval]
+)
+
+case class DayFrame(
+  day:         DateTimeInterval,
+  allocations: Array[Allocation]
+)
+
+case class Problems(
+  problem:  Problem, // Problem always relative to dayFrame
+  dayFrame: Array[DayFrame]
 )

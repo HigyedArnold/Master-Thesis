@@ -48,8 +48,9 @@ class RestController[S] @Inject() (cc: RestControllerComponents[S]) extends Inje
       .fold(
         errors =>
           Future {
-            logger.error(s"Error on resource parsing from request: ${JsError.toJson(errors).toString()}")
-            BadRequest(Json.toJson(Error(this.getClass.getName, REST_ERROR + JSON_SERIALIZATION__ERROR, "Request json could not be serialized!")))
+            val err = Error(this.getClass.getName, REST__ERROR + JSON_SERIALIZATION__ERROR, s"Request json could not be serialized: ${JsError.toJson(errors).toString()}")
+            logger.error(err.toString)
+            BadRequest(Json.toJson(err))
           },
         resource => f(resource)
       )
@@ -60,8 +61,9 @@ class RestController[S] @Inject() (cc: RestControllerComponents[S]) extends Inje
       case Right(value: T) => Ok(Json.toJson(value))
       case Left(error) => writeError(error)
       case value =>
-        logger.error(s"Error on resource parsing from response: ${value.toString})")
-        InternalServerError(Json.toJson(Error(this.getClass.getName, REST_ERROR + JSON_SERIALIZATION__ERROR, "Response json could not be serialized!!")))
+        val err = Error(this.getClass.getName, REST__ERROR + JSON_SERIALIZATION__ERROR, s"Response json could not be serialized: ${value.toString})")
+        logger.error(err.toString)
+        InternalServerError(Json.toJson(err))
     }
   }
 

@@ -116,10 +116,10 @@ lazy val root = (project in file("."))
   )
   .enablePlugins(UnpackPlugin, sbtdocker.DockerPlugin, PlayService, PlayLayoutPlugin)
   .dependsOn(
-    `planr-api`
+    `planr-solver`
   )
   .aggregate(
-    `planr-api`
+    `planr-solver`
   )
 
 //#############################################################################
@@ -139,30 +139,30 @@ lazy val `planr-api` = (project in file("planr-api"))
     name := "planr-api",
     libraryDependencies ++= `planr-api-deps`.distinct
   )
-  .dependsOn(
-    )
-  .aggregate(
-    )
 
-//-----------------------------------  CORE  ----------------------------------
+//----------------------------------  SOLVER  ---------------------------------
 
-lazy val `planr-core-deps` = Seq(
+lazy val `planr-solver-deps` = Seq(
   ortools,
   protobuf,
+  akkaActor,
+  logback,
   scalaTest
 )
 
-lazy val `planr-core` = (project in file("planr-core"))
+lazy val `planr-solver` = (project in file("planr-solver"))
   .settings(PublishingSettings.noPublishSettings)
   .settings(Settings.commonSettings)
   .settings(
-    name := "planr-core",
-    libraryDependencies ++= `planr-core-deps`.distinct
+    name := "planr-solver",
+    libraryDependencies ++= `planr-solver-deps`.distinct
   )
   .dependsOn(
-    )
+    `planr-api`
+  )
   .aggregate(
-    )
+    `planr-api`
+  )
 
 //---------------------------------  GATLING  ---------------------------------
 
@@ -192,6 +192,7 @@ lazy val `planr-gatling` = (project in file("planr-gatling"))
 lazy val scalaGuiceV: String = "4.2.6"
 lazy val ortoolsV:    String = "7.5.7466"
 lazy val protobufV:   String = "3.11.2"
+lazy val akkaV:       String = "2.6.4"
 lazy val catsV:       String = "2.1.1"
 lazy val scalaTestV:  String = "3.1.1"
 lazy val gatlingV:    String = "3.3.1"
@@ -206,7 +207,7 @@ lazy val scalaGuice: ModuleID = "net.codingwell" %% "scala-guice" % scalaGuiceV 
 // https://github.com/typelevel/cats/releases
 lazy val catsCore: ModuleID = "org.typelevel" %% "cats-core" % catsV withSources ()
 
-//-----------------------------------  CORE  ----------------------------------
+//----------------------------------  SOLVER  ---------------------------------
 
 // https://github.com/google/or-tools/releases
 lazy val ortools: ModuleID = "com.google" %% "ortools" % ortoolsV
@@ -217,6 +218,9 @@ lazy val jniortoolslin: ModuleID = "com.google" %% "jniortools-lin" % ortoolsV
 
 // https://github.com/protocolbuffers/protobuf/releases
 lazy val protobuf: ModuleID = "com.google" %% "protobuf" % protobufV
+
+// https://github.com/akka/akka/releases
+lazy val akkaActor: ModuleID = "com.typesafe.akka" %% "akka-actor" % akkaV withSources ()
 
 //----------------------------------  TESTING  --------------------------------
 

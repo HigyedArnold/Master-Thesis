@@ -1,4 +1,4 @@
-package com.planr.core.util
+package com.planr.solver.util
 
 object NativeLibLoader {
 
