@@ -10,12 +10,12 @@ object BaseScenarios {
   /** -------------------------------------------------- Variables -------------------------------------------------- */
 
   /** ---------------------------------------------------- HTTPs ---------------------------------------------------- */
-  val testHttp: HttpRequestBuilder = http("Planr: /api")
-    .get("/api")
+  val testHttp: HttpRequestBuilder = http("Planr: /test")
+    .get("/test")
     .check(status.is(200))
 
   /** -------------------------------------------------- Scenarios -------------------------------------------------- */
-  val testScenario: ScenarioBuilder = scenario("GET /api")
+  val testScenario: ScenarioBuilder = scenario("GET /test")
     .exec(testHttp)
 
 }

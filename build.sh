@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sbt build
-sbt unpackJars
+# sbt unpackJars
 # sbt stage
 # sbt assembly
 sbt docker

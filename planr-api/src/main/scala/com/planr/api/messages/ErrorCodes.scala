@@ -10,4 +10,5 @@ object ErrorCodes {
   val JSON_SERIALIZATION__ERROR    = 1
   val JSON_EMPTY__ERROR            = 2
   val UNKNOWN_ACTOR_MESSAGE__ERROR = 3
+  val APP_CONFIG__ERROR            = 4
 }

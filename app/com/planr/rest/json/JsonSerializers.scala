@@ -2,12 +2,15 @@ package com.planr.rest.json
 
 import com.planr.api.enumeration.OperationRelationType
 import com.planr.api.messages._
+import com.planr.solver.config.SolverConfig
 import play.api.libs.json.{Format, Json}
 
 object JsonSerializers {
 
   // Error
   implicit val ErrorFormat: Format[Error] = Json.format[Error]
+  // SolverConfig
+  implicit val SolverConfigFormat: Format[SolverConfig] = Json.format[SolverConfig]
 
   // Problems
 //  implicit val OperationTypeFormat: Format[OperationType.Value] = Json.formatEnum(OperationType)

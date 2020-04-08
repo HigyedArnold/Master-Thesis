@@ -22,7 +22,7 @@ import com.mariussoutier.sbt._
 
 //---------------------------------  COMMANDS  --------------------------------
 
-addCommandAlias("build", ";clean;compile;Test/compile")
+addCommandAlias("build", ";clean;compile;Test/compile;unpackJars")
 
 //---------------------------------  ASSEMBLY  --------------------------------
 
