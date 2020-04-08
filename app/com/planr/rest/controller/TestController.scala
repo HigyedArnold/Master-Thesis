@@ -7,7 +7,7 @@ import play.api.mvc.Action
 
 import scala.concurrent.ExecutionContext
 
-class TestController @Inject()(cc: RestControllerComponents[TestServiceT])(
+class TestController @Inject() (cc: RestControllerComponents[TestServiceT])(
   implicit ec:                      ExecutionContext
 ) extends RestController[TestServiceT](cc) {
 

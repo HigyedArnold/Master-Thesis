@@ -1,6 +1,6 @@
-package com.planr.api.effect
+package com.planr.api.effects
 
-import com.planr.api.msg.Error
+import com.planr.api.messages.Error
 
 object Result {
   def pure[T](v: T): Result[T] = Right(v)

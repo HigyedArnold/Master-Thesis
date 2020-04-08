@@ -1,3 +1,3 @@
-package com.planr.api.effect
+package com.planr.api.effects
 
 object implicits extends FutureResultTSyntax.Implicits

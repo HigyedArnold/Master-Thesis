@@ -1,4 +1,4 @@
-package com.planr.api.enu
+package com.planr.api.enumeration
 
 /**
   * Documentation: https://google.github.io/or-tools/cpp_routing/classoperations__research_1_1Solver.html

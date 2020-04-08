@@ -1,7 +1,7 @@
 package com.planr.rest.json
 
-import com.planr.api.enu.OperationRelationType
-import com.planr.api.msg._
+import com.planr.api.enumeration.OperationRelationType
+import com.planr.api.messages._
 import play.api.libs.json.{Format, Json}
 
 object JsonSerializers {
@@ -14,8 +14,8 @@ object JsonSerializers {
 //  implicit val ResourceTypeFormat:  Format[ResourceType.Value]  = Json.formatEnum(ResourceType)
   implicit val OperationRelationTypeFormat: Format[OperationRelationType.Value] = Json.formatEnum(OperationRelationType)
 
-  implicit val IntervalFormat:          Format[DateTimeInterval]  = Json.format[DateTimeInterval]
   implicit val TimeIntervalFormat:      Format[TimeInterval]      = Json.format[TimeInterval]
+  implicit val DateTimeIntervalFormat:  Format[DateTimeInterval]  = Json.format[DateTimeInterval]
   implicit val OperationFormat:         Format[Operation]         = Json.format[Operation]
   implicit val ResourceFormat:          Format[Resource]          = Json.format[Resource]
   implicit val CostsFormat:             Format[Costs]             = Json.format[Costs]

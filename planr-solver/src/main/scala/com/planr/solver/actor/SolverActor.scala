@@ -1,8 +1,8 @@
 package com.planr.solver.actor
 
 import akka.actor.Actor
-import com.planr.api.msg.{DayFrame, Error, Problem, Solution}
-import com.planr.api.msg.ErrorCodes._
+import com.planr.api.messages.{DayFrame, Error, Problem, Solution}
+import com.planr.api.messages.ErrorCodes._
 import com.planr.solver.actor.SolverActor.SolveRequest
 import play.api.Logger
 

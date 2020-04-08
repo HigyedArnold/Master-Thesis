@@ -1,11 +1,11 @@
 package com.planr.api
 
-import com.planr.api.msg.Error
+import com.planr.api.messages.Error
 import cats.data.EitherT
 
 import scala.concurrent.Future
 
-package object effect {
+package object effects {
   /** Either of Error and T */
   type Result[T] = Either[Error, T]
   /** Future of Either of Error and T */

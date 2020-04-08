@@ -1,15 +1,15 @@
-package com.planr.api.msg
+package com.planr.api.messages
 
-import com.planr.api.enu.OperationRelationType.OperationRelationType
-
-case class DateTimeInterval(
-  startDt: Long,
-  stopDt:  Long
-)
+import com.planr.api.enumeration.OperationRelationType.OperationRelationType
 
 case class TimeInterval(
   startT: Long,
   stopT:  Long
+)
+
+case class DateTimeInterval(
+  startDt: Long,
+  stopDt:  Long
 )
 
 case class Operation(
@@ -47,7 +47,6 @@ case class Problem(
   key:         String, // Tracing data of the request
   operations:  Array[Operation],
   resources:   Array[Resource],
-  program:     TimeInterval,
   costs:       Option[Costs],
   constraints: Option[Constraints]
 )
@@ -59,6 +58,7 @@ case class Allocation(
 
 case class DayFrame(
   day:         DateTimeInterval,
+  program:     DateTimeInterval,
   allocations: Array[Allocation]
 )
 

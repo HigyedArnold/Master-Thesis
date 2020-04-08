@@ -2,8 +2,8 @@ package com.planr.rest.json
 
 import java.io.FileInputStream
 
-import com.planr.api.msg.ErrorCodes._
-import com.planr.api.msg.Error
+import com.planr.api.messages.ErrorCodes._
+import com.planr.api.messages.Error
 import play.api.Logger
 import play.api.libs.json.{Json, Reads}
 

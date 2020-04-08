@@ -22,17 +22,17 @@
         ]
       }
     ],
-    "resources": [],
-    "program": {
-      "startT": 480,
-      "stopT": 960
-    }
+    "resources": []
   },
   "dayFrame": [
     {
       "day": {
         "startDt": 0,
         "stopDt": 1439
+      },
+      "program": {
+        "startDt": 480,
+        "stopDt": 960
       },
       "allocations": []
     }

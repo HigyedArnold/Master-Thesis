@@ -1,7 +1,7 @@
 package com.planr.rest.api
 
-import com.planr.api.msg.ErrorCodes._
-import com.planr.api.msg.Error
+import com.planr.api.messages.ErrorCodes._
+import com.planr.api.messages.Error
 import com.planr.rest.json.JsonSerializers._
 import javax.inject.Inject
 import play.api.Logger
