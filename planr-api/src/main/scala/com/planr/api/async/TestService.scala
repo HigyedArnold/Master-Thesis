@@ -1,7 +1,7 @@
 package com.planr.api.async
 
-import com.planr.api.effect.FutureResultT
+import com.planr.api.effect.FutureResult
 
 trait TestService {
-  def get: FutureResultT[String]
+  def get: FutureResult[String]
 }

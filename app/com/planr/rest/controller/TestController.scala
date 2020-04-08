@@ -12,7 +12,7 @@ class TestController @Inject() (cc: RestControllerComponents[TestService])(
 ) extends RestController[TestService](cc) {
 
   def get(): Action[Unit] = RestActionEmptyBody { _ =>
-    service.get.value.map(write[String])
+    service.get.map(write[String])
   }
 
 }

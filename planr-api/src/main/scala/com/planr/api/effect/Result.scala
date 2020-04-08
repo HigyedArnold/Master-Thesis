@@ -8,9 +8,9 @@ object Result {
   def raiseError[T](e: Error): Result[T] = Left[Error, T](e)
 
   def fromOption[T](opt: Option[T], ifNone: => Error): Result[T] = opt match {
-    case None    => Result.raiseError(ifNone)
-    case Some(v) => Result.pure(v)
+    case None    => raiseError(ifNone)
+    case Some(v) => pure(v)
   }
 
-  val unit: Result[Unit] = this.pure(())
+  val unit: Result[Unit] = pure(())
 }
