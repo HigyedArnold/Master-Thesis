@@ -39,12 +39,6 @@ class ErrorHandler(environment: Environment, configuration: Configuration, sourc
           Results.Forbidden(message)
         case NOT_FOUND =>
           Results.NotFound(message)
-//        case clientError if statusCode >= 400 && statusCode < 500 =>
-//          Results.Status(statusCode)
-//        case nonClientError =>
-//          val msg =
-//            s"onClientError invoked with non client error status code $statusCode: $message"
-//          throw new IllegalArgumentException(msg)
       }
       result
     }

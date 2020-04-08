@@ -10,7 +10,8 @@ object NativeLibLoader {
   val DEVELOPMENT: String = separator + "target" + separator + "scala-2.13"
   val PRODUCTION:  String = separator + "app"
 
-  def init(path: String): Boolean = {
+  def init(mode: String = DEVELOPMENT): Boolean = {
+    val path     = if (mode == "prod") PRODUCTION else DEVELOPMENT
     val fullPath = System.getProperty("user.dir") + getLibrary(path)
     try {
       System.load(fullPath)

@@ -9,6 +9,7 @@ object JsonSerializers {
 
   // Error
   implicit val ErrorFormat: Format[Error] = Json.format[Error]
+
   // SolverConfig
   implicit val SolverConfigFormat: Format[SolverConfig] = Json.format[SolverConfig]
 

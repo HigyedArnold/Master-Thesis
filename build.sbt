@@ -102,6 +102,7 @@ javaOptions ++= RuntimeConfig.debugOptions(false)
 lazy val `root-deps` = Seq(
   guice,
   scalaGuice,
+  ortools,
   jniortoolswin,
   jniortoolslin,
   scalaTest
@@ -116,10 +117,10 @@ lazy val root = (project in file("."))
   )
   .enablePlugins(UnpackPlugin, sbtdocker.DockerPlugin, PlayService, PlayLayoutPlugin)
   .dependsOn(
-    `planr-solver`
+    `planr-api`
   )
   .aggregate(
-    `planr-solver`
+    `planr-api`
   )
 
 //#############################################################################
@@ -138,30 +139,6 @@ lazy val `planr-api` = (project in file("planr-api"))
   .settings(
     name := "planr-api",
     libraryDependencies ++= `planr-api-deps`.distinct
-  )
-
-//----------------------------------  SOLVER  ---------------------------------
-
-lazy val `planr-solver-deps` = Seq(
-  ortools,
-  protobuf,
-  akkaActor,
-  logback,
-  scalaTest
-)
-
-lazy val `planr-solver` = (project in file("planr-solver"))
-  .settings(PublishingSettings.noPublishSettings)
-  .settings(Settings.commonSettings)
-  .settings(
-    name := "planr-solver",
-    libraryDependencies ++= `planr-solver-deps`.distinct
-  )
-  .dependsOn(
-    `planr-api`
-  )
-  .aggregate(
-    `planr-api`
   )
 
 //---------------------------------  GATLING  ---------------------------------
@@ -187,36 +164,24 @@ lazy val `planr-gatling` = (project in file("planr-gatling"))
 
 lazy val scalaGuiceV: String = "4.2.6"
 lazy val ortoolsV:    String = "7.5.7466"
-lazy val protobufV:   String = "3.11.2"
-lazy val akkaV:       String = "2.6.3"
 lazy val catsV:       String = "2.1.1"
 lazy val scalaTestV:  String = "3.1.1"
 lazy val gatlingV:    String = "3.3.1"
-
-//-----------------------------------  ROOT  ----------------------------------
-
-// https://github.com/codingwell/scala-guice/releases
-lazy val scalaGuice: ModuleID = "net.codingwell" %% "scala-guice" % scalaGuiceV withSources ()
 
 //-----------------------------------  API  -----------------------------------
 
 // https://github.com/typelevel/cats/releases
 lazy val catsCore: ModuleID = "org.typelevel" %% "cats-core" % catsV withSources ()
 
-//----------------------------------  SOLVER  ---------------------------------
+//-----------------------------------  ROOT  ----------------------------------
+
+// https://github.com/codingwell/scala-guice/releases
+lazy val scalaGuice: ModuleID = "net.codingwell" %% "scala-guice" % scalaGuiceV withSources ()
 
 // https://github.com/google/or-tools/releases
-lazy val ortools: ModuleID = "com.google" %% "ortools" % ortoolsV
-
-// https://github.com/google/or-tools/releases
+lazy val ortools:       ModuleID = "com.google" %% "ortools"        % ortoolsV
 lazy val jniortoolswin: ModuleID = "com.google" %% "jniortools-win" % ortoolsV
 lazy val jniortoolslin: ModuleID = "com.google" %% "jniortools-lin" % ortoolsV
-
-// https://github.com/protocolbuffers/protobuf/releases
-lazy val protobuf: ModuleID = "com.google" %% "protobuf" % protobufV
-
-// https://github.com/akka/akka/releases
-lazy val akkaActor: ModuleID = "com.typesafe.akka" %% "akka-actor" % akkaV withSources ()
 
 //----------------------------------  TESTING  --------------------------------
 
@@ -226,5 +191,3 @@ lazy val scalaTest: ModuleID = "org.scalatest" %% "scalatest" % scalaTestV % Tes
 // https://gatling.io/docs/current/extensions/sbt_plugin/
 lazy val gatlingHighcharts: ModuleID = "io.gatling.highcharts" % "gatling-charts-highcharts" % gatlingV % Test withSources ()
 lazy val gatlingFramework:  ModuleID = "io.gatling"            % "gatling-test-framework"    % gatlingV % Test withSources ()
-
-//----------------------------------  LOGGING  --------------------------------
