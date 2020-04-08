@@ -180,10 +180,6 @@ lazy val `planr-gatling` = (project in file("planr-gatling"))
     scalaVersion := "2.12.10",
     libraryDependencies ++= `planr-gatling-deps`.distinct
   )
-  .dependsOn(
-    )
-  .aggregate(
-    )
 
 //#############################################################################
 //###############################  DEPENDENCIES  ##############################
