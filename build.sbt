@@ -103,7 +103,7 @@ lazy val `root-deps` = Seq(
   guice,
   scalaGuice,
   ortools,
-  jniortoolswin,
+//  jniortoolswin,
   jniortoolslin,
   scalaTest
 )
@@ -179,8 +179,8 @@ lazy val catsCore: ModuleID = "org.typelevel" %% "cats-core" % catsV withSources
 lazy val scalaGuice: ModuleID = "net.codingwell" %% "scala-guice" % scalaGuiceV withSources ()
 
 // https://github.com/google/or-tools/releases
-lazy val ortools:       ModuleID = "com.google" %% "ortools"        % ortoolsV
-lazy val jniortoolswin: ModuleID = "com.google" %% "jniortools-win" % ortoolsV
+lazy val ortools: ModuleID = "com.google" %% "ortools" % ortoolsV
+//lazy val jniortoolswin: ModuleID = "com.google" %% "jniortools-win" % ortoolsV
 lazy val jniortoolslin: ModuleID = "com.google" %% "jniortools-lin" % ortoolsV
 
 //----------------------------------  TESTING  --------------------------------
