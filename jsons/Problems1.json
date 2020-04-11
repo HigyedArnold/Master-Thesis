@@ -1,28 +1,43 @@
 {
   "problem": {
-    "key": "request-0",
+    "key": "request-1",
     "operations": [
       {
-        "key": "op-1",
-        "name": "op1",
+        "key": "Operation1",
+        "name": "Operation 1",
         "duration": 30,
         "resourceKeys": [
-          "opRes1",
-          "opRes2",
-          "opRes3"
+          "Resource1",
+          "Resource2"
         ]
       },
       {
-        "key": "op-2",
-        "name": "op2",
+        "key": "Operation2",
+        "name": "Operation 2",
         "duration": 45,
         "resourceKeys": [
-          "opRes2",
-          "opRes3"
+          "Resource2",
+          "Resource3"
         ]
       }
     ],
-    "resources": []
+    "resources": [
+      {
+        "key": "Resource1",
+        "name": "Resource 1"
+      },
+      {
+        "key": "Resource2",
+        "name": "Resource 2"
+      },
+      {
+        "key": "Resource3",
+        "name": "Resource 3"
+      }
+    ],
+    "costs": {
+      "asSoonAsPossible": true
+    }
   },
   "dayFrames": [
     {
@@ -31,10 +46,23 @@
         "stopDt": 1439
       },
       "program": {
-        "startDt": 480,
-        "stopDt": 960
+        "startT": 480,
+        "stopT": 960
       },
-      "allocations": []
+      "allocations": [
+        {
+          "resourceKey": "Resource1",
+          "intervals": []
+        },
+        {
+          "resourceKey": "Resource2",
+          "intervals": []
+        },
+        {
+          "resourceKey": "Resource3",
+          "intervals": []
+        }
+      ]
     }
   ]
 }

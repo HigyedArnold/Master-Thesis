@@ -5,15 +5,14 @@ case class SolutionOperation(
   name:     String,
   duration: Long,
   resource: Resource,
-  interval: DateTimeInterval,
-  day:      DateTimeInterval
+  interval: DateTimeInterval
 )
 
 case class Solution(
   cost:       Double, // [0.0, 100.0]
   duration:   Long,
-  interval:   DateTimeInterval,
   day:        DateTimeInterval,
+  interval:   DateTimeInterval,
   operations: Array[SolutionOperation]
 )
 

@@ -1,7 +1,7 @@
 package com.planr.api
 
-import com.planr.api.messages.Error
 import cats.data.EitherT
+import com.planr.api.messages.Error
 
 import scala.concurrent.Future
 

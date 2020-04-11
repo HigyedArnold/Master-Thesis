@@ -1,7 +1,7 @@
 package com.planr.rest.api
 
-import com.planr.api.messages.ErrorCodes._
 import com.planr.api.messages.Error
+import com.planr.api.messages.ErrorCodes._
 import com.planr.rest.json.JsonSerializers._
 import javax.inject.Inject
 import play.api.Logger
@@ -46,13 +46,13 @@ class RestController[S] @Inject() (cc: RestControllerComponents[S]) extends Inje
     request.body
       .validate[T]
       .fold(
-        errors =>
+        error =>
           Future {
-            val err = Error(this.getClass.getName, REST__ERROR + JSON_SERIALIZATION__ERROR, s"Request json could not be serialized: ${JsError.toJson(errors).toString()}")
+            val err = Error(this.getClass.getName, REST__ERROR + JSON_SERIALIZATION__ERROR, s"Request json could not be serialized: ${JsError.toJson(error).toString()}")
             logger.error(err.toString)
             BadRequest(Json.toJson(err))
           },
-        resource => f(resource)
+        value => f(value)
       )
   }
 

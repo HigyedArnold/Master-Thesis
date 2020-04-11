@@ -1,7 +1,7 @@
 package com.planr.api.effects
 
-import com.planr.api.messages.Error
 import cats.data.EitherT
+import com.planr.api.messages.Error
 
 object FutureResultT {
   def pure[T](t: T): FutureResultT[T] = EitherT(FutureResult.pure(t))

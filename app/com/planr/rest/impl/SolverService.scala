@@ -2,18 +2,18 @@ package com.planr.rest.impl
 
 import akka.actor.{ActorRef, ActorSystem}
 import akka.pattern.ask
+import cats.implicits._
 import com.google.inject.Inject
 import com.planr.api.async.SolverServiceT
 import com.planr.api.effects.FutureResult
+import com.planr.api.effects.implicits._
 import com.planr.api.messages.{Error, Problems, Solution, Solutions}
+import com.planr.solver.actor.SolverActor
 import com.planr.solver.config.SolverConfig
 import play.api.{Configuration, Logger}
-import com.planr.api.effects.implicits._
-import cats.implicits._
-import com.planr.solver.actor.SolverActor
 
-import scala.concurrent.{ExecutionContext, Future}
 import scala.concurrent.duration._
+import scala.concurrent.{ExecutionContext, Future}
 
 class SolverService @Inject() (config: Configuration, actorSystem: ActorSystem)(implicit ec: ExecutionContext) extends SolverServiceT {
 
@@ -25,7 +25,7 @@ class SolverService @Inject() (config: Configuration, actorSystem: ActorSystem)(
       /** Config */
       solverConfig <- readConfig().asPureFRT
       /** Actors */
-      solverActor <- actorSystem.actorSelection(SolverServiceT.actorPath).resolveOne()(solverConfig.actorTimeout.seconds).map(Right(_)).asFRT
+      solverActor <- actorSystem.actorSelection(SolverServiceT.actorPath).resolveOne()(solverConfig.actorTimeout.milliseconds).map(Right(_)).asFRT
       /** Solve */
       t0        <- System.nanoTime().asPureFRT
       solutions <- getSolutions(problems, solverConfig, solverActor).asFRT
@@ -35,12 +35,13 @@ class SolverService @Inject() (config: Configuration, actorSystem: ActorSystem)(
     } yield solutions).value
 
   private def readConfig(): SolverConfig =
-    SolverConfig(config.get[Int]("solver.actor.timeout"))
+    SolverConfig(config.get[Long]("solver.timeout"), config.get[Long]("solver.actor.timeout"))
 
   private def getSolutions(problems: Problems, solverConfig: SolverConfig, solverActor: ActorRef): FutureResult[Solutions] = {
     for {
       responses <- Future
-        .traverse(problems.dayFrames.toList)(dayFrame => solverActor.ask(SolverActor.SolveRequest(problems.problem, dayFrame, solverConfig))(solverConfig.actorTimeout.seconds))
+        .traverse(problems.dayFrames.toList)(dayFrame => solverActor.ask(SolverActor.SolveRequest(problems.problem, dayFrame, solverConfig))(solverConfig.actorTimeout.milliseconds)
+        )
         .mapTo[List[Either[Error, Option[Solution]]]]
       solutions <- responses
         .foldLeft(Right(List.empty[Solution]): Either[Error, List[Solution]]) { (acc, elem) =>

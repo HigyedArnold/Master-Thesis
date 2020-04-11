@@ -25,9 +25,9 @@ case class Resource(
 )
 
 case class Costs(
-  asSoonAsPossible:  Option[Boolean],     // ASAP
-  asTightAsPossible: Option[Boolean],     // ATAP
-  preferredInterval: Option[TimeInterval] // PT
+  asSoonAsPossible:      Option[Boolean],     // ASAP
+  asTightAsPossible:     Option[Boolean],     // ATAP
+  preferredTimeInterval: Option[TimeInterval] // PTI
 )
 
 case class OperationRelation(
@@ -40,7 +40,8 @@ case class Constraints(
   operationGrid:      Option[Long], // X % 60 divisible by value
   sameResource:       Option[Array[String]],
   enforcedInterval:   Option[TimeInterval],
-  operationsRelation: Option[Array[OperationRelation]]
+  operationsRelation: Option[Array[OperationRelation]],
+  isDisjunctive:      Option[Boolean]
 )
 
 case class Problem(
@@ -58,7 +59,7 @@ case class Allocation(
 
 case class DayFrame(
   day:         DateTimeInterval,
-  program:     DateTimeInterval,
+  program:     TimeInterval,
   allocations: Array[Allocation]
 )
 

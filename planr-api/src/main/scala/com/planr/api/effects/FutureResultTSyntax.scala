@@ -1,6 +1,7 @@
 package com.planr.api.effects
 
 import com.planr.api.messages.Error
+
 import scala.concurrent.Future
 
 object FutureResultTSyntax {

@@ -1,8 +1,8 @@
 package com.planr.rest.test
 
 import com.planr.api.messages.Problems
-import com.planr.rest.json.JsonUtil
 import com.planr.rest.json.JsonSerializers._
+import com.planr.rest.json.JsonUtil
 import org.scalatest.funsuite.AsyncFunSuite
 import play.api.Logger
 import play.api.libs.json.Json

@@ -1,3 +1,6 @@
 package com.planr.solver.config
 
-case class SolverConfig(actorTimeout: Int)
+case class SolverConfig(
+  solverTimeout: Long,
+  actorTimeout:  Long
+)

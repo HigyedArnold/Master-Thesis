@@ -2,8 +2,8 @@ package com.planr.rest.json
 
 import java.io.FileInputStream
 
-import com.planr.api.messages.ErrorCodes._
 import com.planr.api.messages.Error
+import com.planr.api.messages.ErrorCodes._
 import play.api.Logger
 import play.api.libs.json.{Json, Reads}
 
@@ -25,8 +25,8 @@ object JsonUtil {
         logger.error(err.toString)
         Left(err)
       },
-      v =>
-        if (v.isDefined) Right(v.get)
+      value =>
+        if (value.isDefined) Right(value.get)
         else {
           val err = Error(this.getClass.getName, REST__ERROR + JSON_EMPTY__ERROR, "Failed to parse json file!")
           logger.error(err.toString)
