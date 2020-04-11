@@ -64,6 +64,7 @@ case class DayFrame(
 )
 
 case class Problems(
-  problem:   Problem, // Problem always relative to dayFrame
-  dayFrames: Array[DayFrame]
+  problem:        Problem, // Problem always relative to dayFrame
+  dayFrames:      Array[DayFrame],
+  searchInterval: Option[Long]
 )

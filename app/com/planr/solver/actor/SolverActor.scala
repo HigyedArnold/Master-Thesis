@@ -12,7 +12,7 @@ import play.api.Logger
 import scala.util.Try
 
 object SolverActor {
-  case class SolveRequest(problem:   Problem, dayFrame: DayFrame, solverConfig: SolverConfig)
+  case class SolveRequest(problem:   Problem, dayFrame: DayFrame, searchInterval: Long, solverConfig: SolverConfig)
   case class SolveResponse(solution: Solution)
 }
 
@@ -21,10 +21,10 @@ class SolverActor extends Actor {
   private val logger = Logger(this.getClass)
 
   override def receive: Receive = {
-    case SolveRequest(problem: Problem, dayFrame: DayFrame, solverConfig: SolverConfig) =>
+    case SolveRequest(problem: Problem, dayFrame: DayFrame, searchInterval: Long, solverConfig: SolverConfig) =>
       val solver = PlanrSolver()
       val result = for {
-        solverSolution <- solver.search(problem, dayFrame, solverConfig)
+        solverSolution <- solver.search(problem, dayFrame, searchInterval, solverConfig)
         solution       <- SolutionConverter().convert(solverSolution, problem, dayFrame)
       } yield solution
       sender ! Right(result)

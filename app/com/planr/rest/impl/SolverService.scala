@@ -40,7 +40,8 @@ class SolverService @Inject() (config: Configuration, actorSystem: ActorSystem)(
   private def getSolutions(problems: Problems, solverConfig: SolverConfig, solverActor: ActorRef): FutureResult[Solutions] = {
     for {
       responses <- Future
-        .traverse(problems.dayFrames.toList)(dayFrame => solverActor.ask(SolverActor.SolveRequest(problems.problem, dayFrame, solverConfig))(solverConfig.actorTimeout.milliseconds)
+        .traverse(problems.dayFrames.toList)(dayFrame =>
+          solverActor.ask(SolverActor.SolveRequest(problems.problem, dayFrame, problems.searchInterval.getOrElse(1439), solverConfig))(solverConfig.actorTimeout.milliseconds)
         )
         .mapTo[List[Either[Error, Option[Solution]]]]
       solutions <- responses

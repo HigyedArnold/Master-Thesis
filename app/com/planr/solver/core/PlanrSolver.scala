@@ -16,10 +16,10 @@ class PlanrSolver extends Solver("PlanrSolver") {
 
   private val logger = Logger(this.getClass)
 
-  def search(problem: Problem, dayFrame: DayFrame, solverConfig: SolverConfig): Option[SolverSolution] =
+  def search(problem: Problem, dayFrame: DayFrame, searchInterval: Long, solverConfig: SolverConfig): Option[SolverSolution] =
     Try {
       for {
-        model    <- createModel(problem, dayFrame, solverConfig)
+        model    <- createModel(problem, dayFrame, searchInterval, solverConfig)
         solution <- solveModel(model)
       } yield solution
     }.fold(
@@ -30,7 +30,7 @@ class PlanrSolver extends Solver("PlanrSolver") {
       value => value
     )
 
-  private def createModel(problem: Problem, dayFrame: DayFrame, solverConfig: SolverConfig): Option[SolverProblem] = {
+  private def createModel(problem: Problem, dayFrame: DayFrame, searchInterval: Long, solverConfig: SolverConfig): Option[SolverProblem] = {
     // Create Variance Domain
     val varianceDomain = createVarianceDomain(problem.operations, dayFrame.allocations, dayFrame.day)
     val intervals      = varianceDomain.map(_.interval)
@@ -46,7 +46,7 @@ class PlanrSolver extends Solver("PlanrSolver") {
     // Apply Costs
     // Optional
     val costs: Array[IntVar] = Array(
-      makeProd(asSoonAsPossibleCost(intervals, dayFrame.day), ASAP_PERCENTAGE).`var`()
+      makeProd(asSoonAsPossibleCost(intervals, dayFrame.day, searchInterval), ASAP_PERCENTAGE).`var`()
     )
     val costObjective = makeDiv(makeSum(costs), PERCENTAGE * PRECISION).`var`()
 
@@ -140,7 +140,7 @@ class PlanrSolver extends Solver("PlanrSolver") {
       addConstraint(makeLessOrEqual(interval.endExpr(), day.startDt + program.stopT))
     })
 
-  private def asSoonAsPossibleCost(intervals: Array[IntervalVar], day: DateTimeInterval): IntVar =
-    makeDiv(makeProd(makeDifference(makeMin(intervals.map(_.startExpr.`var`())), makeIntConst(day.startDt)), MAX_COST * PRECISION), day.stopDt - day.startDt).`var`()
+  private def asSoonAsPossibleCost(intervals: Array[IntervalVar], day: DateTimeInterval, searchInterval: Long): IntVar =
+    makeDiv(makeProd(makeMin(intervals.map(_.startExpr.`var`())), MAX_COST * PRECISION), searchInterval).`var`()
 
 }
