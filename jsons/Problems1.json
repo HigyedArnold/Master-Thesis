@@ -36,7 +36,12 @@
       }
     ],
     "costs": {
-      "asSoonAsPossible": true
+      "asSoonAsPossible": true,
+      "asTightAsPossible": true,
+      "preferredTimeInterval": {
+        "startT": 600,
+        "stopT": 720
+      }
     }
   },
   "dayFrames": [
@@ -49,21 +54,8 @@
         "startT": 480,
         "stopT": 960
       },
-      "allocations": [
-        {
-          "resourceKey": "Resource1",
-          "intervals": []
-        },
-        {
-          "resourceKey": "Resource2",
-          "intervals": []
-        },
-        {
-          "resourceKey": "Resource3",
-          "intervals": []
-        }
-      ]
+      "allocations": []
     }
   ],
-  "searchInterval": 21599
+  "searchInterval": 7200
 }

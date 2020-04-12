@@ -46,7 +46,9 @@ class PlanrSolver extends Solver("PlanrSolver") {
     // Apply Costs
     // Optional
     val costs: Array[IntVar] = Array(
-      makeProd(asSoonAsPossibleCost(intervals, dayFrame.day, searchInterval), ASAP_PERCENTAGE).`var`()
+      makeProd(asSoonAsPossibleCost(problem.costs.flatMap(_.asSoonAsPossible), intervals, searchInterval), ASAP_PERCENTAGE).`var`(),
+      makeProd(asTightAsPossibleCost(problem.costs.flatMap(_.asTightAsPossible), intervals, dayFrame.day), ATAP_PERCENTAGE).`var`(),
+      makeProd(preferredTimeIntervalCost(problem.costs.flatMap(_.preferredTimeInterval), intervals, dayFrame.day), PTI_PERCENTAGE).`var`()
     )
     val costObjective = makeDiv(makeSum(costs), PERCENTAGE * PRECISION).`var`()
 
@@ -140,7 +142,46 @@ class PlanrSolver extends Solver("PlanrSolver") {
       addConstraint(makeLessOrEqual(interval.endExpr(), day.startDt + program.stopT))
     })
 
-  private def asSoonAsPossibleCost(intervals: Array[IntervalVar], day: DateTimeInterval, searchInterval: Long): IntVar =
-    makeDiv(makeProd(makeMin(intervals.map(_.startExpr.`var`())), MAX_COST * PRECISION), searchInterval).`var`()
+  private def asSoonAsPossibleCost(asSoonAsPossible: Option[Boolean], intervals: Array[IntervalVar], searchInterval: Long): IntVar =
+    if (asSoonAsPossible.isDefined && asSoonAsPossible.get)
+      makeDiv(makeProd(makeMin(intervals.map(_.startExpr.`var`())), MAX_COST * PRECISION), searchInterval).`var`()
+    else
+      makeIntConst(0L)
+
+  private def asTightAsPossibleCost(asTightAsPossible: Option[Boolean], intervals: Array[IntervalVar], day: DateTimeInterval): IntVar =
+    if (asTightAsPossible.isDefined && asTightAsPossible.get)
+      makeDiv(
+        makeProd(makeDifference(makeMax(intervals.map(_.endExpr().`var`())), makeMin(intervals.map(_.startExpr.`var`()))), MAX_COST * PRECISION),
+        day.stopDt - day.startDt
+      ).`var`()
+    else
+      makeIntConst(0L)
+
+  private def preferredTimeIntervalCost(preferredTimeInterval: Option[TimeInterval], intervals: Array[IntervalVar], day: DateTimeInterval): IntVar =
+    if (preferredTimeInterval.isDefined) {
+      val startDt                 = day.startDt + preferredTimeInterval.get.startT
+      val stopDt                  = day.startDt + preferredTimeInterval.get.stopT
+      val isPreferredTimeInterval = makeIntVar(0L, MAX_COST * PRECISION)
+
+      addConstraint(
+        makeIfThenElseCt(
+          makeIsBetweenVar(makeMin(intervals.map(_.startExpr.`var`())), startDt, stopDt),
+          makeIntConst(0L),
+          makeIntConst(MAX_COST * PRECISION),
+          isPreferredTimeInterval
+        )
+      )
+      addConstraint(
+        makeIfThenElseCt(
+          makeIsBetweenVar(makeMax(intervals.map(_.endExpr().`var`())), startDt, stopDt),
+          isPreferredTimeInterval,
+          makeIntConst(MAX_COST * PRECISION),
+          isPreferredTimeInterval
+        )
+      )
+
+      isPreferredTimeInterval
+    }
+    else makeIntConst(0L)
 
 }
