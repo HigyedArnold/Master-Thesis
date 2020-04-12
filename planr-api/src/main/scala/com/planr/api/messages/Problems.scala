@@ -37,11 +37,10 @@ case class OperationRelation(
 )
 
 case class Constraints(
-  operationGrid:      Option[Long], // X % 60 divisible by value
-  sameResource:       Option[Array[String]],
-  enforcedInterval:   Option[TimeInterval],
-  operationsRelation: Option[Array[OperationRelation]],
-  isDisjunctive:      Option[Boolean]
+  operationGrid:        Option[Long], // X % 60 divisible by value
+  sameResource:         Option[Array[String]],
+  enforcedTimeInterval: Option[TimeInterval],
+  operationsRelation:   Option[Array[OperationRelation]]
 )
 
 case class Problem(

@@ -14,5 +14,4 @@ object OperationRelationType extends Enumeration {
   val STARTS_AFTER_START: OperationRelationType.Value = Value("STARTS_AFTER_START")
   val STARTS_AT_END:      OperationRelationType.Value = Value("STARTS_AT_END")
   val STARTS_AT_START:    OperationRelationType.Value = Value("STARTS_AT_START")
-  val STAYS_IN_SYNC:      OperationRelationType.Value = Value("STAYS_IN_SYNC")
 }

@@ -42,6 +42,9 @@ class PlanrSolver extends Solver("PlanrSolver") {
     programConstraint(intervals, dayFrame.day, dayFrame.program)
 
     // Optional
+    problem.constraints.map(constraints => {
+      constraints.enforcedTimeInterval.map(timeInterval => enforcedIntervalConstraint(intervals, dayFrame.day, timeInterval))
+    })
 
     // Apply Costs
     // Optional
@@ -140,6 +143,12 @@ class PlanrSolver extends Solver("PlanrSolver") {
     intervals.foreach(interval => {
       addConstraint(makeGreaterOrEqual(interval.startExpr(), day.startDt + program.startT))
       addConstraint(makeLessOrEqual(interval.endExpr(), day.startDt + program.stopT))
+    })
+
+  private def enforcedIntervalConstraint(intervals: Array[IntervalVar], day: DateTimeInterval, timeInterval: TimeInterval): Unit =
+    intervals.foreach(interval => {
+      addConstraint(makeGreaterOrEqual(interval.startExpr(), day.startDt + timeInterval.startT))
+      addConstraint(makeLessOrEqual(interval.endExpr(), day.startDt + timeInterval.stopT))
     })
 
   private def asSoonAsPossibleCost(asSoonAsPossible: Option[Boolean], intervals: Array[IntervalVar], searchInterval: Long): IntVar =

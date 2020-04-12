@@ -40,7 +40,13 @@
       "asTightAsPossible": true,
       "preferredTimeInterval": {
         "startT": 600,
-        "stopT": 720
+        "stopT": 840
+      }
+    },
+    "constraints": {
+      "enforcedTimeInterval": {
+        "startT": 720,
+        "stopT": 840
       }
     }
   },
