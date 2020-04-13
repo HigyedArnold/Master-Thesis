@@ -43,7 +43,8 @@ class PlanrSolver extends Solver("PlanrSolver") {
 
     // Optional
     problem.constraints.map(constraints => {
-      constraints.enforcedTimeInterval.map(timeInterval => enforcedIntervalConstraint(intervals, dayFrame.day, timeInterval))
+      constraints.operationGrid.map(operationGridConstraint(intervals, _))
+      constraints.enforcedTimeInterval.map(enforcedIntervalConstraint(intervals, dayFrame.day, _))
     })
 
     // Apply Costs
@@ -144,6 +145,9 @@ class PlanrSolver extends Solver("PlanrSolver") {
       addConstraint(makeGreaterOrEqual(interval.startExpr(), day.startDt + program.startT))
       addConstraint(makeLessOrEqual(interval.endExpr(), day.startDt + program.stopT))
     })
+
+  private def operationGridConstraint(intervals: Array[IntervalVar], operationGrid: Long): Unit =
+    intervals.foreach(interval => addConstraint(makeEquality(makeModulo(interval.startExpr(), operationGrid), 0L)))
 
   private def enforcedIntervalConstraint(intervals: Array[IntervalVar], day: DateTimeInterval, timeInterval: TimeInterval): Unit =
     intervals.foreach(interval => {

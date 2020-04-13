@@ -44,6 +44,7 @@
       }
     },
     "constraints": {
+      "operationGrid": 5,
       "enforcedTimeInterval": {
         "startT": 720,
         "stopT": 840

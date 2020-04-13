@@ -37,7 +37,7 @@ case class OperationRelation(
 )
 
 case class Constraints(
-  operationGrid:        Option[Long], // X % 60 divisible by value
+  operationGrid:        Option[Long], // X and 60 divisible by value
   sameResource:         Option[Array[String]],
   enforcedTimeInterval: Option[TimeInterval],
   operationsRelation:   Option[Array[OperationRelation]]
@@ -66,4 +66,9 @@ case class Problems(
   problem:        Problem, // Problem always relative to dayFrame
   dayFrames:      Array[DayFrame],
   searchInterval: Option[Long]
-)
+) {
+
+  def validate(): Unit = {
+    ()
+  }
+}
