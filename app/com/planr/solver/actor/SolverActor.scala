@@ -37,7 +37,6 @@ class SolverActor extends Actor {
       )
     case error =>
       val err = Error(this.getClass.getName, SOVLER__ERROR + UNKNOWN_ACTOR_MESSAGE__ERROR, s"SolverActor received unknown message: ${error.toString}")
-      logger.error(err.toString)
       sender ! Left(err)
   }
 }

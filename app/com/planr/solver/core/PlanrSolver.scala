@@ -42,9 +42,10 @@ class PlanrSolver extends Solver("PlanrSolver") {
     programConstraint(intervals, dayFrame.day, dayFrame.program)
 
     // Optional
-    problem.constraints.map(constraints => {
-      constraints.operationGrid.map(operationGridConstraint(intervals, _))
-      constraints.enforcedTimeInterval.map(enforcedIntervalConstraint(intervals, dayFrame.day, _))
+    problem.constraints.foreach(constraints => {
+      constraints.operationGrid.foreach(operationGridConstraint(intervals, _))
+      constraints.enforcedTimeInterval.foreach(enforcedIntervalConstraint(intervals, dayFrame.day, _))
+      ()
     })
 
     // Apply Costs

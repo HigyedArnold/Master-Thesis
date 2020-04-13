@@ -37,7 +37,7 @@ case class OperationRelation(
 )
 
 case class Constraints(
-  operationGrid:        Option[Long], // X and 60 divisible by value
+  operationGrid:        Option[Long], // startExpr() and 60 divisible by operationGrid
   sameResource:         Option[Array[String]],
   enforcedTimeInterval: Option[TimeInterval],
   operationsRelation:   Option[Array[OperationRelation]]
@@ -63,9 +63,9 @@ case class DayFrame(
 )
 
 case class Problems(
-  problem:        Problem, // Problem always relative to dayFrame
+  problem:        Problem, // Problem relative to each dayFrame
   dayFrames:      Array[DayFrame],
-  searchInterval: Option[Long]
+  searchInterval: Option[Long] // ASAP cost relative to searchInterval
 ) {
 
   def validate(): Unit = {
