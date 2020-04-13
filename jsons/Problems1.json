@@ -8,7 +8,7 @@
         "duration": 30,
         "resourceKeys": [
           "Resource1",
-          "Resource2"
+          "Resource3"
         ]
       },
       {
@@ -18,6 +18,15 @@
         "resourceKeys": [
           "Resource2",
           "Resource3"
+        ]
+      },
+      {
+        "key": "Operation3",
+        "name": "Operation 3",
+        "duration": 40,
+        "resourceKeys": [
+          "Resource3",
+          "Resource4"
         ]
       }
     ],
@@ -33,6 +42,10 @@
       {
         "key": "Resource3",
         "name": "Resource 3"
+      },
+      {
+        "key": "Resource4",
+        "name": "Resource 4"
       }
     ],
     "costs": {
@@ -45,6 +58,13 @@
     },
     "constraints": {
       "operationGrid": 15,
+      "sameResource": [
+        [
+          "Operation1",
+          "Operation2",
+          "Operation3"
+        ]
+      ],
       "enforcedTimeInterval": {
         "startT": 725,
         "stopT": 840

@@ -44,6 +44,7 @@ class PlanrSolver extends Solver("PlanrSolver") {
     // Optional
     problem.constraints.foreach(constraints => {
       constraints.operationGrid.foreach(operationGridConstraint(intervals, _))
+      constraints.sameResource.foreach(sameResourceConstraint(varianceDomain, _))
       constraints.enforcedTimeInterval.foreach(enforcedIntervalConstraint(intervals, dayFrame.day, _))
       ()
     })
@@ -148,7 +149,13 @@ class PlanrSolver extends Solver("PlanrSolver") {
     })
 
   private def operationGridConstraint(intervals: Array[IntervalVar], operationGrid: Long): Unit =
-    intervals.foreach(interval => addConstraint(makeEquality(makeModulo(interval.startExpr(), operationGrid), 0L)))
+    intervals.foreach(interval => addConstraint(makeEquality(makeModulo(interval.startExpr(), operationGrid), 0L))) // TODO
+
+  private def sameResourceConstraint(varianceDomain: Array[VarianceDomain], opKeyss: Array[Array[String]]): Unit =
+    opKeyss.foreach(opKeys =>
+      for (i <- 1 until opKeys.length)
+        addConstraint(makeEquality(varianceDomain.find(_.opKey == opKeys(i - 1)).get.resource, varianceDomain.find(_.opKey == opKeys(i)).get.resource)) // Guarded by validation
+    )
 
   private def enforcedIntervalConstraint(intervals: Array[IntervalVar], day: DateTimeInterval, timeInterval: TimeInterval): Unit =
     intervals.foreach(interval => {

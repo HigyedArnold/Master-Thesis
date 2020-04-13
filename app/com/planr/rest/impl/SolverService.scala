@@ -22,15 +22,21 @@ class SolverService @Inject() (config: Configuration, actorSystem: ActorSystem)(
 
   override def solve(problems: Problems): FutureResult[Solutions] =
     (for {
+      /** Validation */
+      t0 <- System.nanoTime().asPureFRT
+      _  <- Future.successful(problems.validate).asFRT
+      t1 <- System.nanoTime().asPureFRT
+      _  <- logger.debug(s"Elapsed time for validating problems: ${(t1 - t0) / MILLIS} ms").asPureFRT
+
       /** Config */
       solverConfig <- readConfig().asPureFRT
       /** Actors */
       solverActor <- actorSystem.actorSelection(SolverServiceT.actorPath).resolveOne()(solverConfig.actorTimeout.milliseconds).map(Right(_)).asFRT
       /** Solve */
-      t0        <- System.nanoTime().asPureFRT
+      t2        <- System.nanoTime().asPureFRT
       solutions <- getSolutions(problems, solverConfig, solverActor).asFRT
-      t1        <- System.nanoTime().asPureFRT
-      _         <- logger.debug(s"Elapsed time for solving problems: ${(t1 - t0) / MILLIS} ms").asPureFRT
+      t3        <- System.nanoTime().asPureFRT
+      _         <- logger.debug(s"Elapsed time for solving problems: ${(t3 - t2) / MILLIS} ms").asPureFRT
 
     } yield solutions).value
 

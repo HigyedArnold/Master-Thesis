@@ -34,7 +34,7 @@ class SolutionConverter {
           operation.key,
           operation.name,
           operation.duration,
-          problem.resources.find(_.key == resource).get,
+          problem.resources.find(_.key == resource).get, // Guarded by validation
           DateTimeInterval(startDt, stopDt)
         )
       })
