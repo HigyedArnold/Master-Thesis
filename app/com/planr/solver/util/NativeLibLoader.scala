@@ -23,8 +23,8 @@ object NativeLibLoader {
 
   private def getLibrary(path: String): String = {
     val os = System.getProperty("os.name").toLowerCase
-    if (os.contains("nix") || os.contains("nux")) path + separator + "app" + separator + "natives" + separator + "libjniortools.so"
-    else if (os.contains("win")) path + separator + "app" + separator + "natives" + separator + "jniortools.dll"
+    if (os.contains("nix") || os.contains("nux")) path + separator + "app" + separator + "natives-lin" + separator + "libjniortools.so"
+    else if (os.contains("win")) path + separator + "app" + separator + "natives-win" + separator + "jniortools.dll"
     else ""
   }
 

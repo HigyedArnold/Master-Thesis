@@ -56,14 +56,13 @@ UnpackKeys.dependencyFilter := { file =>
 
 dockerfile in docker := {
   val artifact: File = assembly.value
-  val jni:      File = target.value / getScalaVPath / destination
+  val jni:      File = target.value / getScalaVPath / destination / "natives-lin"
 
   new Dockerfile {
     from("openjdk:8-jre")
     run("mkdir", "-p", s"/$destination")
     copy(artifact, s"/$destination")
-    copy(jni, s"/$destination")
-    run("rm", s"/$destination/natives/jniortools.dll")
+    copy(jni, s"/$destination/natives-lin")
     entryPoint("java", "-jar", s"/$destination/${artifact.name}")
 //    entryPoint("sh") // For testing
   }
