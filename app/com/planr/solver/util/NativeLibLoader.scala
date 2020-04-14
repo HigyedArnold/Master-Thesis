@@ -7,7 +7,7 @@ object NativeLibLoader {
   private val logger    = Logger(this.getClass)
   private val separator = System.getProperty("file.separator")
 
-  val DEVELOPMENT: String = separator + "target" + separator + "scala-2.13"
+  val DEVELOPMENT: String = separator + ""
   val PRODUCTION:  String = separator + "app"
 
   def init(mode: String = DEVELOPMENT): Boolean = {
