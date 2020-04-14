@@ -1,6 +1,7 @@
 package com.planr.solver.core
 
 import com.google.ortools.constraintsolver._
+import com.planr.api.enumeration.OperationRelationType
 import com.planr.api.messages._
 import com.planr.solver.config.CostConfig._
 import com.planr.solver.config.SolverConfig
@@ -44,8 +45,9 @@ class PlanrSolver extends Solver("PlanrSolver") {
     // Optional
     problem.constraints.foreach(constraints => {
       constraints.operationGrid.foreach(operationGridConstraint(intervals, _))
-      constraints.sameResource.foreach(sameResourceConstraint(varianceDomain, _))
-      constraints.enforcedTimeInterval.foreach(enforcedIntervalConstraint(intervals, dayFrame.day, _))
+      constraints.sameResource.foreach(sameResourceConstraint(problem.operations, varianceDomain, _))
+      constraints.enforcedTimeInterval.foreach(enforcedTimeIntervalConstraint(intervals, dayFrame.day, _))
+      constraints.operationsRelation.foreach(operationsRelationConstraint(varianceDomain, _))
       ()
     })
 
@@ -149,18 +151,51 @@ class PlanrSolver extends Solver("PlanrSolver") {
     })
 
   private def operationGridConstraint(intervals: Array[IntervalVar], operationGrid: Long): Unit =
-    intervals.foreach(interval => addConstraint(makeEquality(makeModulo(interval.startExpr(), operationGrid), 0L))) // TODO
+    intervals.foreach(interval => addConstraint(makeEquality(makeModulo(interval.startExpr(), operationGrid), 0L)))
 
-  private def sameResourceConstraint(varianceDomain: Array[VarianceDomain], opKeyss: Array[Array[String]]): Unit =
-    opKeyss.foreach(opKeys =>
-      for (i <- 1 until opKeys.length)
-        addConstraint(makeEquality(varianceDomain.find(_.opKey == opKeys(i - 1)).get.resource, varianceDomain.find(_.opKey == opKeys(i)).get.resource)) // Guarded by validation
-    )
+  private def sameResourceConstraint(operations: Array[Operation], varianceDomain: Array[VarianceDomain], opKeyss: Array[Array[String]]): Unit =
+    opKeyss.foreach(opKeys => {
+      val resourceKeys    = operations.filter(operation => opKeys.contains(operation.key)).flatMap(_.resourceKeys).distinct
+      val resourceKeysMap = resourceKeys.map(resourceKey => resourceKey -> makeBoolVar()).toMap
+      opKeys.foreach(opKey => {
+        val operation = operations.find(_.key == opKey).get                // Guarded by validation
+        val resource  = varianceDomain.find(_.opKey == opKey).get.resource // Guarded by validation
 
-  private def enforcedIntervalConstraint(intervals: Array[IntervalVar], day: DateTimeInterval, timeInterval: TimeInterval): Unit =
+        operation.resourceKeys.indices.foreach(resourceIndex => {
+          val resourceKey = operation.resourceKeys(resourceIndex)
+          addConstraint(
+            makeIfThenElseCt(
+              resource.isEqual(resourceIndex.toLong),
+              makeIntConst(1L),
+              resourceKeysMap(resourceKey),
+              resourceKeysMap(resourceKey)
+            )
+          )
+        })
+      })
+      addConstraint(makeEquality(makeSum(resourceKeysMap.values.toArray), 1L))
+    })
+
+  private def enforcedTimeIntervalConstraint(intervals: Array[IntervalVar], day: DateTimeInterval, timeInterval: TimeInterval): Unit =
     intervals.foreach(interval => {
       addConstraint(makeGreaterOrEqual(interval.startExpr(), day.startDt + timeInterval.startT))
       addConstraint(makeLessOrEqual(interval.endExpr(), day.startDt + timeInterval.stopT))
+    })
+
+  private def operationsRelationConstraint(varianceDomain: Array[VarianceDomain], operationsRelation: Array[OperationRelation]): Unit =
+    operationsRelation.foreach(operationRelation => {
+      val interval1 = varianceDomain.find(_.opKey == operationRelation.opKey1).get.interval // Guarded by validation
+      val interval2 = varianceDomain.find(_.opKey == operationRelation.opKey2).get.interval // Guarded by validation
+      operationRelation.opRelType match {
+        case OperationRelationType.ENDS_AFTER_END     => addConstraint(makeIntervalVarRelation(interval1, Solver.ENDS_AFTER_END, interval2))
+        case OperationRelationType.ENDS_AFTER_START   => addConstraint(makeIntervalVarRelation(interval1, Solver.ENDS_AFTER_START, interval2))
+        case OperationRelationType.ENDS_AT_END        => addConstraint(makeIntervalVarRelation(interval1, Solver.ENDS_AT_END, interval2))
+        case OperationRelationType.ENDS_AT_START      => addConstraint(makeIntervalVarRelation(interval1, Solver.ENDS_AT_START, interval2))
+        case OperationRelationType.STARTS_AFTER_END   => addConstraint(makeIntervalVarRelation(interval1, Solver.STARTS_AFTER_END, interval2))
+        case OperationRelationType.STARTS_AFTER_START => addConstraint(makeIntervalVarRelation(interval1, Solver.STARTS_AFTER_START, interval2))
+        case OperationRelationType.STARTS_AT_END      => addConstraint(makeIntervalVarRelation(interval1, Solver.STARTS_AT_END, interval2))
+        case OperationRelationType.STARTS_AT_START    => addConstraint(makeIntervalVarRelation(interval1, Solver.STARTS_AT_START, interval2))
+      }
     })
 
   private def asSoonAsPossibleCost(asSoonAsPossible: Option[Boolean], intervals: Array[IntervalVar], searchInterval: Long): IntVar =

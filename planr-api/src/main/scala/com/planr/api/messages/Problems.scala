@@ -86,12 +86,18 @@ case class Problems(
     new Rule(() => {
       problem.constraints
         .flatMap(_.sameResource)
-        .fold(Result.unit)(sameResource =>
-          if (sameResource.flatten.toSet.subsetOf(problem.operations.map(_.key).toSet)) Result.unit
-          else
+        .fold(Result.unit)(sameResource => {
+          val flatSameResource = sameResource.flatten
+          if (!sameResource.forall(_.length >= 2))
+            Result.raiseError[Unit](Error(this.getClass.getName, API__ERROR + VALIDATION__ERROR, "Field 'sameResource' must have 2 or more operation keys in each array!"))
+          else if (flatSameResource.distinct.length != flatSameResource.length)
+            Result.raiseError[Unit](Error(this.getClass.getName, API__ERROR + VALIDATION__ERROR, "Field 'sameResource' must have distinct arrays of operation keys!"))
+          else if (!flatSameResource.toSet.subsetOf(problem.operations.map(_.key).toSet))
             Result
               .raiseError[Unit](Error(this.getClass.getName, API__ERROR + VALIDATION__ERROR, "Field 'sameResource' flattened must be subset or equal set of operation keys set!"))
-        )
+          else
+            Result.unit
+        })
     }),
     new Rule(() => {
       problem.constraints

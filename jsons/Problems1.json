@@ -14,7 +14,7 @@
       {
         "key": "Operation2",
         "name": "Operation 2",
-        "duration": 45,
+        "duration": 10,
         "resourceKeys": [
           "Resource2",
           "Resource3"
@@ -23,7 +23,7 @@
       {
         "key": "Operation3",
         "name": "Operation 3",
-        "duration": 40,
+        "duration": 20,
         "resourceKeys": [
           "Resource3",
           "Resource4"
@@ -57,7 +57,7 @@
       }
     },
     "constraints": {
-      "operationGrid": 15,
+      "operationGrid": 5,
       "sameResource": [
         [
           "Operation1",
@@ -68,7 +68,19 @@
       "enforcedTimeInterval": {
         "startT": 725,
         "stopT": 840
-      }
+      },
+      "operationsRelation": [
+        {
+          "opRelType": "STARTS_AT_END",
+          "opKey1": "Operation2",
+          "opKey2": "Operation1"
+        },
+        {
+          "opRelType": "STARTS_AT_END",
+          "opKey1": "Operation3",
+          "opKey2": "Operation2"
+        }
+      ]
     }
   },
   "dayFrames": [
