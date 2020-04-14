@@ -14,12 +14,9 @@ class InitService @Inject() (config: Configuration, actorSystem: ActorSystem) ex
   private val logger = Logger(this.getClass)
   init()
 
-  override def init(): Unit = {
-    val mode = config.getOptional[String]("solver.mode").getOrElse("dev")
-    if (NativeLibLoader.init(mode)) {
+  override def init(): Unit =
+    if (NativeLibLoader.init()) {
       actorSystem.actorOf(RoundRobinPool(config.get[Int]("solver.actor.count")).props(Props(new SolverActor)).withDispatcher("solver.dispatcher"), SolverServiceT.actorName)
       logger.info("Server initialization successful!")
     }
-    ()
-  }
 }

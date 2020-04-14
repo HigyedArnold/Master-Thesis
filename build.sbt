@@ -44,30 +44,28 @@ assembly / assemblyMergeStrategy := {
 
 //---------------------------------  NATIVES  ---------------------------------
 
-def getPathScalaVersion: String = "scala-2.13"
-def getPathJni:          String = "lib"
+def getScalaVPath: String = "scala-2.13"
+def destination:   String = "app"
 
-UnpackKeys.dependenciesJarDirectory := target.value / getPathScalaVersion / getPathJni
+UnpackKeys.dependenciesJarDirectory := target.value / getScalaVPath / destination
 UnpackKeys.dependencyFilter := { file =>
   file.name.contains("jniortools")
 }
-
-sourceGenerators in (Compile, unpackJars) += UnpackKeys.unpackJars
 
 //----------------------------------  DOCKER  ---------------------------------
 
 dockerfile in docker := {
   val artifact: File = assembly.value
-  val artifactTargetPath = s"/app/${artifact.name}"
-  val jni: File = target.value / getPathScalaVersion / getPathJni
-  val libTargetPath = s"/app/${jni.name}"
+  val jni:      File = target.value / getScalaVPath / destination
 
   new Dockerfile {
     from("openjdk:8-jre")
-    copy(artifact, artifactTargetPath)
-    copy(jni, libTargetPath)
-    run("mkdir", "-p", s"/app/logs")
-    entryPoint("java", "-jar", artifactTargetPath)
+    run("mkdir", "-p", s"/$destination")
+    copy(artifact, s"/$destination")
+    copy(jni, s"/$destination")
+    run("rm", s"/$destination/natives/jniortools.dll")
+    entryPoint("java", "-jar", s"/$destination/${artifact.name}")
+//    entryPoint("sh") // For testing
   }
 }
 
@@ -79,13 +77,6 @@ imageNames in docker := Seq(
     tag        = Some("v" + version.value)
   )
 )
-
-// Build options
-//buildOptions in docker := BuildOptions(
-//  cache = false,
-//  removeIntermediateContainers = BuildOptions.Remove.Always,
-//  pullBaseImage = BuildOptions.Pull.Always
-//)
 
 //-----------------------------------  JVM  -----------------------------------
 
@@ -179,9 +170,9 @@ lazy val catsCore: ModuleID = "org.typelevel" %% "cats-core" % catsV withSources
 lazy val scalaGuice: ModuleID = "net.codingwell" %% "scala-guice" % scalaGuiceV withSources ()
 
 // https://github.com/google/or-tools/releases
-lazy val ortools: ModuleID = "com.google" %% "ortools" % ortoolsV
-lazy val jniortoolswin: ModuleID = "com.google" %% "jniortools-win" % ortoolsV
-lazy val jniortoolslin: ModuleID = "com.google" %% "jniortools-lin" % ortoolsV
+lazy val ortools:       ModuleID = "com.google" %% "ortools"        % ortoolsV
+lazy val jniortoolswin: ModuleID = "com.google" %% "jniortools-win" % ortoolsV % Provided
+lazy val jniortoolslin: ModuleID = "com.google" %% "jniortools-lin" % ortoolsV % Provided
 
 //----------------------------------  TESTING  --------------------------------
 
