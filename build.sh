@@ -9,4 +9,4 @@ sbt docker
 # docker run com.planr/planr:latest
 docker-compose up
 
-# sbt gatling:test
+# sbt -> project planr-gatling -> gatling:test

@@ -70,11 +70,7 @@ dockerfile in docker := {
 
 // Image options
 imageNames in docker := Seq(
-  ImageName(s"${organization.value}/${name.value}:latest"),
-  ImageName(
-    repository = name.value,
-    tag        = Some("v" + version.value)
-  )
+  ImageName(s"${name.value}:${version.value}")
 )
 
 //-----------------------------------  JVM  -----------------------------------

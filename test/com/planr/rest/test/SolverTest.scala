@@ -217,6 +217,8 @@ class SolverTest extends AsyncFunSuite {
 
   // *************************************************** BZL TEST *************************************************** //
 
+  //                                                      Base                                                        //
+
   test("Solver - Base test") {
     assert(isSuccessfulInit)
     JsonUtil.jsonFileToCaseClass[Problems]("jsons/Base.json") match {
@@ -227,6 +229,8 @@ class SolverTest extends AsyncFunSuite {
         assert(solutions.solutions.length == 1)
     }
   }
+
+  //                                                   Performance                                                    //
 
   test("Solver - Performance test") {
     assert(isSuccessfulInit)
