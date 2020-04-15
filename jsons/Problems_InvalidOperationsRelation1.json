@@ -1,0 +1,51 @@
+{
+  "problem": {
+    "key": "InvalidOperationsRelation1",
+    "operations": [
+      {
+        "key": "Operation1",
+        "name": "Operation 1",
+        "duration": 10,
+        "resourceKeys": [
+          "Resource1"
+        ]
+      },
+      {
+        "key": "Operation2",
+        "name": "Operation 2",
+        "duration": 10,
+        "resourceKeys": [
+          "Resource1"
+        ]
+      }
+    ],
+    "resources": [
+      {
+        "key": "Resource1",
+        "name": "Resource 1"
+      }
+    ],
+    "constraints": {
+      "operationsRelation": [
+        {
+          "opRelType": "STARTS_AT_START",
+          "opKey1": "Operation1",
+          "opKey2": "Operation1"
+        }
+      ]
+    }
+  },
+  "dayFrames": [
+    {
+      "day": {
+        "startDt": 0,
+        "stopDt": 1439
+      },
+      "program": {
+        "startT": 480,
+        "stopT": 960
+      },
+      "allocations": []
+    }
+  ]
+}

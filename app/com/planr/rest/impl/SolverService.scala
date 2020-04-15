@@ -47,7 +47,9 @@ class SolverService @Inject() (config: Configuration, actorSystem: ActorSystem)(
     for {
       responses <- Future
         .traverse(problems.dayFrames.toList)(dayFrame =>
-          solverActor.ask(SolverActor.SolveRequest(problems.problem, dayFrame, problems.searchInterval.getOrElse(1439L), solverConfig))(solverConfig.actorTimeout.milliseconds)
+          solverActor.ask(SolverActor.SolveRequest(problems.problem, dayFrame, problems.searchInterval.getOrElse(problems.dayFrames.last.day.stopDt), solverConfig))(
+            solverConfig.actorTimeout.milliseconds
+          )
         )
         .mapTo[List[Either[Error, Option[Solution]]]]
       solutions <- responses

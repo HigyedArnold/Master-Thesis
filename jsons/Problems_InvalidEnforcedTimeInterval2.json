@@ -1,0 +1,40 @@
+{
+  "problem": {
+    "key": "InvalidEnforcedTimeInterval2",
+    "operations": [
+      {
+        "key": "Operation1",
+        "name": "Operation 1",
+        "duration": 10,
+        "resourceKeys": [
+          "Resource1"
+        ]
+      }
+    ],
+    "resources": [
+      {
+        "key": "Resource1",
+        "name": "Resource 1"
+      }
+    ],
+    "constraints": {
+      "enforcedTimeInterval": {
+        "startT": 660,
+        "stopT": 600
+      }
+    }
+  },
+  "dayFrames": [
+    {
+      "day": {
+        "startDt": 0,
+        "stopDt": 1439
+      },
+      "program": {
+        "startT": 480,
+        "stopT": 960
+      },
+      "allocations": []
+    }
+  ]
+}

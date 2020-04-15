@@ -74,13 +74,36 @@ case class Problems(
   val DAY:  Long = 1440L // In minutes
 
   private val rules = List(
+    /** General */
+    new Rule(
+      () =>
+        if (problem.operations.forall(_.resourceKeys.length > 0)) Result.unit
+        else
+          Result
+            .raiseError[Unit](Error(this.getClass.getName, API__ERROR + VALIDATION__ERROR, "Each operation must have one or more resource keys!"))
+    ),
+    new Rule(
+      () =>
+        if (dayFrames.length > 0) Result.unit
+        else
+          Result
+            .raiseError[Unit](Error(this.getClass.getName, API__ERROR + VALIDATION__ERROR, "There must be one or more day frames defined!"))
+    ),
+    /** Resources */
+    new Rule(
+      () =>
+        if (problem.operations.flatMap(_.resourceKeys).toSet.subsetOf(problem.resources.map(_.key).toSet)) Result.unit
+        else
+          Result
+            .raiseError[Unit](Error(this.getClass.getName, API__ERROR + VALIDATION__ERROR, "All resources must be defined for operations resource keys!"))
+    ),
     /** Constraints */
     new Rule(() => {
       problem.constraints
         .flatMap(_.operationGrid)
         .fold(Result.unit)(operationGrid =>
           if (HOUR % operationGrid == 0L) Result.unit
-          else Result.raiseError[Unit](Error(this.getClass.getName, API__ERROR + VALIDATION__ERROR, "Field 'operationGrid' must be positive divisor of 60!"))
+          else Result.raiseError[Unit](Error(this.getClass.getName, API__ERROR + VALIDATION__ERROR, "Constraint field 'operationGrid' must be positive divisor of 60!"))
         )
     }),
     new Rule(() => {
@@ -89,12 +112,15 @@ case class Problems(
         .fold(Result.unit)(sameResource => {
           val flatSameResource = sameResource.flatten
           if (!sameResource.forall(_.length >= 2))
-            Result.raiseError[Unit](Error(this.getClass.getName, API__ERROR + VALIDATION__ERROR, "Field 'sameResource' must have 2 or more operation keys in each array!"))
+            Result
+              .raiseError[Unit](Error(this.getClass.getName, API__ERROR + VALIDATION__ERROR, "Constraint field 'sameResource' must have 2 or more operation keys in each array!"))
           else if (flatSameResource.distinct.length != flatSameResource.length)
-            Result.raiseError[Unit](Error(this.getClass.getName, API__ERROR + VALIDATION__ERROR, "Field 'sameResource' must have distinct arrays of operation keys!"))
+            Result.raiseError[Unit](Error(this.getClass.getName, API__ERROR + VALIDATION__ERROR, "Constraint field 'sameResource' must have distinct arrays of operation keys!"))
           else if (!flatSameResource.toSet.subsetOf(problem.operations.map(_.key).toSet))
             Result
-              .raiseError[Unit](Error(this.getClass.getName, API__ERROR + VALIDATION__ERROR, "Field 'sameResource' flattened must be subset or equal set of operation keys set!"))
+              .raiseError[Unit](
+                Error(this.getClass.getName, API__ERROR + VALIDATION__ERROR, "Constraint field 'sameResource' flattened must be subset or equal set of operation keys set!")
+              )
           else
             Result.unit
         })
@@ -106,19 +132,32 @@ case class Problems(
           if (enforcedTimeInterval.startT > 0L && enforcedTimeInterval.stopT < DAY && enforcedTimeInterval.startT < enforcedTimeInterval.stopT) Result.unit
           else
             Result
-              .raiseError[Unit](Error(this.getClass.getName, API__ERROR + VALIDATION__ERROR, "Field 'enforcedTimeInterval' must be a valid TimeInterval!"))
+              .raiseError[Unit](Error(this.getClass.getName, API__ERROR + VALIDATION__ERROR, "Constraint field 'enforcedTimeInterval' must be a valid TimeInterval!"))
         )
     }),
     new Rule(() => {
       problem.constraints
         .flatMap(_.operationsRelation)
         .fold(Result.unit)(operationsRelation =>
-          if (operationsRelation.flatMap(opRel => Array(opRel.opKey1, opRel.opKey2)).toSet.subsetOf(problem.operations.map(_.key).toSet)) Result.unit
-          else
+          if (operationsRelation.exists(opRel => opRel.opKey1.equals(opRel.opKey2)))
             Result
               .raiseError[Unit](
-                Error(this.getClass.getName, API__ERROR + VALIDATION__ERROR, "Field 'operationsRelation' flattened must be subset or equal set of operation keys set!")
+                Error(
+                  this.getClass.getName,
+                  API__ERROR + VALIDATION__ERROR,
+                  "Constraint field 'operationsRelation' must contain different operation keys!"
+                )
               )
+          else if (!operationsRelation.flatMap(opRel => Array(opRel.opKey1, opRel.opKey2)).toSet.subsetOf(problem.operations.map(_.key).toSet))
+            Result
+              .raiseError[Unit](
+                Error(
+                  this.getClass.getName,
+                  API__ERROR + VALIDATION__ERROR,
+                  "Constraint field 'operationsRelation' flattened must be subset or equal set of operation keys set!"
+                )
+              )
+          else Result.unit
         )
     }),
     /** Costs */
@@ -129,17 +168,9 @@ case class Problems(
           if (preferredTimeInterval.startT > 0L && preferredTimeInterval.stopT < DAY && preferredTimeInterval.startT < preferredTimeInterval.stopT) Result.unit
           else
             Result
-              .raiseError[Unit](Error(this.getClass.getName, API__ERROR + VALIDATION__ERROR, "Field 'preferredTimeInterval' must be a valid TimeInterval!"))
+              .raiseError[Unit](Error(this.getClass.getName, API__ERROR + VALIDATION__ERROR, "Cost field 'preferredTimeInterval' must be a valid TimeInterval!"))
         )
-    }),
-    /** Resources */
-    new Rule(
-      () =>
-        if (problem.operations.flatMap(_.resourceKeys).toSet.subsetOf(problem.resources.map(_.key).toSet)) Result.unit
-        else
-          Result
-            .raiseError[Unit](Error(this.getClass.getName, API__ERROR + VALIDATION__ERROR, "All resources must be defined for operations resourceKeys!"))
-    )
+    })
   )
 
   def validate: Result[Unit] =

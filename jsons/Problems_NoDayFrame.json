@@ -1,0 +1,22 @@
+{
+  "problem": {
+    "key": "NoDayFrame",
+    "operations": [
+      {
+        "key": "Operation1",
+        "name": "Operation 1",
+        "duration": 10,
+        "resourceKeys": [
+          "Resource1"
+        ]
+      }
+    ],
+    "resources": [
+      {
+        "key": "Resource1",
+        "name": "Resource 1"
+      }
+    ]
+  },
+  "dayFrames": []
+}
