@@ -11,7 +11,7 @@ import org.scalatest.funsuite.AsyncFunSuite
 import play.api.Logger
 import play.api.libs.json.Json
 
-class SolverTest extends AsyncFunSuite {
+class PlanrTests extends AsyncFunSuite {
 
   private val logger = Logger(this.getClass)
 
@@ -40,13 +40,13 @@ class SolverTest extends AsyncFunSuite {
     }
   }
 
-  // *********************************************** VALIDATION  TEST *********************************************** //
+  // *********************************************** VALIDATION TESTS *********************************************** //
 
   //                                                     General                                                      //
 
   test("Solver - No resource key for operation") {
     assert(isSuccessfulInit)
-    JsonUtil.jsonFileToCaseClass[Problems]("jsons/NoResourceKey.json") match {
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/validation/NoResourceKey.json") match {
       case Left(_) =>
         fail()
       case Right(problems) =>
@@ -57,7 +57,7 @@ class SolverTest extends AsyncFunSuite {
 
   test("Solver - No day frame") {
     assert(isSuccessfulInit)
-    JsonUtil.jsonFileToCaseClass[Problems]("jsons/NoDayFrame.json") match {
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/validation/NoDayFrame.json") match {
       case Left(_) =>
         fail()
       case Right(problems) =>
@@ -70,7 +70,7 @@ class SolverTest extends AsyncFunSuite {
 
   test("Solver - No resource for key") {
     assert(isSuccessfulInit)
-    JsonUtil.jsonFileToCaseClass[Problems]("jsons/NoResourceForKey.json") match {
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/validation/NoResourceForKey.json") match {
       case Left(_) =>
         fail()
       case Right(problems) =>
@@ -83,7 +83,7 @@ class SolverTest extends AsyncFunSuite {
 
   test("Solver - Invalid operation grid") {
     assert(isSuccessfulInit)
-    JsonUtil.jsonFileToCaseClass[Problems]("jsons/InvalidOperationGrid.json") match {
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/validation/InvalidOperationGrid.json") match {
       case Left(_) =>
         fail()
       case Right(problems) =>
@@ -94,7 +94,7 @@ class SolverTest extends AsyncFunSuite {
 
   test("Solver - Invalid same resource 1") {
     assert(isSuccessfulInit)
-    JsonUtil.jsonFileToCaseClass[Problems]("jsons/InvalidSameResource1.json") match {
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/validation/InvalidSameResource1.json") match {
       case Left(_) =>
         fail()
       case Right(problems) =>
@@ -105,7 +105,7 @@ class SolverTest extends AsyncFunSuite {
 
   test("Solver - Invalid same resource 2") {
     assert(isSuccessfulInit)
-    JsonUtil.jsonFileToCaseClass[Problems]("jsons/InvalidSameResource2.json") match {
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/validation/InvalidSameResource2.json") match {
       case Left(_) =>
         fail()
       case Right(problems) =>
@@ -116,7 +116,7 @@ class SolverTest extends AsyncFunSuite {
 
   test("Solver - Invalid same resource 3") {
     assert(isSuccessfulInit)
-    JsonUtil.jsonFileToCaseClass[Problems]("jsons/InvalidSameResource3.json") match {
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/validation/InvalidSameResource3.json") match {
       case Left(_) =>
         fail()
       case Right(problems) =>
@@ -127,7 +127,7 @@ class SolverTest extends AsyncFunSuite {
 
   test("Solver - Invalid enforced time interval 1") {
     assert(isSuccessfulInit)
-    JsonUtil.jsonFileToCaseClass[Problems]("jsons/InvalidEnforcedTimeInterval1.json") match {
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/validation/InvalidEnforcedTimeInterval1.json") match {
       case Left(_) =>
         fail()
       case Right(problems) =>
@@ -138,7 +138,7 @@ class SolverTest extends AsyncFunSuite {
 
   test("Solver - Invalid enforced time interval 2") {
     assert(isSuccessfulInit)
-    JsonUtil.jsonFileToCaseClass[Problems]("jsons/InvalidEnforcedTimeInterval2.json") match {
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/validation/InvalidEnforcedTimeInterval2.json") match {
       case Left(_) =>
         fail()
       case Right(problems) =>
@@ -149,7 +149,7 @@ class SolverTest extends AsyncFunSuite {
 
   test("Solver - Invalid enforced time interval 3") {
     assert(isSuccessfulInit)
-    JsonUtil.jsonFileToCaseClass[Problems]("jsons/InvalidEnforcedTimeInterval3.json") match {
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/validation/InvalidEnforcedTimeInterval3.json") match {
       case Left(_) =>
         fail()
       case Right(problems) =>
@@ -160,7 +160,7 @@ class SolverTest extends AsyncFunSuite {
 
   test("Solver - Invalid operations relation 1") {
     assert(isSuccessfulInit)
-    JsonUtil.jsonFileToCaseClass[Problems]("jsons/InvalidOperationsRelation1.json") match {
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/validation/InvalidOperationsRelation1.json") match {
       case Left(_) =>
         fail()
       case Right(problems) =>
@@ -171,7 +171,7 @@ class SolverTest extends AsyncFunSuite {
 
   test("Solver - Invalid operations relation 2") {
     assert(isSuccessfulInit)
-    JsonUtil.jsonFileToCaseClass[Problems]("jsons/InvalidOperationsRelation2.json") match {
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/validation/InvalidOperationsRelation2.json") match {
       case Left(_) =>
         fail()
       case Right(problems) =>
@@ -184,7 +184,7 @@ class SolverTest extends AsyncFunSuite {
 
   test("Solver - Invalid preferred time interval 1") {
     assert(isSuccessfulInit)
-    JsonUtil.jsonFileToCaseClass[Problems]("jsons/InvalidPreferredTimeInterval1.json") match {
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/validation/InvalidPreferredTimeInterval1.json") match {
       case Left(_) =>
         fail()
       case Right(problems) =>
@@ -195,7 +195,7 @@ class SolverTest extends AsyncFunSuite {
 
   test("Solver - Invalid preferred time interval 2") {
     assert(isSuccessfulInit)
-    JsonUtil.jsonFileToCaseClass[Problems]("jsons/InvalidPreferredTimeInterval2.json") match {
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/validation/InvalidPreferredTimeInterval2.json") match {
       case Left(_) =>
         fail()
       case Right(problems) =>
@@ -206,7 +206,7 @@ class SolverTest extends AsyncFunSuite {
 
   test("Solver - Invalid preferred time interval 3") {
     assert(isSuccessfulInit)
-    JsonUtil.jsonFileToCaseClass[Problems]("jsons/InvalidPreferredTimeInterval3.json") match {
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/validation/InvalidPreferredTimeInterval3.json") match {
       case Left(_) =>
         fail()
       case Right(problems) =>
@@ -215,13 +215,13 @@ class SolverTest extends AsyncFunSuite {
     }
   }
 
-  // *************************************************** BZL TEST *************************************************** //
+  // ************************************************* SOLVER TESTS ************************************************* //
 
   //                                                      Base                                                        //
 
   test("Solver - Base test") {
     assert(isSuccessfulInit)
-    JsonUtil.jsonFileToCaseClass[Problems]("jsons/Base.json") match {
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/solver/Base.json") match {
       case Left(_) =>
         fail()
       case Right(problems) =>
@@ -230,11 +230,47 @@ class SolverTest extends AsyncFunSuite {
     }
   }
 
-  //                                                   Performance                                                    //
+  test("Solver - Respect day test") {
+    assert(isSuccessfulInit)
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/solver/RespectDay.json") match {
+      case Left(_) =>
+        fail()
+      case Right(problems) =>
+        val solutions = solve(problems)
+        assert(solutions.solutions.length == 1)
+        assert(solutions.solutions.head.interval.isBetween(0L, 1439L))
+    }
+  }
+
+  test("Solver - Respect program test") {
+    assert(isSuccessfulInit)
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/solver/RespectProgram.json") match {
+      case Left(_) =>
+        fail()
+      case Right(problems) =>
+        val solutions = solve(problems)
+        assert(solutions.solutions.length == 1)
+        assert(solutions.solutions.head.interval.isBetween(480L, 540L))
+    }
+  }
+
+  test("Solver - Respect allocations test") {
+    assert(isSuccessfulInit)
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/solver/RespectAllocations.json") match {
+      case Left(_) =>
+        fail()
+      case Right(problems) =>
+        val solutions = solve(problems)
+        assert(solutions.solutions.length == 1)
+        assert(solutions.solutions.head.interval.isBetween(500L, 540L))
+    }
+  }
+
+  // *********************************************** PERFORMANCE TESTS ********************************************** //
 
   test("Solver - Performance test") {
     assert(isSuccessfulInit)
-    JsonUtil.jsonFileToCaseClass[Problems]("jsons/Performance.json") match {
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/performance/Performance.json") match {
       case Left(_) =>
         fail()
       case Right(problems) =>

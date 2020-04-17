@@ -7,12 +7,30 @@ import com.planr.api.messages.ErrorCodes._
 case class TimeInterval(
   startT: Long,
   stopT:  Long
-)
+) {
+
+  def isBetween(timeInterval: TimeInterval): Boolean = {
+    startT >= timeInterval.startT && stopT <= timeInterval.stopT
+  }
+
+  def isBetween(start: Long, stop: Long): Boolean = {
+    startT >= start && stopT <= stop
+  }
+}
 
 case class DateTimeInterval(
   startDt: Long,
   stopDt:  Long
-)
+) {
+
+  def isBetween(dateTimeInterval: DateTimeInterval): Boolean = {
+    startDt >= dateTimeInterval.startDt && stopDt <= dateTimeInterval.stopDt
+  }
+
+  def isBetween(start: Long, stop: Long): Boolean = {
+    startDt >= start && stopDt <= stop
+  }
+}
 
 case class Operation(
   key:          String,

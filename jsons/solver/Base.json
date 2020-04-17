@@ -1,6 +1,6 @@
 {
   "problem": {
-    "key": "BaseRequest",
+    "key": "Base",
     "operations": [
       {
         "key": "Operation1",
@@ -14,7 +14,7 @@
       {
         "key": "Operation2",
         "name": "Operation 2",
-        "duration": 30,
+        "duration": 10,
         "resourceKeys": [
           "Resource2",
           "Resource3"
@@ -23,10 +23,10 @@
       {
         "key": "Operation3",
         "name": "Operation 3",
-        "duration": 30,
+        "duration": 20,
         "resourceKeys": [
-          "Resource4",
-          "Resource3"
+          "Resource3",
+          "Resource4"
         ]
       }
     ],
@@ -52,8 +52,8 @@
       "asSoonAsPossible": true,
       "asTightAsPossible": true,
       "preferredTimeInterval": {
-        "startT": 480,
-        "stopT": 660
+        "startT": 600,
+        "stopT": 840
       }
     },
     "constraints": {
@@ -65,14 +65,18 @@
           "Operation3"
         ]
       ],
+      "enforcedTimeInterval": {
+        "startT": 725,
+        "stopT": 840
+      },
       "operationsRelation": [
         {
-          "opRelType": "STARTS_AFTER_END",
+          "opRelType": "STARTS_AT_END",
           "opKey1": "Operation2",
           "opKey2": "Operation1"
         },
         {
-          "opRelType": "STARTS_AFTER_END",
+          "opRelType": "STARTS_AT_END",
           "opKey1": "Operation3",
           "opKey2": "Operation2"
         }
@@ -90,50 +94,7 @@
         "stopT": 960
       },
       "allocations": []
-    },
-    {
-      "day": {
-        "startDt": 1440,
-        "stopDt": 2879
-      },
-      "program": {
-        "startT": 480,
-        "stopT": 960
-      },
-      "allocations": []
-    },
-    {
-      "day": {
-        "startDt": 2880,
-        "stopDt": 4319
-      },
-      "program": {
-        "startT": 480,
-        "stopT": 960
-      },
-      "allocations": []
-    },
-    {
-      "day": {
-        "startDt": 4320,
-        "stopDt": 5759
-      },
-      "program": {
-        "startT": 480,
-        "stopT": 960
-      },
-      "allocations": []
-    },
-    {
-      "day": {
-        "startDt": 5760,
-        "stopDt": 7200
-      },
-      "program": {
-        "startT": 480,
-        "stopT": 960
-      },
-      "allocations": []
     }
-  ]
+  ],
+  "searchInterval": 7200
 }
