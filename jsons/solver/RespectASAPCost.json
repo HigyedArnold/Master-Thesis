@@ -1,0 +1,37 @@
+{
+  "problem": {
+    "key": "RespectASAPCost",
+    "operations": [
+      {
+        "key": "Operation1",
+        "name": "Operation 1",
+        "duration": 30,
+        "resourceKeys": [
+          "Resource1"
+        ]
+      }
+    ],
+    "resources": [
+      {
+        "key": "Resource1",
+        "name": "Resource 1"
+      }
+    ],
+    "costs": {
+      "asSoonAsPossible": true
+    }
+  },
+  "dayFrames": [
+    {
+      "day": {
+        "startDt": 0,
+        "stopDt": 1439
+      },
+      "program": {
+        "startT": 480,
+        "stopT": 1020
+      },
+      "allocations": []
+    }
+  ]
+}

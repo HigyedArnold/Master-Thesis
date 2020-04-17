@@ -266,6 +266,69 @@ class PlanrTests extends AsyncFunSuite {
     }
   }
 
+  test("Solver - No cost test") {
+    assert(isSuccessfulInit)
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/solver/NoCost.json") match {
+      case Left(_) =>
+        fail()
+      case Right(problems) =>
+        val solutions = solve(problems)
+        assert(solutions.solutions.length == 1)
+        assert(solutions.solutions.head.cost == 0.0)
+    }
+  }
+
+  test("Solver - Respect ASAP cost test") {
+    assert(isSuccessfulInit)
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/solver/RespectASAPCost.json") match {
+      case Left(_) =>
+        fail()
+      case Right(problems) =>
+        val solutions = solve(problems)
+        assert(solutions.solutions.length == 1)
+        assert(solutions.solutions.head.cost == 16.67)
+    }
+  }
+
+  test("Solver - Respect ATAP cost test") {
+    assert(isSuccessfulInit)
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/solver/RespectATAPCost.json") match {
+      case Left(_) =>
+        fail()
+      case Right(problems) =>
+        val solutions = solve(problems)
+        assert(solutions.solutions.length == 1)
+        assert(solutions.solutions.head.cost == 17.89)                                       // ASAP is true in order to prevent the operations to be done in parallel
+        assert(solutions.solutions.head.operations.map(_.resource.key).distinct.length == 2) // Operation2 done by Resource2, since Resource1 is blocked
+    }
+  }
+
+  test("Solver - Respect PTI cost test 1") {
+    assert(isSuccessfulInit)
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/solver/RespectPTICost1.json") match {
+      case Left(_) =>
+        fail()
+      case Right(problems) =>
+        val solutions = solve(problems)
+        assert(solutions.solutions.length == 1)
+        assert(solutions.solutions.head.cost == 0.0)
+        assert(solutions.solutions.head.interval.isBetween(540L, 600L))
+    }
+  }
+
+  test("Solver - Respect PTI cost test 2") {
+    assert(isSuccessfulInit)
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/solver/RespectPTICost2.json") match {
+      case Left(_) =>
+        fail()
+      case Right(problems) =>
+        val solutions = solve(problems)
+        assert(solutions.solutions.length == 1)
+        assert(solutions.solutions.head.cost == 25.0) // Preferred interval blocked for Resource1
+        assert(!solutions.solutions.head.interval.isBetween(540L, 600L))
+    }
+  }
+
   // *********************************************** PERFORMANCE TESTS ********************************************** //
 
   test("Solver - Performance test") {
