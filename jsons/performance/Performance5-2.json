@@ -1,0 +1,236 @@
+{
+  "problem": {
+    "key": "Performance5-2",
+    "operations": [
+      {
+        "key": "Operation1",
+        "name": "Operation 1",
+        "duration": 30,
+        "resourceKeys": [
+          "Resource1.1",
+          "Resource1.2",
+          "Resource1.3",
+          "Resource1.4",
+          "Resource1.5"
+        ]
+      },
+      {
+        "key": "Operation2",
+        "name": "Operation 2",
+        "duration": 20,
+        "resourceKeys": [
+          "Resource2.1",
+          "Resource2.2",
+          "Resource2.3",
+          "Resource2.4",
+          "Resource2.5",
+          "Resource2.6"
+        ]
+      },
+      {
+        "key": "Operation3",
+        "name": "Operation 3",
+        "duration": 40,
+        "resourceKeys": [
+          "Resource2.3",
+          "Resource2.4",
+          "Resource2.5",
+          "Resource2.6"
+        ]
+      },
+      {
+        "key": "Operation4",
+        "name": "Operation 4",
+        "duration": 35,
+        "resourceKeys": [
+          "Resource3.1",
+          "Resource3.2",
+          "Resource3.3",
+          "Resource3.4"
+        ]
+      },
+      {
+        "key": "Operation5",
+        "name": "Operation 5",
+        "duration": 15,
+        "resourceKeys": [
+          "Resource4.1",
+          "Resource4.2"
+        ]
+      },
+      {
+        "key": "Operation6",
+        "name": "Operation 6",
+        "duration": 45,
+        "resourceKeys": [
+          "Resource5.1"
+        ]
+      },
+      {
+        "key": "Operation7",
+        "name": "Operation 7",
+        "duration": 60,
+        "resourceKeys": [
+          "Resource1.2",
+          "Resource1.4",
+          "Resource1.5"
+        ]
+      }
+    ],
+    "resources": [
+      {
+        "key": "Resource1.1",
+        "name": "Resource 1.1"
+      },
+      {
+        "key": "Resource1.2",
+        "name": "Resource 1.2"
+      },
+      {
+        "key": "Resource1.3",
+        "name": "Resource 1.3"
+      },
+      {
+        "key": "Resource1.4",
+        "name": "Resource 1.4"
+      },
+      {
+        "key": "Resource1.5",
+        "name": "Resource 1.5"
+      },
+      {
+        "key": "Resource2.1",
+        "name": "Resource 2.1"
+      },
+      {
+        "key": "Resource2.2",
+        "name": "Resource 2.2"
+      },
+      {
+        "key": "Resource2.3",
+        "name": "Resource 2.3"
+      },
+      {
+        "key": "Resource2.4",
+        "name": "Resource 2.4"
+      },
+      {
+        "key": "Resource2.5",
+        "name": "Resource 2.5"
+      },
+      {
+        "key": "Resource2.6",
+        "name": "Resource 2.6"
+      },
+      {
+        "key": "Resource3.1",
+        "name": "Resource 3.1"
+      },
+      {
+        "key": "Resource3.2",
+        "name": "Resource 3.2"
+      },
+      {
+        "key": "Resource3.3",
+        "name": "Resource 3.3"
+      },
+      {
+        "key": "Resource3.4",
+        "name": "Resource 3.4"
+      },
+      {
+        "key": "Resource4.1",
+        "name": "Resource 4.1"
+      },
+      {
+        "key": "Resource4.2",
+        "name": "Resource 4.2"
+      },
+      {
+        "key": "Resource5.1",
+        "name": "Resource 5.1"
+      }
+    ],
+    "costs": {
+      "asSoonAsPossible": true,
+      "asTightAsPossible": true,
+      "preferredTimeInterval": {
+        "startT": 720,
+        "stopT": 1200
+      }
+    },
+    "constraints": {
+      "operationGrid": 10,
+      "sameResource": [
+        [
+          "Operation1",
+          "Operation7"
+        ],
+        [
+          "Operation2",
+          "Operation3"
+        ]
+      ],
+      "enforcedTimeInterval": {
+        "startT": 540,
+        "stopT": 1140
+      },
+      "operationsRelation": [
+        {
+          "opRelType": "STARTS_AFTER_END",
+          "opKey1": "Operation2",
+          "opKey2": "Operation1"
+        },
+        {
+          "opRelType": "STARTS_AT_END",
+          "opKey1": "Operation3",
+          "opKey2": "Operation2"
+        },
+        {
+          "opRelType": "STARTS_AFTER_END",
+          "opKey1": "Operation4",
+          "opKey2": "Operation3"
+        },
+        {
+          "opRelType": "STARTS_AFTER_START",
+          "opKey1": "Operation5",
+          "opKey2": "Operation4"
+        },
+        {
+          "opRelType": "STARTS_AT_START",
+          "opKey1": "Operation6",
+          "opKey2": "Operation4"
+        },
+        {
+          "opRelType": "STARTS_AFTER_END",
+          "opKey1": "Operation7",
+          "opKey2": "Operation4"
+        },
+        {
+          "opRelType": "STARTS_AFTER_END",
+          "opKey1": "Operation7",
+          "opKey2": "Operation5"
+        },
+        {
+          "opRelType": "STARTS_AFTER_END",
+          "opKey1": "Operation7",
+          "opKey2": "Operation6"
+        }
+      ]
+    }
+  },
+  "dayFrames": [
+    {
+      "day": {
+        "startDt": 1440,
+        "stopDt": 2879
+      },
+      "program": {
+        "startT": 480,
+        "stopT": 1260
+      },
+      "allocations": []
+    }
+  ],
+  "searchInterval": 7199
+}

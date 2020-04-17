@@ -1,7 +1,7 @@
 package com.planr.api.enumeration
 
 /**
-  * Documentation: https://google.github.io/or-tools/cpp_routing/classoperations__research_1_1Solver.html
+  * Documentation: https://google.github.io/or-tools/cpp_routing/classoperations_research_1_1Solver.html
   */
 object OperationRelationType extends Enumeration {
   type OperationRelationType = Value

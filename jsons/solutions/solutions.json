@@ -1,0 +1,529 @@
+{
+  "solutions": [
+    {
+      "cost": 8.47,
+      "duration": 200,
+      "day": {
+        "startDt": 0,
+        "stopDt": 1439
+      },
+      "interval": {
+        "startDt": 720,
+        "stopDt": 920
+      },
+      "operations": [
+        {
+          "key": "Operation1",
+          "name": "Operation 1",
+          "duration": 30,
+          "resource": {
+            "key": "Resource1.2",
+            "name": "Resource 1.2"
+          },
+          "interval": {
+            "startDt": 720,
+            "stopDt": 750
+          }
+        },
+        {
+          "key": "Operation2",
+          "name": "Operation 2",
+          "duration": 20,
+          "resource": {
+            "key": "Resource2.3",
+            "name": "Resource 2.3"
+          },
+          "interval": {
+            "startDt": 750,
+            "stopDt": 770
+          }
+        },
+        {
+          "key": "Operation3",
+          "name": "Operation 3",
+          "duration": 40,
+          "resource": {
+            "key": "Resource2.3",
+            "name": "Resource 2.3"
+          },
+          "interval": {
+            "startDt": 770,
+            "stopDt": 810
+          }
+        },
+        {
+          "key": "Operation4",
+          "name": "Operation 4",
+          "duration": 35,
+          "resource": {
+            "key": "Resource3.1",
+            "name": "Resource 3.1"
+          },
+          "interval": {
+            "startDt": 810,
+            "stopDt": 845
+          }
+        },
+        {
+          "key": "Operation5",
+          "name": "Operation 5",
+          "duration": 15,
+          "resource": {
+            "key": "Resource4.1",
+            "name": "Resource 4.1"
+          },
+          "interval": {
+            "startDt": 810,
+            "stopDt": 825
+          }
+        },
+        {
+          "key": "Operation6",
+          "name": "Operation 6",
+          "duration": 45,
+          "resource": {
+            "key": "Resource5.1",
+            "name": "Resource 5.1"
+          },
+          "interval": {
+            "startDt": 810,
+            "stopDt": 855
+          }
+        },
+        {
+          "key": "Operation7",
+          "name": "Operation 7",
+          "duration": 60,
+          "resource": {
+            "key": "Resource1.2",
+            "name": "Resource 1.2"
+          },
+          "interval": {
+            "startDt": 860,
+            "stopDt": 920
+          }
+        }
+      ]
+    },
+    {
+      "cost": 18.47,
+      "duration": 200,
+      "day": {
+        "startDt": 1440,
+        "stopDt": 2879
+      },
+      "interval": {
+        "startDt": 2160,
+        "stopDt": 2360
+      },
+      "operations": [
+        {
+          "key": "Operation1",
+          "name": "Operation 1",
+          "duration": 30,
+          "resource": {
+            "key": "Resource1.2",
+            "name": "Resource 1.2"
+          },
+          "interval": {
+            "startDt": 2160,
+            "stopDt": 2190
+          }
+        },
+        {
+          "key": "Operation2",
+          "name": "Operation 2",
+          "duration": 20,
+          "resource": {
+            "key": "Resource2.3",
+            "name": "Resource 2.3"
+          },
+          "interval": {
+            "startDt": 2190,
+            "stopDt": 2210
+          }
+        },
+        {
+          "key": "Operation3",
+          "name": "Operation 3",
+          "duration": 40,
+          "resource": {
+            "key": "Resource2.3",
+            "name": "Resource 2.3"
+          },
+          "interval": {
+            "startDt": 2210,
+            "stopDt": 2250
+          }
+        },
+        {
+          "key": "Operation4",
+          "name": "Operation 4",
+          "duration": 35,
+          "resource": {
+            "key": "Resource3.1",
+            "name": "Resource 3.1"
+          },
+          "interval": {
+            "startDt": 2250,
+            "stopDt": 2285
+          }
+        },
+        {
+          "key": "Operation5",
+          "name": "Operation 5",
+          "duration": 15,
+          "resource": {
+            "key": "Resource4.1",
+            "name": "Resource 4.1"
+          },
+          "interval": {
+            "startDt": 2250,
+            "stopDt": 2265
+          }
+        },
+        {
+          "key": "Operation6",
+          "name": "Operation 6",
+          "duration": 45,
+          "resource": {
+            "key": "Resource5.1",
+            "name": "Resource 5.1"
+          },
+          "interval": {
+            "startDt": 2250,
+            "stopDt": 2295
+          }
+        },
+        {
+          "key": "Operation7",
+          "name": "Operation 7",
+          "duration": 60,
+          "resource": {
+            "key": "Resource1.2",
+            "name": "Resource 1.2"
+          },
+          "interval": {
+            "startDt": 2300,
+            "stopDt": 2360
+          }
+        }
+      ]
+    },
+    {
+      "cost": 28.47,
+      "duration": 200,
+      "day": {
+        "startDt": 2880,
+        "stopDt": 4319
+      },
+      "interval": {
+        "startDt": 3600,
+        "stopDt": 3800
+      },
+      "operations": [
+        {
+          "key": "Operation1",
+          "name": "Operation 1",
+          "duration": 30,
+          "resource": {
+            "key": "Resource1.2",
+            "name": "Resource 1.2"
+          },
+          "interval": {
+            "startDt": 3600,
+            "stopDt": 3630
+          }
+        },
+        {
+          "key": "Operation2",
+          "name": "Operation 2",
+          "duration": 20,
+          "resource": {
+            "key": "Resource2.3",
+            "name": "Resource 2.3"
+          },
+          "interval": {
+            "startDt": 3630,
+            "stopDt": 3650
+          }
+        },
+        {
+          "key": "Operation3",
+          "name": "Operation 3",
+          "duration": 40,
+          "resource": {
+            "key": "Resource2.3",
+            "name": "Resource 2.3"
+          },
+          "interval": {
+            "startDt": 3650,
+            "stopDt": 3690
+          }
+        },
+        {
+          "key": "Operation4",
+          "name": "Operation 4",
+          "duration": 35,
+          "resource": {
+            "key": "Resource3.1",
+            "name": "Resource 3.1"
+          },
+          "interval": {
+            "startDt": 3690,
+            "stopDt": 3725
+          }
+        },
+        {
+          "key": "Operation5",
+          "name": "Operation 5",
+          "duration": 15,
+          "resource": {
+            "key": "Resource4.1",
+            "name": "Resource 4.1"
+          },
+          "interval": {
+            "startDt": 3690,
+            "stopDt": 3705
+          }
+        },
+        {
+          "key": "Operation6",
+          "name": "Operation 6",
+          "duration": 45,
+          "resource": {
+            "key": "Resource5.1",
+            "name": "Resource 5.1"
+          },
+          "interval": {
+            "startDt": 3690,
+            "stopDt": 3735
+          }
+        },
+        {
+          "key": "Operation7",
+          "name": "Operation 7",
+          "duration": 60,
+          "resource": {
+            "key": "Resource1.2",
+            "name": "Resource 1.2"
+          },
+          "interval": {
+            "startDt": 3740,
+            "stopDt": 3800
+          }
+        }
+      ]
+    },
+    {
+      "cost": 38.47,
+      "duration": 200,
+      "day": {
+        "startDt": 4320,
+        "stopDt": 5759
+      },
+      "interval": {
+        "startDt": 5040,
+        "stopDt": 5240
+      },
+      "operations": [
+        {
+          "key": "Operation1",
+          "name": "Operation 1",
+          "duration": 30,
+          "resource": {
+            "key": "Resource1.2",
+            "name": "Resource 1.2"
+          },
+          "interval": {
+            "startDt": 5040,
+            "stopDt": 5070
+          }
+        },
+        {
+          "key": "Operation2",
+          "name": "Operation 2",
+          "duration": 20,
+          "resource": {
+            "key": "Resource2.3",
+            "name": "Resource 2.3"
+          },
+          "interval": {
+            "startDt": 5070,
+            "stopDt": 5090
+          }
+        },
+        {
+          "key": "Operation3",
+          "name": "Operation 3",
+          "duration": 40,
+          "resource": {
+            "key": "Resource2.3",
+            "name": "Resource 2.3"
+          },
+          "interval": {
+            "startDt": 5090,
+            "stopDt": 5130
+          }
+        },
+        {
+          "key": "Operation4",
+          "name": "Operation 4",
+          "duration": 35,
+          "resource": {
+            "key": "Resource3.1",
+            "name": "Resource 3.1"
+          },
+          "interval": {
+            "startDt": 5130,
+            "stopDt": 5165
+          }
+        },
+        {
+          "key": "Operation5",
+          "name": "Operation 5",
+          "duration": 15,
+          "resource": {
+            "key": "Resource4.1",
+            "name": "Resource 4.1"
+          },
+          "interval": {
+            "startDt": 5130,
+            "stopDt": 5145
+          }
+        },
+        {
+          "key": "Operation6",
+          "name": "Operation 6",
+          "duration": 45,
+          "resource": {
+            "key": "Resource5.1",
+            "name": "Resource 5.1"
+          },
+          "interval": {
+            "startDt": 5130,
+            "stopDt": 5175
+          }
+        },
+        {
+          "key": "Operation7",
+          "name": "Operation 7",
+          "duration": 60,
+          "resource": {
+            "key": "Resource1.2",
+            "name": "Resource 1.2"
+          },
+          "interval": {
+            "startDt": 5180,
+            "stopDt": 5240
+          }
+        }
+      ]
+    },
+    {
+      "cost": 48.47,
+      "duration": 200,
+      "day": {
+        "startDt": 5760,
+        "stopDt": 7199
+      },
+      "interval": {
+        "startDt": 6480,
+        "stopDt": 6680
+      },
+      "operations": [
+        {
+          "key": "Operation1",
+          "name": "Operation 1",
+          "duration": 30,
+          "resource": {
+            "key": "Resource1.2",
+            "name": "Resource 1.2"
+          },
+          "interval": {
+            "startDt": 6480,
+            "stopDt": 6510
+          }
+        },
+        {
+          "key": "Operation2",
+          "name": "Operation 2",
+          "duration": 20,
+          "resource": {
+            "key": "Resource2.3",
+            "name": "Resource 2.3"
+          },
+          "interval": {
+            "startDt": 6510,
+            "stopDt": 6530
+          }
+        },
+        {
+          "key": "Operation3",
+          "name": "Operation 3",
+          "duration": 40,
+          "resource": {
+            "key": "Resource2.3",
+            "name": "Resource 2.3"
+          },
+          "interval": {
+            "startDt": 6530,
+            "stopDt": 6570
+          }
+        },
+        {
+          "key": "Operation4",
+          "name": "Operation 4",
+          "duration": 35,
+          "resource": {
+            "key": "Resource3.1",
+            "name": "Resource 3.1"
+          },
+          "interval": {
+            "startDt": 6570,
+            "stopDt": 6605
+          }
+        },
+        {
+          "key": "Operation5",
+          "name": "Operation 5",
+          "duration": 15,
+          "resource": {
+            "key": "Resource4.1",
+            "name": "Resource 4.1"
+          },
+          "interval": {
+            "startDt": 6570,
+            "stopDt": 6585
+          }
+        },
+        {
+          "key": "Operation6",
+          "name": "Operation 6",
+          "duration": 45,
+          "resource": {
+            "key": "Resource5.1",
+            "name": "Resource 5.1"
+          },
+          "interval": {
+            "startDt": 6570,
+            "stopDt": 6615
+          }
+        },
+        {
+          "key": "Operation7",
+          "name": "Operation 7",
+          "duration": 60,
+          "resource": {
+            "key": "Resource1.2",
+            "name": "Resource 1.2"
+          },
+          "interval": {
+            "startDt": 6620,
+            "stopDt": 6680
+          }
+        }
+      ]
+    }
+  ]
+}

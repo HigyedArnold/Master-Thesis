@@ -1,0 +1,84 @@
+{
+  "problem": {
+    "key": "RespectSameResource4",
+    "operations": [
+      {
+        "key": "Operation1",
+        "name": "Operation 1",
+        "duration": 30,
+        "resourceKeys": [
+          "Resource2"
+        ]
+      },
+      {
+        "key": "Operation2",
+        "name": "Operation 2",
+        "duration": 30,
+        "resourceKeys": [
+          "Resource1",
+          "Resource2"
+        ]
+      },
+      {
+        "key": "Operation3",
+        "name": "Operation 3",
+        "duration": 30,
+        "resourceKeys": [
+          "Resource4"
+        ]
+      },
+      {
+        "key": "Operation4",
+        "name": "Operation 4",
+        "duration": 30,
+        "resourceKeys": [
+          "Resource3",
+          "Resource4"
+        ]
+      }
+    ],
+    "resources": [
+      {
+        "key": "Resource1",
+        "name": "Resource 1"
+      },
+      {
+        "key": "Resource2",
+        "name": "Resource 2"
+      },
+      {
+        "key": "Resource3",
+        "name": "Resource 3"
+      },
+      {
+        "key": "Resource4",
+        "name": "Resource 4"
+      }
+    ],
+    "constraints": {
+      "sameResource": [
+        [
+          "Operation1",
+          "Operation2"
+        ],
+        [
+          "Operation3",
+          "Operation4"
+        ]
+      ]
+    }
+  },
+  "dayFrames": [
+    {
+      "day": {
+        "startDt": 0,
+        "stopDt": 1439
+      },
+      "program": {
+        "startT": 485,
+        "stopT": 1020
+      },
+      "allocations": []
+    }
+  ]
+}

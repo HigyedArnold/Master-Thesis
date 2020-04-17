@@ -16,6 +16,10 @@ case class TimeInterval(
   def isBetween(start: Long, stop: Long): Boolean = {
     startT >= start && stopT <= stop
   }
+
+  def isEqual(start: Long, stop: Long): Boolean = {
+    startT == start && stopT == stop
+  }
 }
 
 case class DateTimeInterval(
@@ -29,6 +33,10 @@ case class DateTimeInterval(
 
   def isBetween(start: Long, stop: Long): Boolean = {
     startDt >= start && stopDt <= stop
+  }
+
+  def isEqual(start: Long, stop: Long): Boolean = {
+    startDt == start && stopDt == stop
   }
 }
 

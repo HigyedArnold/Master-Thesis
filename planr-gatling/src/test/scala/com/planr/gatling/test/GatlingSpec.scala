@@ -17,14 +17,20 @@ class GatlingSpec extends Simulation {
 //    BaseScenarios.testScenario.inject(
 //      constantUsersPerSec(10).during(20 seconds)
 //    ),
-    BaseScenarios.solveScenario.inject(
-      constantUsersPerSec(100).during(50 seconds)
+//    BaseScenarios.solveScenario.inject(
+//      constantUsersPerSec(100).during(50 seconds)
+//    ),
+    BaseScenarios.solveScenario5.inject(
+      constantUsersPerSec(10).during(20 seconds)
+    ),
+    BaseScenarios.solveScenario5_5.inject(
+      constantUsersPerSec(10).during(20 seconds)
     )
   )
 
   setUp(scenarios)
     .protocols(httpConf)
-    .maxDuration(150 seconds)
-    .assertions(global.responseTime.max.lte(1000))
+    .maxDuration(30 seconds)
+    .assertions(global.responseTime.max.lte(10000))
 
 }

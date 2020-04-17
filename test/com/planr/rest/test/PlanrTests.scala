@@ -258,6 +258,124 @@ class PlanrTests extends AsyncFunSuite {
 
   //                                                   Constraints                                                    //
 
+  test("Solver - Respect operation grid test") {
+    assert(isSuccessfulInit)
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/solver/RespectOperationGrid.json") match {
+      case Left(_) =>
+        fail()
+      case Right(problems) =>
+        val solutions = solve(problems)
+        assert(solutions.solutions.length == 1)
+        assert(solutions.solutions.head.interval.isBetween(495L, 525L))
+    }
+  }
+
+  test("Solver - Respect same resource test 1") {
+    assert(isSuccessfulInit)
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/solver/RespectSameResource1.json") match {
+      case Left(_) =>
+        fail()
+      case Right(problems) =>
+        val solutions = solve(problems)
+        assert(solutions.solutions.length == 1)
+        assert(solutions.solutions.head.operations.map(_.resource.key).distinct.length == 2)
+    }
+  }
+
+  test("Solver - Respect same resource test 2") {
+    assert(isSuccessfulInit)
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/solver/RespectSameResource2.json") match {
+      case Left(_) =>
+        fail()
+      case Right(problems) =>
+        val solutions = solve(problems)
+        assert(solutions.solutions.length == 1)
+        assert(solutions.solutions.head.operations.map(_.resource.key).distinct.length == 1)
+    }
+  }
+
+  test("Solver - Respect same resource test 3") {
+    assert(isSuccessfulInit)
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/solver/RespectSameResource3.json") match {
+      case Left(_) =>
+        fail()
+      case Right(problems) =>
+        val solutions = solve(problems)
+        assert(solutions.solutions.length == 0)
+    }
+  }
+
+  test("Solver - Respect same resource test 4") {
+    assert(isSuccessfulInit)
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/solver/RespectSameResource4.json") match {
+      case Left(_) =>
+        fail()
+      case Right(problems) =>
+        val solutions = solve(problems)
+        assert(solutions.solutions.length == 1)
+        assert(solutions.solutions.head.operations.map(_.resource.key).distinct.length == 2)
+    }
+  }
+
+  test("Solver - Respect enforced time interval test") {
+    assert(isSuccessfulInit)
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/solver/RespectEnforcedTimeInterval.json") match {
+      case Left(_) =>
+        fail()
+      case Right(problems) =>
+        val solutions = solve(problems)
+        assert(solutions.solutions.length == 1)
+        assert(solutions.solutions.head.interval.isBetween(540L, 600L))
+    }
+  }
+
+  test("Solver - Respect operations relation test 1") {
+    assert(isSuccessfulInit)
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/solver/RespectOperationsRelation1.json") match {
+      case Left(_) =>
+        fail()
+      case Right(problems) =>
+        val solutions = solve(problems)
+        assert(solutions.solutions.length == 1)
+        assert(solutions.solutions.head.interval.isEqual(480L, 640L))
+    }
+  }
+
+  test("Solver - Respect operations relation test 2") {
+    assert(isSuccessfulInit)
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/solver/RespectOperationsRelation2.json") match {
+      case Left(_) =>
+        fail()
+      case Right(problems) =>
+        val solutions = solve(problems)
+        assert(solutions.solutions.length == 1)
+        assert(solutions.solutions.head.interval.isEqual(480L, 540L))
+    }
+  }
+
+  test("Solver - Respect operations relation test 3") {
+    assert(isSuccessfulInit)
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/solver/RespectOperationsRelation3.json") match {
+      case Left(_) =>
+        fail()
+      case Right(problems) =>
+        val solutions = solve(problems)
+        assert(solutions.solutions.length == 0)
+    }
+  }
+
+  test("Solver - Respect operations relation test 4") {
+    assert(isSuccessfulInit)
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/solver/RespectOperationsRelation4.json") match {
+      case Left(_) =>
+        fail()
+      case Right(problems) =>
+        val solutions = solve(problems)
+        assert(solutions.solutions.length == 1)
+        assert(solutions.solutions.head.interval.isEqual(610L, 670L))
+    }
+  }
+
   //                                                      Costs                                                       //
 
   test("Solver - No cost test") {
@@ -333,6 +451,72 @@ class PlanrTests extends AsyncFunSuite {
       case Right(problems) =>
         val solutions = solve(problems)
         assert(solutions.solutions.length == 5)
+    }
+  }
+
+  test("Solver - Performance test 5") {
+    assert(isSuccessfulInit)
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/performance/Performance5.json") match {
+      case Left(_) =>
+        fail()
+      case Right(problems) =>
+        val solutions = solve(problems)
+        assert(solutions.solutions.length == 5)
+    }
+  }
+
+  test("Solver - Performance test 5-1") {
+    assert(isSuccessfulInit)
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/performance/Performance5-1.json") match {
+      case Left(_) =>
+        fail()
+      case Right(problems) =>
+        val solutions = solve(problems)
+        assert(solutions.solutions.length == 1)
+    }
+  }
+
+  test("Solver - Performance test 5-2") {
+    assert(isSuccessfulInit)
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/performance/Performance5-2.json") match {
+      case Left(_) =>
+        fail()
+      case Right(problems) =>
+        val solutions = solve(problems)
+        assert(solutions.solutions.length == 1)
+    }
+  }
+
+  test("Solver - Performance test 5-3") {
+    assert(isSuccessfulInit)
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/performance/Performance5-3.json") match {
+      case Left(_) =>
+        fail()
+      case Right(problems) =>
+        val solutions = solve(problems)
+        assert(solutions.solutions.length == 1)
+    }
+  }
+
+  test("Solver - Performance test 5-4") {
+    assert(isSuccessfulInit)
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/performance/Performance5-4.json") match {
+      case Left(_) =>
+        fail()
+      case Right(problems) =>
+        val solutions = solve(problems)
+        assert(solutions.solutions.length == 1)
+    }
+  }
+
+  test("Solver - Performance test 5-5") {
+    assert(isSuccessfulInit)
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/performance/Performance5-5.json") match {
+      case Left(_) =>
+        fail()
+      case Right(problems) =>
+        val solutions = solve(problems)
+        assert(solutions.solutions.length == 1)
     }
   }
 
