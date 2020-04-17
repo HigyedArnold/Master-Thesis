@@ -14,6 +14,12 @@ import scala.util.Try
 object SolverActor {
   case class SolveRequest(problem:   Problem, dayFrame: DayFrame, searchInterval: Long, solverConfig: SolverConfig)
   case class SolveResponse(solution: Solution)
+
+  def solve(solver: PlanrSolver, problem: Problem, dayFrame: DayFrame, searchInterval: Long, solverConfig: SolverConfig): Option[Solution] =
+    for {
+      solverSolution <- solver.search(problem, dayFrame, searchInterval, solverConfig)
+      solution       <- SolutionConverter().convert(solverSolution, problem, dayFrame)
+    } yield solution
 }
 
 class SolverActor extends Actor {
@@ -23,10 +29,7 @@ class SolverActor extends Actor {
   override def receive: Receive = {
     case SolveRequest(problem: Problem, dayFrame: DayFrame, searchInterval: Long, solverConfig: SolverConfig) =>
       val solver = PlanrSolver()
-      val result = for {
-        solverSolution <- solver.search(problem, dayFrame, searchInterval, solverConfig)
-        solution       <- SolutionConverter().convert(solverSolution, problem, dayFrame)
-      } yield solution
+      val result = SolverActor.solve(solver, problem, dayFrame, searchInterval, solverConfig)
       sender ! Right(result)
       // Cleanup
       Try {

@@ -3,8 +3,8 @@ package com.planr.rest.test
 import com.planr.api.messages.{Problems, Solution, Solutions}
 import com.planr.rest.json.JsonSerializers._
 import com.planr.rest.json.JsonUtil
+import com.planr.solver.actor.SolverActor
 import com.planr.solver.config.SolverConfig
-import com.planr.solver.converter.SolutionConverter
 import com.planr.solver.core.PlanrSolver
 import com.planr.solver.util.NativeLibLoader
 import org.scalatest.funsuite.AsyncFunSuite
@@ -26,9 +26,8 @@ class PlanrTests extends AsyncFunSuite {
       logger.debug(s"${Json.toJson(problems)}")
       val solver = PlanrSolver()
       val results = for {
-        dayFrame       <- problems.dayFrames
-        solverSolution <- solver.search(problems.problem, dayFrame, problems.searchInterval.getOrElse(problems.dayFrames.last.day.stopDt), SolverConfig(3000L, 0L))
-        solution       <- SolutionConverter().convert(solverSolution, problems.problem, dayFrame)
+        dayFrame <- problems.dayFrames
+        solution <- SolverActor.solve(solver, problems.problem, dayFrame, problems.searchInterval.getOrElse(problems.dayFrames.last.day.stopDt), SolverConfig(3000L, 0L))
       } yield solution
       val solutions = Solutions(results)
       logger.debug(s"${Json.toJson(solutions)}")
@@ -217,18 +216,7 @@ class PlanrTests extends AsyncFunSuite {
 
   // ************************************************* SOLVER TESTS ************************************************* //
 
-  //                                                      Base                                                        //
-
-  test("Solver - Base test") {
-    assert(isSuccessfulInit)
-    JsonUtil.jsonFileToCaseClass[Problems]("jsons/solver/Base.json") match {
-      case Left(_) =>
-        fail()
-      case Right(problems) =>
-        val solutions = solve(problems)
-        assert(solutions.solutions.length == 1)
-    }
-  }
+  //                                                     General                                                      //
 
   test("Solver - Respect day test") {
     assert(isSuccessfulInit)
@@ -254,6 +242,8 @@ class PlanrTests extends AsyncFunSuite {
     }
   }
 
+  //                                                    Resources                                                     //
+
   test("Solver - Respect allocations test") {
     assert(isSuccessfulInit)
     JsonUtil.jsonFileToCaseClass[Problems]("jsons/solver/RespectAllocations.json") match {
@@ -265,6 +255,10 @@ class PlanrTests extends AsyncFunSuite {
         assert(solutions.solutions.head.interval.isBetween(500L, 540L))
     }
   }
+
+  //                                                   Constraints                                                    //
+
+  //                                                      Costs                                                       //
 
   test("Solver - No cost test") {
     assert(isSuccessfulInit)
