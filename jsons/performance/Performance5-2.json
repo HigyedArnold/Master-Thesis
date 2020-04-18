@@ -229,7 +229,170 @@
         "startT": 480,
         "stopT": 1260
       },
-      "allocations": []
+      "allocations": [
+        {
+          "resourceKey": "Resource1.1",
+          "intervals": [
+            {
+              "startT": 780,
+              "stopT": 900
+            }
+          ]
+        },
+        {
+          "resourceKey": "Resource1.2",
+          "intervals": [
+            {
+              "startT": 780,
+              "stopT": 900
+            }
+          ]
+        },
+        {
+          "resourceKey": "Resource1.3",
+          "intervals": [
+            {
+              "startT": 780,
+              "stopT": 900
+            }
+          ]
+        },
+        {
+          "resourceKey": "Resource1.4",
+          "intervals": [
+            {
+              "startT": 780,
+              "stopT": 900
+            }
+          ]
+        },
+        {
+          "resourceKey": "Resource1.5",
+          "intervals": [
+            {
+              "startT": 780,
+              "stopT": 900
+            }
+          ]
+        },
+        {
+          "resourceKey": "Resource2.1",
+          "intervals": [
+            {
+              "startT": 780,
+              "stopT": 900
+            }
+          ]
+        },
+        {
+          "resourceKey": "Resource2.2",
+          "intervals": [
+            {
+              "startT": 780,
+              "stopT": 900
+            }
+          ]
+        },
+        {
+          "resourceKey": "Resource2.3",
+          "intervals": [
+            {
+              "startT": 780,
+              "stopT": 900
+            }
+          ]
+        },
+        {
+          "resourceKey": "Resource2.4",
+          "intervals": [
+            {
+              "startT": 780,
+              "stopT": 900
+            }
+          ]
+        },
+        {
+          "resourceKey": "Resource2.5",
+          "intervals": [
+            {
+              "startT": 780,
+              "stopT": 900
+            }
+          ]
+        },
+        {
+          "resourceKey": "Resource2.6",
+          "intervals": [
+            {
+              "startT": 780,
+              "stopT": 900
+            }
+          ]
+        },
+        {
+          "resourceKey": "Resource3.1",
+          "intervals": [
+            {
+              "startT": 780,
+              "stopT": 900
+            }
+          ]
+        },
+        {
+          "resourceKey": "Resource3.2",
+          "intervals": [
+            {
+              "startT": 780,
+              "stopT": 900
+            }
+          ]
+        },
+        {
+          "resourceKey": "Resource3.3",
+          "intervals": [
+            {
+              "startT": 780,
+              "stopT": 900
+            }
+          ]
+        },
+        {
+          "resourceKey": "Resource3.4",
+          "intervals": [
+            {
+              "startT": 780,
+              "stopT": 900
+            }
+          ]
+        },
+        {
+          "resourceKey": "Resource4.1",
+          "intervals": [
+            {
+              "startT": 780,
+              "stopT": 900
+            }
+          ]
+        },
+        {
+          "resourceKey": "Resource4.2",
+          "intervals": [
+            {
+              "startT": 780,
+              "stopT": 900
+            }
+          ]
+        },
+        {
+          "resourceKey": "Resource5.1",
+          "intervals": [
+            {
+              "startT": 780,
+              "stopT": 1020
+            }
+          ]
+        }
+      ]
     }
   ],
   "searchInterval": 7199

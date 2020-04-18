@@ -103,7 +103,9 @@ class PlanrSolver extends Solver("PlanrSolver") {
         val resource    = operation.resourceKeys(resourceIndex)
         val resourceAllocationIntervals = allocations
           .find(_.resourceKey == resource)
-          .map(_.intervals.map(interval => makeFixedDurationIntervalVar(makeIntConst(interval.startDt), interval.stopDt - interval.startDt, isPerformed, "")))
+          .map(
+            _.intervals.map(interval => makeFixedDurationIntervalVar(makeIntConst(day.startDt + interval.startT), day.startDt + interval.stopT - interval.startT, isPerformed, ""))
+          )
         resourceAllocationIntervals.map(value => addConstraint(makeDisjunctiveConstraint(value :+ interval, "")))
       })
 

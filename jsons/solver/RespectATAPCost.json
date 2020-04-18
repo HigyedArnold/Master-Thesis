@@ -50,8 +50,8 @@
           "resourceKey": "Resource1",
           "intervals": [
             {
-              "startDt": 400,
-              "stopDt": 520
+              "startT": 400,
+              "stopT": 520
             }
           ]
         }

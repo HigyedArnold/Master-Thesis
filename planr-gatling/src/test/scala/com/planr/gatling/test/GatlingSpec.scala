@@ -21,10 +21,10 @@ class GatlingSpec extends Simulation {
 //      constantUsersPerSec(100).during(50 seconds)
 //    ),
     BaseScenarios.solveScenario5.inject(
-      constantUsersPerSec(10).during(20 seconds)
+      constantUsersPerSec(25).during(20 seconds)
     ),
     BaseScenarios.solveScenario5_5.inject(
-      constantUsersPerSec(10).during(20 seconds)
+      constantUsersPerSec(25).during(20 seconds)
     )
   )
 

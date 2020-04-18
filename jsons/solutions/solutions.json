@@ -1,15 +1,15 @@
 {
   "solutions": [
     {
-      "cost": 8.47,
+      "cost": 9.92,
       "duration": 200,
       "day": {
         "startDt": 0,
         "stopDt": 1439
       },
       "interval": {
-        "startDt": 720,
-        "stopDt": 920
+        "startDt": 930,
+        "stopDt": 1130
       },
       "operations": [
         {
@@ -21,8 +21,8 @@
             "name": "Resource 1.2"
           },
           "interval": {
-            "startDt": 720,
-            "stopDt": 750
+            "startDt": 930,
+            "stopDt": 960
           }
         },
         {
@@ -34,8 +34,8 @@
             "name": "Resource 2.3"
           },
           "interval": {
-            "startDt": 750,
-            "stopDt": 770
+            "startDt": 960,
+            "stopDt": 980
           }
         },
         {
@@ -47,8 +47,8 @@
             "name": "Resource 2.3"
           },
           "interval": {
-            "startDt": 770,
-            "stopDt": 810
+            "startDt": 980,
+            "stopDt": 1020
           }
         },
         {
@@ -60,8 +60,8 @@
             "name": "Resource 3.1"
           },
           "interval": {
-            "startDt": 810,
-            "stopDt": 845
+            "startDt": 1020,
+            "stopDt": 1055
           }
         },
         {
@@ -73,8 +73,8 @@
             "name": "Resource 4.1"
           },
           "interval": {
-            "startDt": 810,
-            "stopDt": 825
+            "startDt": 1020,
+            "stopDt": 1035
           }
         },
         {
@@ -86,8 +86,8 @@
             "name": "Resource 5.1"
           },
           "interval": {
-            "startDt": 810,
-            "stopDt": 855
+            "startDt": 1020,
+            "stopDt": 1065
           }
         },
         {
@@ -99,22 +99,22 @@
             "name": "Resource 1.2"
           },
           "interval": {
-            "startDt": 860,
-            "stopDt": 920
+            "startDt": 1070,
+            "stopDt": 1130
           }
         }
       ]
     },
     {
-      "cost": 18.47,
+      "cost": 42.22,
       "duration": 200,
       "day": {
         "startDt": 1440,
         "stopDt": 2879
       },
       "interval": {
-        "startDt": 2160,
-        "stopDt": 2360
+        "startDt": 1980,
+        "stopDt": 2180
       },
       "operations": [
         {
@@ -126,8 +126,8 @@
             "name": "Resource 1.2"
           },
           "interval": {
-            "startDt": 2160,
-            "stopDt": 2190
+            "startDt": 1980,
+            "stopDt": 2010
           }
         },
         {
@@ -139,8 +139,8 @@
             "name": "Resource 2.3"
           },
           "interval": {
-            "startDt": 2190,
-            "stopDt": 2210
+            "startDt": 2010,
+            "stopDt": 2030
           }
         },
         {
@@ -152,8 +152,8 @@
             "name": "Resource 2.3"
           },
           "interval": {
-            "startDt": 2210,
-            "stopDt": 2250
+            "startDt": 2030,
+            "stopDt": 2070
           }
         },
         {
@@ -165,8 +165,8 @@
             "name": "Resource 3.1"
           },
           "interval": {
-            "startDt": 2250,
-            "stopDt": 2285
+            "startDt": 2070,
+            "stopDt": 2105
           }
         },
         {
@@ -178,8 +178,8 @@
             "name": "Resource 4.1"
           },
           "interval": {
-            "startDt": 2250,
-            "stopDt": 2265
+            "startDt": 2070,
+            "stopDt": 2085
           }
         },
         {
@@ -191,8 +191,8 @@
             "name": "Resource 5.1"
           },
           "interval": {
-            "startDt": 2250,
-            "stopDt": 2295
+            "startDt": 2070,
+            "stopDt": 2115
           }
         },
         {
@@ -204,22 +204,22 @@
             "name": "Resource 1.2"
           },
           "interval": {
-            "startDt": 2300,
-            "stopDt": 2360
+            "startDt": 2120,
+            "stopDt": 2180
           }
         }
       ]
     },
     {
-      "cost": 28.47,
+      "cost": 52.22,
       "duration": 200,
       "day": {
         "startDt": 2880,
         "stopDt": 4319
       },
       "interval": {
-        "startDt": 3600,
-        "stopDt": 3800
+        "startDt": 3420,
+        "stopDt": 3620
       },
       "operations": [
         {
@@ -231,8 +231,8 @@
             "name": "Resource 1.2"
           },
           "interval": {
-            "startDt": 3600,
-            "stopDt": 3630
+            "startDt": 3420,
+            "stopDt": 3450
           }
         },
         {
@@ -244,8 +244,8 @@
             "name": "Resource 2.3"
           },
           "interval": {
-            "startDt": 3630,
-            "stopDt": 3650
+            "startDt": 3450,
+            "stopDt": 3470
           }
         },
         {
@@ -257,8 +257,8 @@
             "name": "Resource 2.3"
           },
           "interval": {
-            "startDt": 3650,
-            "stopDt": 3690
+            "startDt": 3470,
+            "stopDt": 3510
           }
         },
         {
@@ -270,8 +270,8 @@
             "name": "Resource 3.1"
           },
           "interval": {
-            "startDt": 3690,
-            "stopDt": 3725
+            "startDt": 3510,
+            "stopDt": 3545
           }
         },
         {
@@ -283,8 +283,8 @@
             "name": "Resource 4.1"
           },
           "interval": {
-            "startDt": 3690,
-            "stopDt": 3705
+            "startDt": 3510,
+            "stopDt": 3525
           }
         },
         {
@@ -296,8 +296,8 @@
             "name": "Resource 5.1"
           },
           "interval": {
-            "startDt": 3690,
-            "stopDt": 3735
+            "startDt": 3510,
+            "stopDt": 3555
           }
         },
         {
@@ -309,22 +309,22 @@
             "name": "Resource 1.2"
           },
           "interval": {
-            "startDt": 3740,
-            "stopDt": 3800
+            "startDt": 3560,
+            "stopDt": 3620
           }
         }
       ]
     },
     {
-      "cost": 38.47,
+      "cost": 62.22,
       "duration": 200,
       "day": {
         "startDt": 4320,
         "stopDt": 5759
       },
       "interval": {
-        "startDt": 5040,
-        "stopDt": 5240
+        "startDt": 4860,
+        "stopDt": 5060
       },
       "operations": [
         {
@@ -336,8 +336,8 @@
             "name": "Resource 1.2"
           },
           "interval": {
-            "startDt": 5040,
-            "stopDt": 5070
+            "startDt": 4860,
+            "stopDt": 4890
           }
         },
         {
@@ -349,8 +349,8 @@
             "name": "Resource 2.3"
           },
           "interval": {
-            "startDt": 5070,
-            "stopDt": 5090
+            "startDt": 4890,
+            "stopDt": 4910
           }
         },
         {
@@ -362,8 +362,8 @@
             "name": "Resource 2.3"
           },
           "interval": {
-            "startDt": 5090,
-            "stopDt": 5130
+            "startDt": 4910,
+            "stopDt": 4950
           }
         },
         {
@@ -375,8 +375,8 @@
             "name": "Resource 3.1"
           },
           "interval": {
-            "startDt": 5130,
-            "stopDt": 5165
+            "startDt": 4950,
+            "stopDt": 4985
           }
         },
         {
@@ -388,8 +388,8 @@
             "name": "Resource 4.1"
           },
           "interval": {
-            "startDt": 5130,
-            "stopDt": 5145
+            "startDt": 4950,
+            "stopDt": 4965
           }
         },
         {
@@ -401,8 +401,8 @@
             "name": "Resource 5.1"
           },
           "interval": {
-            "startDt": 5130,
-            "stopDt": 5175
+            "startDt": 4950,
+            "stopDt": 4995
           }
         },
         {
@@ -414,22 +414,22 @@
             "name": "Resource 1.2"
           },
           "interval": {
-            "startDt": 5180,
-            "stopDt": 5240
+            "startDt": 5000,
+            "stopDt": 5060
           }
         }
       ]
     },
     {
-      "cost": 48.47,
+      "cost": 72.22,
       "duration": 200,
       "day": {
         "startDt": 5760,
         "stopDt": 7199
       },
       "interval": {
-        "startDt": 6480,
-        "stopDt": 6680
+        "startDt": 6300,
+        "stopDt": 6500
       },
       "operations": [
         {
@@ -441,8 +441,8 @@
             "name": "Resource 1.2"
           },
           "interval": {
-            "startDt": 6480,
-            "stopDt": 6510
+            "startDt": 6300,
+            "stopDt": 6330
           }
         },
         {
@@ -454,8 +454,8 @@
             "name": "Resource 2.3"
           },
           "interval": {
-            "startDt": 6510,
-            "stopDt": 6530
+            "startDt": 6330,
+            "stopDt": 6350
           }
         },
         {
@@ -467,8 +467,8 @@
             "name": "Resource 2.3"
           },
           "interval": {
-            "startDt": 6530,
-            "stopDt": 6570
+            "startDt": 6350,
+            "stopDt": 6390
           }
         },
         {
@@ -480,8 +480,8 @@
             "name": "Resource 3.1"
           },
           "interval": {
-            "startDt": 6570,
-            "stopDt": 6605
+            "startDt": 6390,
+            "stopDt": 6425
           }
         },
         {
@@ -493,8 +493,8 @@
             "name": "Resource 4.1"
           },
           "interval": {
-            "startDt": 6570,
-            "stopDt": 6585
+            "startDt": 6390,
+            "stopDt": 6405
           }
         },
         {
@@ -506,8 +506,8 @@
             "name": "Resource 5.1"
           },
           "interval": {
-            "startDt": 6570,
-            "stopDt": 6615
+            "startDt": 6390,
+            "stopDt": 6435
           }
         },
         {
@@ -519,8 +519,8 @@
             "name": "Resource 1.2"
           },
           "interval": {
-            "startDt": 6620,
-            "stopDt": 6680
+            "startDt": 6440,
+            "stopDt": 6500
           }
         }
       ]

@@ -81,7 +81,7 @@ case class Problem(
 
 case class Allocation(
   resourceKey: String,
-  intervals:   Array[DateTimeInterval]
+  intervals:   Array[TimeInterval]
 )
 
 case class DayFrame(
