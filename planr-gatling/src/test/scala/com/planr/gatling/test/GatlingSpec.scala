@@ -10,7 +10,7 @@ import scala.language.postfixOps
 
 class GatlingSpec extends Simulation {
 
-  val httpConf: HttpProtocolBuilder = http.baseUrl("http://localhost:9000")
+  val httpConf: HttpProtocolBuilder = http.baseUrl("http://localhost:8900")
 
   // For options visit: https://gatling.io/docs/3.3/cheat-sheet/
   val scenarios = List(
@@ -23,9 +23,9 @@ class GatlingSpec extends Simulation {
 //    BaseScenarios.solveScenario5.inject(
 //      constantUsersPerSec(25).during(20 seconds)
 //    ),
-//    BaseScenarios.solveScenario5_5.inject(
-//      constantUsersPerSec(25).during(20 seconds)
-//    )
+    BaseScenarios.solveScenario5_5.inject(
+      constantUsersPerSec(25).during(20 seconds)
+    )
   )
 
   setUp(scenarios)

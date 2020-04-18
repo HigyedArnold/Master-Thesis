@@ -7,6 +7,7 @@ sbt build
 sbt docker
 
 # docker run com.planr/planr:latest
-docker-compose up
+#docker-compose up
+docker-compose up --scale planr=5
 
 # sbt -> project planr-gatling -> gatling:test
