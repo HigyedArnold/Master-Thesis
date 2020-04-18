@@ -2,6 +2,6 @@ version: '3.3'
 
 services:
   planr:
-    image: planr:0.0.1
+    image: planr:5.0
     ports:
       - 9000:9000
