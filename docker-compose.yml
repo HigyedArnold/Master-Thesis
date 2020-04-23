@@ -3,8 +3,8 @@ version: '3.3'
 services:
 
   planr:
-    image: planr:5.0
-    # image: planr:5.5
+    image: planr:5.5
+    # image: planr:5.0
     expose:
       - 9000
     deploy:
