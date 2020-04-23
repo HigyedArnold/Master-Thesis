@@ -1,6 +1,6 @@
 {
   "problem": {
-    "key": "Performance5-1",
+    "key": "Performance4-2",
     "operations": [
       {
         "key": "Operation1",
@@ -222,8 +222,8 @@
   "dayFrames": [
     {
       "day": {
-        "startDt": 0,
-        "stopDt": 1439
+        "startDt": 1440,
+        "stopDt": 2879
       },
       "program": {
         "startT": 480,
@@ -395,5 +395,5 @@
       ]
     }
   ],
-  "searchInterval": 7199
+  "searchInterval": 5759
 }
