@@ -454,31 +454,20 @@ class PlanrTests extends AsyncFunSuite {
     }
   }
 
-  test("Solver - Performance test 5") {
+  test("Solver - Performance test 4") {
     assert(isSuccessfulInit)
-    JsonUtil.jsonFileToCaseClass[Problems]("jsons/performance/Performance5.json") match {
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/performance/Performance4.json") match {
       case Left(_) =>
         fail()
       case Right(problems) =>
         val solutions = solve(problems)
-        assert(solutions.solutions.length == 5)
+        assert(solutions.solutions.length == 4)
     }
   }
 
-  test("Solver - Performance test 5-1") {
+  test("Solver - Performance test 4-1") {
     assert(isSuccessfulInit)
-    JsonUtil.jsonFileToCaseClass[Problems]("jsons/performance/Performance5-1.json") match {
-      case Left(_) =>
-        fail()
-      case Right(problems) =>
-        val solutions = solve(problems)
-        assert(solutions.solutions.length == 1)
-    }
-  }
-
-  test("Solver - Performance test 5-2") {
-    assert(isSuccessfulInit)
-    JsonUtil.jsonFileToCaseClass[Problems]("jsons/performance/Performance5-2.json") match {
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/performance/Performance4-1.json") match {
       case Left(_) =>
         fail()
       case Right(problems) =>
@@ -487,9 +476,9 @@ class PlanrTests extends AsyncFunSuite {
     }
   }
 
-  test("Solver - Performance test 5-3") {
+  test("Solver - Performance test 4-2") {
     assert(isSuccessfulInit)
-    JsonUtil.jsonFileToCaseClass[Problems]("jsons/performance/Performance5-3.json") match {
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/performance/Performance4-2.json") match {
       case Left(_) =>
         fail()
       case Right(problems) =>
@@ -498,9 +487,9 @@ class PlanrTests extends AsyncFunSuite {
     }
   }
 
-  test("Solver - Performance test 5-4") {
+  test("Solver - Performance test 4-3") {
     assert(isSuccessfulInit)
-    JsonUtil.jsonFileToCaseClass[Problems]("jsons/performance/Performance5-4.json") match {
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/performance/Performance4-3.json") match {
       case Left(_) =>
         fail()
       case Right(problems) =>
@@ -509,9 +498,9 @@ class PlanrTests extends AsyncFunSuite {
     }
   }
 
-  test("Solver - Performance test 5-5") {
+  test("Solver - Performance test 4-4") {
     assert(isSuccessfulInit)
-    JsonUtil.jsonFileToCaseClass[Problems]("jsons/performance/Performance5-5.json") match {
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/performance/Performance4-4.json") match {
       case Left(_) =>
         fail()
       case Right(problems) =>

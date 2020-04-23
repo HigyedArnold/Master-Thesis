@@ -64,7 +64,7 @@ dockerfile in docker := {
     copy(artifact, s"/$destination")
     copy(jni, s"/$destination/natives-lin")
     entryPoint("java", "-jar", "-Xmx512M", "-Xms512M", "-Xss1M", s"/$destination/${artifact.name}")
-    // entryPoint("java", "-jar", "-Xmx2560M", "-Xms2560M", "-Xss5M", s"/$destination/${artifact.name}")
+    // entryPoint("java", "-jar", "-Xmx2048M", "-Xms2048M", "-Xss4M", s"/$destination/${artifact.name}")
   }
 }
 
