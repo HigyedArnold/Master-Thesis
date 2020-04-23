@@ -26,7 +26,7 @@ class SolverService @Inject() (config: Configuration, actorSystem: ActorSystem)(
       t0 <- System.nanoTime().asPureFRT
       _  <- Future.successful(problems.validate).asFRT
       t1 <- System.nanoTime().asPureFRT
-      _  <- logger.debug(s"Elapsed time for validating problems: ${(t1 - t0) / MILLIS} ms").asPureFRT
+      _  <- logger.info(s"Elapsed time for validating problem ${problems.problem.key}: ${(t1 - t0) / MILLIS} ms").asPureFRT
 
       /** Config */
       solverConfig <- readConfig().asPureFRT
@@ -36,7 +36,7 @@ class SolverService @Inject() (config: Configuration, actorSystem: ActorSystem)(
       t2        <- System.nanoTime().asPureFRT
       solutions <- getSolutions(problems, solverConfig, solverActor).asFRT
       t3        <- System.nanoTime().asPureFRT
-      _         <- logger.debug(s"Elapsed time for solving problems: ${(t3 - t2) / MILLIS} ms").asPureFRT
+      _         <- logger.info(s"Elapsed time for solving problem ${problems.problem.key}: ${(t3 - t2) / MILLIS} ms").asPureFRT
 
     } yield solutions).value
 

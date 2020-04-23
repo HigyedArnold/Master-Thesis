@@ -4,8 +4,21 @@ services:
 
   planr:
     image: planr:5.0
+    # image: planr:5.5
     expose:
       - 9000
+    deploy:
+      resources:
+        limits:
+          cpus: '7.5'
+          # cpus: '1.5'
+          memory: 3840M
+          # memory: 768
+        reservations:
+          cpus: '7.5'
+          # cpus: '1.5'
+          memory: 3840M
+          # memory: 768
 
   nginx:
     image: nginx:latest
