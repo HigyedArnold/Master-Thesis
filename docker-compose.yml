@@ -3,22 +3,22 @@ version: '3.3'
 services:
 
   planr:
-    image: planr:5.5
-    # image: planr:5.0
+    image: planr:1.0
+    # image: planr:4.0
     expose:
       - 9000
     deploy:
       resources:
         limits:
-          cpus: '1.5'
-          # cpus: '7.5'
-          memory: 768M
-          # memory: 3840M
+          cpus: '2.0'
+          # cpus: '8.0'
+          memory: 1024M
+          # memory: 4096M
         reservations:
-          cpus: '1.5'
-          # cpus: '7.5'
-          memory: 768M
-          # memory: 3840M
+          cpus: '2.0'
+          # cpus: '8.0'
+          memory: 1024M
+          # memory: 4096M
 
   nginx:
     image: nginx:latest
