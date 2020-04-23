@@ -13,12 +13,12 @@ services:
           cpus: '7.5'
           # cpus: '1.5'
           memory: 3840M
-          # memory: 768
+          # memory: 768M
         reservations:
           cpus: '7.5'
           # cpus: '1.5'
           memory: 3840M
-          # memory: 768
+          # memory: 768M
 
   nginx:
     image: nginx:latest
