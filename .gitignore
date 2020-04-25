@@ -176,6 +176,7 @@ project/plugins/project/
 .cache
 .lib/
 logs/
+results/
 
 ### Scala ###
 
