@@ -14,7 +14,6 @@ class GatlingSpec extends Simulation {
 
   // For options visit: https://gatling.io/docs/3.3/cheat-sheet/
   val scenarios = List(
-
 //    BaseScenarios.testScenario.inject(
 //      constantUsersPerSec(10).during(20 seconds)
 //    ),
@@ -26,32 +25,36 @@ class GatlingSpec extends Simulation {
     // WARMUP
     // 1 Request / Second
     BaseScenarios.solveScenario4.inject(
-      constantUsersPerSec(1).during(60 seconds)
+      constantUsersPerSec(1).during(30 seconds)
     ),
-
     // 4 Requests / Second
     BaseScenarios.solveScenario4_4.inject(
-      constantUsersPerSec(1).during(60 seconds)
-    )
-
+      constantUsersPerSec(1).during(30 seconds)
+    ),
+    // 2 Requests / Second
+    BaseScenarios.solveScenario2_4.inject(
+      constantUsersPerSec(1).during(30 seconds)
+    ),
     // PERFORMANCE
     // 80 Requests / Second
     BaseScenarios.solveScenario4.inject(
-      constantUsersPerSec(20).during(20 seconds)
+      constantUsersPerSec(20).during(30 seconds)
     ),
-
     // 320 Requests / Second
     BaseScenarios.solveScenario4_4.inject(
-      constantUsersPerSec(20).during(20 seconds)
+      constantUsersPerSec(20).during(30 seconds)
+    ),
+    // 160 Requests / Second
+    BaseScenarios.solveScenario2_4.inject(
+      constantUsersPerSec(20).during(30 seconds)
     )
 
     // ENDURANCE
-
   )
 
   setUp(scenarios)
     .protocols(httpConf)
-    .maxDuration(30 seconds)
+    .maxDuration(60 seconds)
     .assertions(global.responseTime.max.lte(10000))
 
 }

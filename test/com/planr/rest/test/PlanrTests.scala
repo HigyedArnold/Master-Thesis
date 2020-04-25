@@ -465,9 +465,9 @@ class PlanrTests extends AsyncFunSuite {
     }
   }
 
-  test("Solver - Performance test 4-1") {
+  test("Solver - Performance test 1-1") {
     assert(isSuccessfulInit)
-    JsonUtil.jsonFileToCaseClass[Problems]("jsons/performance/Performance4-1.json") match {
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/performance/Performance1-1.json") match {
       case Left(_) =>
         fail()
       case Right(problems) =>
@@ -476,9 +476,9 @@ class PlanrTests extends AsyncFunSuite {
     }
   }
 
-  test("Solver - Performance test 4-2") {
+  test("Solver - Performance test 1-2") {
     assert(isSuccessfulInit)
-    JsonUtil.jsonFileToCaseClass[Problems]("jsons/performance/Performance4-2.json") match {
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/performance/Performance1-2.json") match {
       case Left(_) =>
         fail()
       case Right(problems) =>
@@ -487,9 +487,9 @@ class PlanrTests extends AsyncFunSuite {
     }
   }
 
-  test("Solver - Performance test 4-3") {
+  test("Solver - Performance test 1-3") {
     assert(isSuccessfulInit)
-    JsonUtil.jsonFileToCaseClass[Problems]("jsons/performance/Performance4-3.json") match {
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/performance/Performance1-3.json") match {
       case Left(_) =>
         fail()
       case Right(problems) =>
@@ -498,14 +498,36 @@ class PlanrTests extends AsyncFunSuite {
     }
   }
 
-  test("Solver - Performance test 4-4") {
+  test("Solver - Performance test 1-4") {
     assert(isSuccessfulInit)
-    JsonUtil.jsonFileToCaseClass[Problems]("jsons/performance/Performance4-4.json") match {
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/performance/Performance1-4.json") match {
       case Left(_) =>
         fail()
       case Right(problems) =>
         val solutions = solve(problems)
         assert(solutions.solutions.length == 1)
+    }
+  }
+
+  test("Solver - Performance test 2-1") {
+    assert(isSuccessfulInit)
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/performance/Performance2-1.json") match {
+      case Left(_) =>
+        fail()
+      case Right(problems) =>
+        val solutions = solve(problems)
+        assert(solutions.solutions.length == 2)
+    }
+  }
+
+  test("Solver - Performance test 2-2") {
+    assert(isSuccessfulInit)
+    JsonUtil.jsonFileToCaseClass[Problems]("jsons/performance/Performance2-2.json") match {
+      case Left(_) =>
+        fail()
+      case Right(problems) =>
+        val solutions = solve(problems)
+        assert(solutions.solutions.length == 2)
     }
   }
 

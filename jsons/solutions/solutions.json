@@ -1,7 +1,7 @@
 {
   "solutions": [
     {
-      "cost": 9.92,
+      "cost": 11.54,
       "duration": 200,
       "day": {
         "startDt": 0,
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "cost": 42.22,
+      "cost": 45.66,
       "duration": 200,
       "day": {
         "startDt": 1440,
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "cost": 52.22,
+      "cost": 58.16,
       "duration": 200,
       "day": {
         "startDt": 2880,
@@ -316,7 +316,7 @@
       ]
     },
     {
-      "cost": 62.22,
+      "cost": 70.66,
       "duration": 200,
       "day": {
         "startDt": 4320,
@@ -416,111 +416,6 @@
           "interval": {
             "startDt": 5000,
             "stopDt": 5060
-          }
-        }
-      ]
-    },
-    {
-      "cost": 72.22,
-      "duration": 200,
-      "day": {
-        "startDt": 5760,
-        "stopDt": 7199
-      },
-      "interval": {
-        "startDt": 6300,
-        "stopDt": 6500
-      },
-      "operations": [
-        {
-          "key": "Operation1",
-          "name": "Operation 1",
-          "duration": 30,
-          "resource": {
-            "key": "Resource1.2",
-            "name": "Resource 1.2"
-          },
-          "interval": {
-            "startDt": 6300,
-            "stopDt": 6330
-          }
-        },
-        {
-          "key": "Operation2",
-          "name": "Operation 2",
-          "duration": 20,
-          "resource": {
-            "key": "Resource2.3",
-            "name": "Resource 2.3"
-          },
-          "interval": {
-            "startDt": 6330,
-            "stopDt": 6350
-          }
-        },
-        {
-          "key": "Operation3",
-          "name": "Operation 3",
-          "duration": 40,
-          "resource": {
-            "key": "Resource2.3",
-            "name": "Resource 2.3"
-          },
-          "interval": {
-            "startDt": 6350,
-            "stopDt": 6390
-          }
-        },
-        {
-          "key": "Operation4",
-          "name": "Operation 4",
-          "duration": 35,
-          "resource": {
-            "key": "Resource3.1",
-            "name": "Resource 3.1"
-          },
-          "interval": {
-            "startDt": 6390,
-            "stopDt": 6425
-          }
-        },
-        {
-          "key": "Operation5",
-          "name": "Operation 5",
-          "duration": 15,
-          "resource": {
-            "key": "Resource4.1",
-            "name": "Resource 4.1"
-          },
-          "interval": {
-            "startDt": 6390,
-            "stopDt": 6405
-          }
-        },
-        {
-          "key": "Operation6",
-          "name": "Operation 6",
-          "duration": 45,
-          "resource": {
-            "key": "Resource5.1",
-            "name": "Resource 5.1"
-          },
-          "interval": {
-            "startDt": 6390,
-            "stopDt": 6435
-          }
-        },
-        {
-          "key": "Operation7",
-          "name": "Operation 7",
-          "duration": 60,
-          "resource": {
-            "key": "Resource1.2",
-            "name": "Resource 1.2"
-          },
-          "interval": {
-            "startDt": 6440,
-            "stopDt": 6500
           }
         }
       ]
