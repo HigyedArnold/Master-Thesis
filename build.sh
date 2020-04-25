@@ -7,6 +7,8 @@ sbt build
 sbt docker
 
 docker-compose up -d --scale planr=4
+# java -jar -Xmx512M -Xms512M -Xss1M planr-assembly-1.4.jar
+# docker-compose up -d --scale planr=4
 # java -jar -Xmx512M -Xms512M -Xss1M planr-assembly-1.2.jar
 # docker-compose up -d --scale planr=4
 # java -jar -Xmx512M -Xms512M -Xss1M planr-assembly-1.0.jar

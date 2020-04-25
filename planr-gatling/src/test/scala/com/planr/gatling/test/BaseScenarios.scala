@@ -104,7 +104,7 @@ object BaseScenarios {
   val solveScenario4: ScenarioBuilder = scenario("POST /solve 4")
     .exec(solveHttp4)
 
-  val solveScenario4_4: ScenarioBuilder = scenario("POST /solve 4_4")
+  val solveScenario1_4: ScenarioBuilder = scenario("POST /solve 1_4")
     .exec(solveHttp1_1)
     .exec(solveHttp1_2)
     .exec(solveHttp1_3)
