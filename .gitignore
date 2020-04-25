@@ -177,6 +177,7 @@ project/plugins/project/
 .lib/
 logs/
 results/
+planr/
 
 ### Scala ###
 
