@@ -3,7 +3,8 @@ version: '3.3'
 services:
 
   planr:
-    image: planr:1.0
+    image: planr:1.2
+    # image: planr:1.0
     # image: planr:2.0
     # image: planr:4.0
     expose:
@@ -12,16 +13,20 @@ services:
       resources:
         limits:
           cpus: '2.0'
+          # cpus: '2.0'
           # cpus: '4.0'
           # cpus: '8.0'
           memory: 1024M
+          # memory: 1024M
           # memory: 2048M
           # memory: 4096M
         reservations:
           cpus: '2.0'
+          # cpus: '2.0'
           # cpus: '4.0'
           # cpus: '8.0'
           memory: 1024M
+          # memory: 1024M
           # memory: 2048M
           # memory: 4096M
 
