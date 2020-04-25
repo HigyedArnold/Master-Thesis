@@ -92,7 +92,7 @@ object BaseScenarios {
     .header("Content-Type", "application/json")
     .body(StringBody(solveRequest2_2))
     .check(status.is(200))
-  //    .check(jsonPath("$.solutions..cost").count.is(1))
+  //    .check(jsonPath("$.solutions..cost").count.is(2))
 
   /** -------------------------------------------------- Scenarios -------------------------------------------------- */
   val testScenario: ScenarioBuilder = scenario("GET /test")
