@@ -66,6 +66,7 @@ dockerfile in docker := {
     entryPoint("java", "-jar", "-Xmx512M", "-Xms512M", "-Xss1M", s"/$destination/${artifact.name}")
     // entryPoint("java", "-jar", "-Xmx512M", "-Xms512M", "-Xss1M", s"/$destination/${artifact.name}")
     // entryPoint("java", "-jar", "-Xmx512M", "-Xms512M", "-Xss1M", s"/$destination/${artifact.name}")
+    // entryPoint("java", "-jar", "-Xmx512M", "-Xms512M", "-Xss1M", s"/$destination/${artifact.name}")
     // entryPoint("java", "-jar", "-Xmx1024M", "-Xms1024M", "-Xss2M", s"/$destination/${artifact.name}")
     // entryPoint("java", "-jar", "-Xmx2048M", "-Xms2048M", "-Xss4M", s"/$destination/${artifact.name}")
   }
