@@ -23,28 +23,28 @@ class GatlingSpec extends Simulation {
 //    ),
 
     // WARMUP
-    // 1 Request / Second
+    // R4
     BaseScenarios.solveScenario4.inject(
       constantUsersPerSec(1).during(30 seconds)
     ),
-    // 4 Requests / Second
+    // R1
     BaseScenarios.solveScenario1_4.inject(
       constantUsersPerSec(1).during(30 seconds)
     ),
-    // 2 Requests / Second
+    // R2
     BaseScenarios.solveScenario2_4.inject(
       constantUsersPerSec(1).during(30 seconds)
     ),
     // PERFORMANCE
-    // 80 Requests / Second
+    // R4
     BaseScenarios.solveScenario4.inject(
       constantUsersPerSec(20).during(30 seconds)
     ),
-    // 320 Requests / Second
+    // R1
     BaseScenarios.solveScenario1_4.inject(
       constantUsersPerSec(20).during(30 seconds)
     ),
-    // 160 Requests / Second
+    // R2
     BaseScenarios.solveScenario2_4.inject(
       constantUsersPerSec(20).during(30 seconds)
     )
