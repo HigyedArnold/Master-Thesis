@@ -1,0 +1,26 @@
+{
+  "solutions": [{               //
+      "cost": "Double",         //
+      "duration": "Long",       //
+      "day": {                  //
+        "startDt": "Long",      //
+        "stopDt": "Long"        //
+      },
+      "interval": {             //
+        "startDt": "Long",      //
+        "stopDt": "Long"        //
+      },
+      "operations": [{          //
+          "key": "String",      //
+          "name": "String",     //
+          "duration": "Long",   //
+          "resource": {         //
+            "key": "String",    //
+            "name": "String"    //
+          },
+          "interval": {         //
+            "startDt": "Long",  //
+            "stopDt": "Long"    //
+          }
+        }]}]
+}

@@ -1,5 +1,5 @@
 # planr
-Planning application using: sbt, Scala, Play2, Akka Actors, Cats, OR-Tools, Docker and Swarm.
+Planning application using: sbt, Scala, Play2, Akka Actors, Cats, OR-Tools, Docker and Gatling.
 
 ## How to build and run
 Build process with sbt: clean, compile, test compile, extract jars, assembly and create docker image.

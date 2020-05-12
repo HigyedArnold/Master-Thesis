@@ -1,0 +1,55 @@
+{
+  "problem": {                                  //
+    "key": "String",                            //
+    "operations": [{                            //
+        "key": "String",                        //
+        "name": "String",                       //
+        "duration": "Long",                     //
+        "resourceKeys": "[String]"              //
+      }],
+    "resources": [{                             //
+        "key": "String",                        //
+        "name": "String"                        //
+      }],
+    "costs": {                                  // Optional
+      "asSoonAsPossible": "Boolean",            // Optional
+      "asTightAsPossible": "Boolean",           // Optional
+      "preferredTimeInterval": {                // Optional
+        "startT": "Long",                       //
+        "stopT": "Long"                         //
+      }
+    },
+    "constraints": {                            // Optional
+      "operationGrid": "Long",                  // Optional
+      "sameResource": [[                        // Optional
+          "String",                             //
+          "String"                              //
+        ]],
+      "enforcedTimeInterval": {                 // Optional
+        "startT": "Long",                       //
+        "stopT": "Long"                         //
+      },
+      "operationsRelation": [{                  // Optional
+          "opRelType": "OperationRelationType", //
+          "opKey1": "String",                   //
+          "opKey2": "String"                    //
+        }]}
+  },
+  "dayFrames": [{                               //
+      "day": {                                  //
+        "startDt": "Long",                      //
+        "stopDt": "Long"                        //
+      },
+      "program": {                              //
+        "startT": "Long",                       //
+        "stopT": "Long"                         //
+      },
+      "allocations": [{                         //
+          "resourceKey": "String",              //
+          "intervals": [{                       //
+              "startT": "Long",                 //
+              "stopT": "Long"                   //
+            }]}]
+  }],
+  "searchInterval": "Long"                      // Optional
+}
