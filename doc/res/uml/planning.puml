@@ -1,0 +1,52 @@
+@startuml planning
+
+' System Context & System Landscape diagrams
+'     Import: !includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Context.puml
+'     Macros: Person, Person_Ext, System, System_Ext, SystemDb, SystemDb_Ext, Boundary, System_Boundary, Enterprise_Boundary
+' Container diagram
+'     Import: !includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Container.puml
+'     Additional Macros: Container, ContainerDb, Container_Boundary
+' Component diagram
+'     Import: !includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Component.puml
+'     Additional Macros: Component, ComponentDb
+'
+' OBS: include only the Component diagram since it contains all other diagrams;
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Component.puml
+
+title Planning application architecture
+
+Person(user, "User", "")
+
+System_Boundary(cloud, "Cloud") {
+    Container_Boundary(frontEnd, "Frontend") {
+        Component(input, "Input", "Receives user input")
+        Component(output, "Output", "Displays search results")
+    }
+
+    Container_Boundary(backEnd, "Backend") {
+        Component(aggregator, "Aggregator", "Transforms and converts data and orchestrates lower level modules")
+        Component(dataLoader, "DataLoader", "Loads the search context")
+        ContainerDb(database, "Database", "Stores the application relevant data")
+        Component(solver, "Solver", "Solves the search context")
+
+    }
+}
+
+Rel_R(user, input, "Search preference")
+Rel_L(output, user, "Search results")
+Rel_D(input, output, "Search results")
+
+Rel_R(input, aggregator, "Search preference")
+Rel_L(aggregator, input, "Search results")
+
+Rel_D(aggregator, dataLoader, "Load search context")
+Rel_U(dataLoader, aggregator, "Search context")
+
+Rel_D(aggregator, solver, "Search context")
+Rel_U(solver, aggregator, "Search results")
+
+Rel_D(dataLoader, database, "Load raw data")
+Rel_U(database, dataLoader, "Raw data")
+
+@enduml
