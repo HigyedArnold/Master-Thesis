@@ -14,21 +14,21 @@
 
 !includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Component.puml
 
-title Planning application architecture
+' title Planning application architecture
 
 Person(user, "User", "")
 
 System_Boundary(cloud, "Cloud") {
     Container_Boundary(frontEnd, "Frontend") {
-        Component(input, "Input", "Receives user input")
-        Component(output, "Output", "Displays search results")
+        Container(input, "Input", "Receives user input")
+        Container(output, "Output", "Displays search results")
     }
 
     Container_Boundary(backEnd, "Backend") {
-        Component(aggregator, "Aggregator", "Transforms and converts data and orchestrates lower level modules")
-        Component(dataLoader, "DataLoader", "Loads the search context")
+        Container(aggregator, "Aggregator", "Transforms and converts data and orchestrates lower level modules")
+        Container(dataLoader, "DataLoader", "Loads the search context")
         ContainerDb(database, "Database", "Stores the application relevant data")
-        Component(solver, "Solver", "Solves the search context")
+        Container(solver, "Solver", "Solves the search context")
 
     }
 }

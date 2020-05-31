@@ -1,0 +1,48 @@
+@startuml architecture
+
+' System Context & System Landscape diagrams
+'     Import: !includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Context.puml
+'     Macros: Person, Person_Ext, System, System_Ext, SystemDb, SystemDb_Ext, Boundary, System_Boundary, Enterprise_Boundary
+' Container diagram
+'     Import: !includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Container.puml
+'     Additional Macros: Container, ContainerDb, Container_Boundary
+' Component diagram
+'     Import: !includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Component.puml
+'     Additional Macros: Component, ComponentDb
+'
+' OBS: include only the Component diagram since it contains all other diagrams;
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Component.puml
+
+' title Solver architecture
+
+Container(requester, "Requester", "Aggregator")
+
+Container_Boundary(solver, "Solver") {
+    Boundary(restThreadPool, "REST thread pool") {
+        Component(controller, "Controller", "REST controller")
+        Component(solverService, "SolverService", "Interface implementation")
+        Component(testService, "TestService", "Interface implementation")
+    }
+
+    Boundary(solverThreadPool, "Solver thread pool") {
+        Component(solverActor, "SolverActor", "One or more instances")
+        Component(solverModel, "SolverModel", "Solves the Problems")
+    }
+}
+
+Rel_R(requester, controller, "Request")
+Rel_L(controller, requester, "Response")
+
+Rel_D(controller, testService, "'/test' empty request")
+Rel_U(testService, controller, "'OK!'")
+Rel_D(controller, solverService, "'/solve' Problems request")
+Rel_U(solverService, controller, "Solutions")
+
+Rel_D(solverService, solverActor, "Problems")
+Rel_U(solverActor, solverService, "Solutions")
+
+Rel_R(solverActor, solverModel, "Problems")
+Rel_L(solverModel, solverActor, "Solutions")
+
+@enduml
