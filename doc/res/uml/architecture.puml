@@ -23,6 +23,7 @@ Container_Boundary(solver, "Solver") {
         Component(controller, "Controller", "REST controller")
         Component(solverService, "SolverService", "Interface implementation")
         Component(testService, "TestService", "Interface implementation")
+        Component(initService, "InitService", "Loads the native library and initializes the ActorSystem at the server bootup")
     }
 
     Boundary(solverThreadPool, "Solver thread pool") {
@@ -34,6 +35,7 @@ Container_Boundary(solver, "Solver") {
 Rel_R(requester, controller, "Request")
 Rel_L(controller, requester, "Response")
 
+Rel_R(controller, initService, "init")
 Rel_D(controller, testService, "'/test' empty request")
 Rel_U(testService, controller, "'OK!'")
 Rel_D(controller, solverService, "'/solve' Problems request")
