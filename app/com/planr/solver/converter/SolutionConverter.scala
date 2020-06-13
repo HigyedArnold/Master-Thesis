@@ -17,18 +17,14 @@ class SolutionConverter {
 
   def convert(solverSolution: SolverSolution, problem: Problem, dayFrame: DayFrame): Option[Solution] =
     Try {
-      val operations = solverSolution.sequences.indices.toArray.map(index => {
-        val operation     = problem.operations(index)
-        val sequence      = solverSolution.sequences(index)
-        val sequenceIndex = solverSolution.collector.forwardSequence(0, sequence)
+      val operations = solverSolution.intervals.indices.toArray.map(index => {
+        val operation = problem.operations(index)
+        val interval  = solverSolution.intervals(index)
 
         val resourceIndex = solverSolution.collector.value(0, solverSolution.resources(index))
         val resource      = operation.resourceKeys(resourceIndex.toInt)
-
-        val interval = sequence.interval(sequenceIndex(0))
-
-        val startDt = solverSolution.collector.value(0, interval.startExpr.`var`)
-        val stopDt  = solverSolution.collector.value(0, interval.endExpr.`var`)
+        val startDt       = solverSolution.collector.startValue(0, interval)
+        val stopDt        = solverSolution.collector.endValue(0, interval)
 
         SolutionOperation(
           operation.key,

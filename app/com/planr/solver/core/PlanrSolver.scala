@@ -35,7 +35,6 @@ class PlanrSolver extends Solver("PlanrSolver") {
     // Create Variance Domain
     val varianceDomain = createVarianceDomain(problem.operations, dayFrame.allocations, dayFrame.day)
     val intervals      = varianceDomain.map(_.interval)
-    val sequences      = varianceDomain.map(_.sequence)
     val resources      = varianceDomain.map(_.resource)
 
     // Apply Constraints
@@ -61,42 +60,37 @@ class PlanrSolver extends Solver("PlanrSolver") {
     val costObjective = makeDiv(makeSum(costs), PERCENTAGE * PRECISION).`var`()
 
     // Create Monitors
-    val (mainPhase, objective, collector) = createMonitors(sequences, resources, costObjective)
+    val (mainPhase, objective, collector) = createMonitors(intervals, resources, costObjective)
 
     // Return Model
-    Some(SolverProblem(sequences, resources, mainPhase, objective, collector, makeTimeLimit(solverConfig.solverTimeout)))
+    Some(SolverProblem(intervals, resources, mainPhase, objective, collector, makeTimeLimit(solverConfig.solverTimeout)))
   }
 
   private def solveModel(solverProblem: SolverProblem): Option[SolverSolution] =
     if (solve(solverProblem.mainPhase, solverProblem.objective, solverProblem.timeLimit, solverProblem.collector))
-      Some(SolverSolution(solverProblem.sequences, solverProblem.resources, solverProblem.objective, solverProblem.collector))
+      Some(SolverSolution(solverProblem.intervals, solverProblem.resources, solverProblem.objective, solverProblem.collector))
     else None
 
-  private def createVarianceDomain(operations: Array[Operation], allocations: Array[Allocation], day: DateTimeInterval) =
-    operations.map(operation => {
-      val interval = createInterval(day.startDt, day.stopDt, operation.duration, optional = false, operation.key)
-      val sequence = makeDisjunctiveConstraint(Array(interval), "").makeSequenceVar()
-      val optional = operation.resourceKeys.length > 1
-
-      val resourceIntervals = operation.resourceKeys.map(resourceKey => {
-        val resourceInterval = createInterval(day.startDt, day.stopDt, operation.duration, optional, resourceKey + " " + operation.key)
+  private def createVarianceDomain(operations: Array[Operation], allocations: Array[Allocation], day: DateTimeInterval): Array[VarianceDomain] = {
+    val result = operations.map(operation => {
+      val interval = createInterval(day.startDt, day.stopDt, operation.duration, operation.key)
+      val resourceIntervals = operation.resourceKeys.map(resKey => {
+        val resourceInterval = createInterval(day.startDt, day.stopDt, operation.duration, resKey + " " + operation.key)
         // Resource interval to match operation interval
         addConstraint(makeIntervalVarRelation(resourceInterval, Solver.STAYS_IN_SYNC, interval))
-        resourceInterval
+
+//        val resourceAllocationIntervals = allocations
+//          .find(_.resourceKey == resKey)
+//          .map(
+//            _.intervals.map(interval => makeFixedDurationIntervalVar(day.startDt + interval.startT, day.startDt + interval.startT, interval.stopT - interval.startT, false, ""))
+//          )
+//          .getOrElse(Array.empty[IntervalVar])
+//        addConstraint(makeDisjunctiveConstraint(resourceAllocationIntervals :+ resourceInterval, ""))
+
+        (resourceInterval, resKey)
       })
-
-      // Array of IntVar representing a 0 or 1 value, meaning if the resource interval is performed or not
-      val intervalsExpr = resourceIntervals.map(_.performedExpr().`var`)
-
       // IntVar based on affinities index interval
       val resourceVar = makeIntVar(0L, operation.resourceKeys.length.toLong - 1L)
-
-      // Resource var can take only values which are 1, mapping the solution domain to the Array of IntVar
-      addConstraint(makeMapDomain(resourceVar, intervalsExpr))
-
-      // Operation interval can take solutions from the given resource intervals
-      addConstraint(makeCover(resourceIntervals, interval))
-
       // Operation interval disjunctive with the allocated intervals of the chosen affinity/resource
       operation.resourceKeys.indices.foreach(resourceIndex => {
         val isPerformed = resourceVar.isEqual(resourceIndex.toLong)
@@ -108,15 +102,23 @@ class PlanrSolver extends Solver("PlanrSolver") {
           )
         resourceAllocationIntervals.map(value => addConstraint(makeDisjunctiveConstraint(value :+ interval, "")))
       })
-
-      VarianceDomain(operation.key, interval, sequence, resourceVar)
+      (resourceIntervals, VarianceDomain(operation.key, interval, resourceVar))
     })
+    val varianceDomains   = result.map(_._2)
+    val resourceIntervals = result.flatMap(_._1)
+    resourceIntervals
+      .groupBy(_._2)
+      .foreach(value => {
+        addConstraint(makeDisjunctiveConstraint(value._2.map(_._1), ""))
+      })
+    varianceDomains
+  }
 
-  private def createInterval(start: Long, stop: Long, duration: Long, optional: Boolean, key: String) =
-    makeFixedDurationIntervalVar(start, stop, duration, optional, key)
+  private def createInterval(start: Long, stop: Long, duration: Long, key: String) =
+    makeFixedDurationIntervalVar(start, stop, duration, false, key)
 
   private def createMonitors(
-    sequences:     Array[SequenceVar],
+    intervals:     Array[IntervalVar],
     resources:     Array[IntVar],
     costObjective: IntVar
   ): (DecisionBuilder, OptimizeVar, SolutionCollector) = {
@@ -124,25 +126,15 @@ class PlanrSolver extends Solver("PlanrSolver") {
     val objective = makeMinimize(costObjective, 1L)
     // Resource Decision Builder
     val resourcePhase = makePhase(resources, Solver.CHOOSE_FIRST_UNBOUND, Solver.ASSIGN_MIN_VALUE)
-    // Sequence Decision Builder
-    val sequencePhase = makePhase(sequences, Solver.SEQUENCE_DEFAULT)
-    // Cost Decision Builder
-    val costPhase = makePhase(costObjective, Solver.CHOOSE_FIRST_UNBOUND, Solver.ASSIGN_MIN_VALUE)
+    // Interval Decision Builder
+    val intervalPhase = makePhase(intervals, Solver.INTERVAL_DEFAULT)
     // Composed Decision Builder
-    val mainPhase = compose(resourcePhase, sequencePhase, costPhase)
+    val mainPhase = compose(resourcePhase, intervalPhase)
 
     // Solution Collector
     val collector = makeLastSolutionCollector
-    collector.add(sequences)
     collector.add(resources)
-
-    // Add also the start/stop times of sequences
-    sequences.foreach(sequence => {
-      val interval = sequence.interval(0)
-      collector.add(interval.startExpr.`var`())
-      collector.add(interval.endExpr.`var`())
-    })
-
+    collector.add(intervals)
     (mainPhase, objective, collector)
   }
 

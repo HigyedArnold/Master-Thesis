@@ -1,9 +1,9 @@
 package com.planr.solver.core
 
-import com.google.ortools.constraintsolver.{IntVar, OptimizeVar, SequenceVar, SolutionCollector}
+import com.google.ortools.constraintsolver.{IntVar, IntervalVar, OptimizeVar, SolutionCollector}
 
 case class SolverSolution(
-  sequences: Array[SequenceVar],
+  intervals: Array[IntervalVar],
   resources: Array[IntVar],
   objective: OptimizeVar,
   collector: SolutionCollector
