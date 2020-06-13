@@ -78,16 +78,7 @@ class PlanrSolver extends Solver("PlanrSolver") {
         val resourceInterval = createInterval(day.startDt, day.stopDt, operation.duration, resKey + " " + operation.key)
         // Resource interval to match operation interval
         addConstraint(makeIntervalVarRelation(resourceInterval, Solver.STAYS_IN_SYNC, interval))
-
-//        val resourceAllocationIntervals = allocations
-//          .find(_.resourceKey == resKey)
-//          .map(
-//            _.intervals.map(interval => makeFixedDurationIntervalVar(day.startDt + interval.startT, day.startDt + interval.startT, interval.stopT - interval.startT, false, ""))
-//          )
-//          .getOrElse(Array.empty[IntervalVar])
-//        addConstraint(makeDisjunctiveConstraint(resourceAllocationIntervals :+ resourceInterval, ""))
-
-        (resourceInterval, resKey)
+        ResourceInterval(resourceInterval, resKey)
       })
       // IntVar based on affinities index interval
       val resourceVar = makeIntVar(0L, operation.resourceKeys.length.toLong - 1L)
@@ -107,9 +98,9 @@ class PlanrSolver extends Solver("PlanrSolver") {
     val varianceDomains   = result.map(_._2)
     val resourceIntervals = result.flatMap(_._1)
     resourceIntervals
-      .groupBy(_._2)
+      .groupBy(_.key)
       .foreach(value => {
-        addConstraint(makeDisjunctiveConstraint(value._2.map(_._1), ""))
+        addConstraint(makeDisjunctiveConstraint(value._2.map(_.interval), ""))
       })
     varianceDomains
   }
