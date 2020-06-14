@@ -3,7 +3,7 @@ version: '3.3'
 services:
 
   planr:
-    image: planr:1.16-LATEST
+    image: planr:1.16-Latest
     # image: planr:1.8
     # image: planr:1.4
     # image: planr:1.2

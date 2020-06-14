@@ -75,7 +75,7 @@ dockerfile in docker := {
 
 // Image options
 imageNames in docker := Seq(
-  ImageName(s"${name.value}:${version.value}-LATEST")
+  ImageName(s"${name.value}:${version.value}-Latest")
 )
 
 //-----------------------------------  JVM  -----------------------------------
