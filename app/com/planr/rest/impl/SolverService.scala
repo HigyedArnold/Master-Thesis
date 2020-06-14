@@ -30,14 +30,15 @@ class SolverService @Inject() (config: Configuration, actorSystem: ActorSystem)(
 
       /** Config */
       solverConfig <- readConfig().asPureFRT
+
       /** Actors */
       solverActor <- actorSystem.actorSelection(SolverServiceT.actorPath).resolveOne()(solverConfig.actorTimeout.milliseconds).map(Right(_)).asFRT
+
       /** Solve */
       t2        <- System.nanoTime().asPureFRT
       solutions <- getSolutions(problems, solverConfig, solverActor).asFRT
       t3        <- System.nanoTime().asPureFRT
       _         <- logger.debug(s"Elapsed time for solving problem ${problems.problem.key}: ${(t3 - t2) / MILLIS} ms").asPureFRT
-
     } yield solutions).value
 
   private def readConfig(): SolverConfig =

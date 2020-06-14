@@ -31,15 +31,18 @@ class SolverActor extends Actor {
       val solver = PlanrSolver()
       val result = SolverActor.solve(solver, problem, dayFrame, searchInterval, solverConfig)
       sender ! Right(result)
+
       // Cleanup
       Try {
         solver.delete()
       }.fold(
-        error => logger.error(s"Failed solver cleanup: ${error.getMessage}"),
+        error => logger.error(s"Failed solver cleanup: $error"),
         _ => ()
       )
+
     case error =>
       val err = Error(this.getClass.getName, SOVLER__ERROR + UNKNOWN_ACTOR_MESSAGE__ERROR, s"SolverActor received unknown message: ${error.toString}")
       sender ! Left(err)
+
   }
 }

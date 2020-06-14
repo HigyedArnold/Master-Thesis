@@ -48,7 +48,7 @@ class SolutionConverter {
       )
     }.fold(
       error => {
-        logger.error(s"Failed solver solution conversion: ${error.getMessage}")
+        logger.error(s"Failed solver solution conversion: $error")
         None
       },
       value => Some(value)

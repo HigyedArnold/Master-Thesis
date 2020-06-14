@@ -25,7 +25,7 @@ class PlanrSolver extends Solver("PlanrSolver") {
       } yield solution
     }.fold(
       error => {
-        logger.error(s"Failed solver search: ${error.getMessage}")
+        logger.error(s"Failed solver search: $error")
         None
       },
       value => value
@@ -73,15 +73,17 @@ class PlanrSolver extends Solver("PlanrSolver") {
 
   private def createVarianceDomain(operations: Array[Operation], allocations: Array[Allocation], day: DateTimeInterval): Array[VarianceDomain] = {
     val result = operations.map(operation => {
-      val interval = createInterval(day.startDt, day.stopDt, operation.duration, operation.key)
+      val interval = createInterval(day.startDt, day.stopDt - operation.duration, operation.duration, operation.key)
+      // IntVar based on affinities index interval
+      val resourceVar = makeIntVar(0L, operation.resourceKeys.length.toLong - 1L)
+
       val resourceIntervals = operation.resourceKeys.map(resKey => {
-        val resourceInterval = createInterval(day.startDt, day.stopDt, operation.duration, resKey + " " + operation.key)
+        val resourceInterval = makeMirrorInterval(makeMirrorInterval(interval))
         // Resource interval to match operation interval
         addConstraint(makeIntervalVarRelation(resourceInterval, Solver.STAYS_IN_SYNC, interval))
         ResourceInterval(resourceInterval, resKey)
       })
-      // IntVar based on affinities index interval
-      val resourceVar = makeIntVar(0L, operation.resourceKeys.length.toLong - 1L)
+
       // Operation interval disjunctive with the allocated intervals of the chosen affinity/resource
       operation.resourceKeys.indices.foreach(resourceIndex => {
         val isPerformed = resourceVar.isEqual(resourceIndex.toLong)
@@ -89,12 +91,13 @@ class PlanrSolver extends Solver("PlanrSolver") {
         val resourceAllocationIntervals = allocations
           .find(_.resourceKey == resource)
           .map(
-            _.intervals.map(interval => makeFixedDurationIntervalVar(makeIntConst(day.startDt + interval.startT), day.startDt + interval.stopT - interval.startT, isPerformed, ""))
+            _.intervals.map(interval => makeFixedDurationIntervalVar(makeIntConst(day.startDt + interval.startT), interval.stopT - interval.startT, isPerformed, ""))
           )
         resourceAllocationIntervals.map(value => addConstraint(makeDisjunctiveConstraint(value :+ interval, "")))
       })
       (resourceIntervals, VarianceDomain(operation.key, interval, resourceVar))
     })
+
     val varianceDomains   = result.map(_._2)
     val resourceIntervals = result.flatMap(_._1)
     resourceIntervals
@@ -105,8 +108,8 @@ class PlanrSolver extends Solver("PlanrSolver") {
     varianceDomains
   }
 
-  private def createInterval(start: Long, stop: Long, duration: Long, key: String) =
-    makeFixedDurationIntervalVar(start, stop, duration, false, key)
+  private def createInterval(startMin: Long, startMax: Long, duration: Long, key: String) =
+    makeFixedDurationIntervalVar(startMin, startMax, duration, false, key)
 
   private def createMonitors(
     intervals:     Array[IntervalVar],

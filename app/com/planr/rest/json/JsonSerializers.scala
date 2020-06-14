@@ -14,8 +14,6 @@ object JsonSerializers {
   implicit val SolverConfigFormat: Format[SolverConfig] = Json.format[SolverConfig]
 
   // Problems
-//  implicit val OperationTypeFormat: Format[OperationType.Value] = Json.formatEnum(OperationType)
-//  implicit val ResourceTypeFormat:  Format[ResourceType.Value]  = Json.formatEnum(ResourceType)
   implicit val OperationRelationTypeFormat: Format[OperationRelationType.Value] = Json.formatEnum(OperationRelationType)
 
   implicit val TimeIntervalFormat:      Format[TimeInterval]      = Json.format[TimeInterval]
@@ -31,8 +29,6 @@ object JsonSerializers {
   implicit val ProblemsFormat:          Format[Problems]          = Json.format[Problems]
 
   // Solutions
-//  implicit val RankTypeFormat: Format[RankType.Value] = Json.formatEnum(RankType)
-
   implicit val SolutionOperationFormat: Format[SolutionOperation] = Json.format[SolutionOperation]
   implicit val SolutionFormat:          Format[Solution]          = Json.format[Solution]
   implicit val SolutionsFormat:         Format[Solutions]         = Json.format[Solutions]
